@@ -10,7 +10,7 @@
             <a class="nav-link active">Usuarios</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">Nuevo</a>
+            <a class="nav-link" href="{{ url('/users/create') }}">Nuevo</a>
           </li>
         </ul>
       </div>
@@ -23,17 +23,21 @@
         @endif
         <table class="table table-striped">
           <tr>
-            <th>Cedula</th>
-            <th>Cedula</th>
-            <th>Cedula</th>
-            <th>Cedula</th>
+            <th>ID</th>
+            <th>Email</th>
+            <th>Nombre</th>
+            <th>Creado</th>
           </tr>
+          @foreach ($users as $user)
+          <tr>
+            <td>{{ $user->id }}</td>
+            <td>{{ $user->email }}</td>
+            <td>{{ $user->name }}</td>
+            <td>{{ $user->created_at }}</td>
+          </tr>
+          @endforeach
         </table>
-
-        
-        <p class="card-text">Hola terricolas.</p>
-        <a href="#" class="btn btn-primary">Go somewhere</a>
-
+        {{ $users->links() }}
       </div>
     </div>
   </div>
