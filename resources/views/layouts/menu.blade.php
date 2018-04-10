@@ -18,14 +18,6 @@
           <li><a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a></li>
           <!-- <li><a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a></li> -->
         @else
-          <li>
-            <a class="nav-link" href="{{ route('role.list') }}">
-              Roles
-            </a>
-          </li>
-          <li class="nav-link">
-            Paises
-          </li>
           <li class="nav-link">
             Lección o Tema
           </li>
@@ -55,7 +47,7 @@
               <a class="dropdown-item" href="{{ url('/users') }}">
                 Usuarios
               </a>
-              <a class="dropdown-item" href="#">
+              <a class="dropdown-item" href="{{ route('role.list') }}">
                 Roles
               </a>
               <a class="dropdown-item" href="#">

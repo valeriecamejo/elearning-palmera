@@ -34,3 +34,4 @@ Route::get('roles/list', 'RoleController@list')->name('role.list');
 
 // User Routes...
 Route::get('/users', 'UserController@index')->name('users');
+Route::get('/users/create', 'UserController@create')->name('users/create');
