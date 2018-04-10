@@ -28,5 +28,9 @@ $this->get('password/reset/{token}', 'Auth\ResetPasswordController@showResetForm
 $this->post('password/reset', 'Auth\ResetPasswordController@reset');
 // Home
 Route::get('/home', 'HomeController@index')->name('home');
+
+// Roles Routes...
+Route::get('roles/list', 'RoleController@list')->name('role.list');
+
 // User Routes...
 Route::get('/users', 'UserController@index')->name('users');
