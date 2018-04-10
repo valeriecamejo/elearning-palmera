@@ -15,6 +15,8 @@
     <link href="https://fonts.googleapis.com/css?family=Raleway:300,400,600" rel="stylesheet" type="text/css">
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <!-- fontawesome -->
+    <link href="{{ asset('fontawesome/css/fontawesome-all.css') }}" rel="stylesheet">
 </head>
   <body>
     <div id="app"> 
