@@ -29,3 +29,4 @@ $this->post('password/reset', 'Auth\ResetPasswordController@reset');
 // Home
 Route::get('/home', 'HomeController@index')->name('home');
 // User Routes...
+Route::get('/users', 'UserController@index')->name('users');
