@@ -37,3 +37,4 @@ Route::post('roles/create', 'RoleController@store')->name('roles/create');
 // User Routes...
 Route::get('/users', 'UserController@index')->name('users');
 Route::get('/users/create', 'UserController@create')->name('users/create');
+Route::post('/users/create', 'UserController@store')->name('users/create');
