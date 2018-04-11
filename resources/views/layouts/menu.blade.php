@@ -47,7 +47,7 @@
               <a class="dropdown-item" href="{{ url('/users') }}">
                 Usuarios
               </a>
-              <a class="dropdown-item" href="{{ route('role.list') }}">
+              <a class="dropdown-item" href="{{ route('roles/list') }}">
                 Roles
               </a>
               <a class="dropdown-item" href="#">

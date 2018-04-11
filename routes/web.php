@@ -30,7 +30,9 @@ $this->post('password/reset', 'Auth\ResetPasswordController@reset');
 Route::get('/home', 'HomeController@index')->name('home');
 
 // Roles Routes...
-Route::get('roles/list', 'RoleController@list')->name('role.list');
+Route::get('roles/list', 'RoleController@list')->name('roles/list');
+Route::get('roles/create', 'RoleController@create')->name('roles/create');
+Route::post('roles/create', 'RoleController@store')->name('roles/create');
 
 // User Routes...
 Route::get('/users', 'UserController@index')->name('users');
