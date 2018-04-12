@@ -8,6 +8,7 @@ use App\Http\Requests\UserRequest;
 use Illuminate\Support\Facades\Session;
 use App\Brand;
 use App\Country;
+use Illuminate\Support\Facades\Auth;
 
 class UserController extends Controller {
   /**
@@ -55,4 +56,35 @@ class UserController extends Controller {
     }
     return redirect()->to('users/create');
   }
+
+    /**
+   * Show the application Profile.
+   *
+   * @return \Illuminate\Http\Response
+   */
+  public function profile() {
+    $user      = User::find(Auth::user()->id);
+    $brands    = Brand::all();
+    $countries = Country::all();
+    return view('user.profile', compact('user','brands','countries'));
+  }
+
+    /**
+   * Show the application Profile.
+   *
+   * @param  Request  $request
+   * @return \Illuminate\Http\Response
+   */
+  public function saveProfile(UserProfileRequest $request) {
+    $user = User::saveProfile($request->all());
+    if ($user) {
+      Session::flash('message', 'Actualizado correctamente.');
+      Session::flash('class', 'success');
+    } else {
+      Session::flash('message', 'Error al guardar los datos.');
+      Session::flash('class', 'danger');
+    }
+    return redirect()->to('users/profile');
+  }
+
 }
