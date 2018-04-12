@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Http\Request;
 use App\Role;
+use App\Module;
 
 class RoleController extends Controller
 {
@@ -16,8 +17,9 @@ class RoleController extends Controller
      */
     public function list()
     {
-      $roles = Role::all();
-      return view('role/list', compact('roles'));
+      $roles   = Role::paginate(15);
+      $modules = Module::all();
+      return view('role/list', compact('roles', 'modules'));
     }
 
     /**
