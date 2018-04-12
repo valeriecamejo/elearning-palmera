@@ -16,7 +16,6 @@
         <!-- Authentication Links -->
         @guest
           <li><a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a></li>
-          <!-- <li><a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a></li> -->
         @else
           <li class="nav-link">
             Lección o Tema
@@ -29,10 +28,10 @@
             {{ Auth::user()->name }} <i class="fas fa-cogs"></i> <span class="caret"></span>
             </a>
             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-              <a class="dropdown-item" href="#">
+              <a class="dropdown-item" href="{{ url('/users/profile') }}">
                 Perfil
               </a>
-              <a class="dropdown-item" href="#">
+              <a class="dropdown-item" href="{{ url('/brands') }}">
                 Marca
               </a>
               <a class="dropdown-item" href="{{ url('/users') }}">
@@ -41,7 +40,7 @@
               <a class="dropdown-item" href="{{ route('role.list') }}">
                 Roles
               </a>
-              <a class="dropdown-item" href="#">
+              <a class="dropdown-item" href="{{ url('/countries') }}">
                 Paises
               </a>
               <a class="dropdown-item" href="{{ route('logout') }}"

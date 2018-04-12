@@ -76,7 +76,11 @@
 					<div class="form-group row">
 						<label for="brand_id" class="col-md-4 col-form-label text-md-right">{{ __('Marca') }}</label>
 						<div class="col-md-6">
-							<input id="brand_id" type="text" class="form-control{{ $errors->has('brand_id') ? ' is-invalid' : '' }}" name="brand_id" value="1" autofocus required>
+              <select id="brand_id" class="form-control{{ $errors->has('brand_id') ? ' is-invalid' : '' }}" name="brand_id" autofocus required>
+                @foreach ($brands as $brand)
+                <option value="{{ $brand->id }}"> {{ $brand->name }} </option>
+                @endforeach
+              </select>
 							@if ($errors->has('brand_id'))
 								<span class="invalid-feedback">
 									<strong>{{ $errors->first('brand_id') }}</strong>
@@ -87,7 +91,11 @@
 					<div class="form-group row">
 						<label for="country_id" class="col-md-4 col-form-label text-md-right">{{ __('País') }}</label>
 						<div class="col-md-6">
-							<input id="country_id" type="text" class="form-control{{ $errors->has('country_id') ? ' is-invalid' : '' }}" name="country_id" value="1" autofocus required>
+              <select id="country_id" class="form-control{{ $errors->has('country_id') ? ' is-invalid' : '' }}" name="country_id" autofocus required>
+                @foreach ($countries as $country)
+                <option value="{{ $country->id }}"> {{ $country->name }} </option>
+                @endforeach
+              </select>
 							@if ($errors->has('country_id'))
 								<span class="invalid-feedback">
 									<strong>{{ $errors->first('country_id') }}</strong>

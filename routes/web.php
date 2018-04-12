@@ -36,3 +36,15 @@ Route::get('roles/list', 'RoleController@list')->name('role.list');
 Route::get('/users', 'UserController@index')->name('users');
 Route::get('/users/create', 'UserController@create')->name('users/create');
 Route::post('/users/create', 'UserController@store')->name('users/create');
+Route::get('/users/profile', 'UserController@profile')->name('users/profile');
+Route::post('/users/profile', 'UserController@saveProfile')->name('users/profile');
+
+// Brand Routes...
+Route::get('/brands', 'BrandController@index')->name('brands');
+Route::get('/brands/create', 'BrandController@create')->name('brands/create');
+Route::post('/brands/create', 'BrandController@store')->name('brands/create');
+
+// Country Routes...
+Route::get('/countries', 'CountryController@index')->name('countries');
+Route::get('/countries/create', 'CountryController@create')->name('countries/create');
+Route::post('/countries/create', 'CountryController@store')->name('countries/create');
