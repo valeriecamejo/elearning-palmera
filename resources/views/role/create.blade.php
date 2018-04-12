@@ -35,32 +35,13 @@
 						</div>
 					</div>
 					<div class="form-group row">
-						<label for="email" class="col-md-4 col-form-label text-md-right">{{ __('Permisos') }}</label>
+						<label for="email" class="col-md-4 col-form-label text-md-right">{{ __('Nivel') }}</label>
 						<div class="col-md-6">
-              <select name="modulo" class="custom-select">
+              <select name="level" class="custom-select">
                 <option selected>Seleccionar</option>
-                <option value="usuarios">Usuarios</option>
+                <option value="2">Medio</option>
+                <option value="3">Bajo</option>
               </select>
-              <div class="form-check form-check-inline">
-                <label class="form-check-label">
-                  <input class="form-check-input" type="checkbox" name="show" id="inlineCheckbox1" value="ver" checked> Ver
-                </label>
-              </div>
-              <div class="form-check form-check-inline">
-                <label class="form-check-label">
-                  <input class="form-check-input" type="checkbox" name="create" id="inlineCheckbox2" value="crear"> Crear
-                </label>
-              </div>
-              <div class="form-check form-check-inline disabled">
-                <label class="form-check-label">
-                  <input class="form-check-input" type="checkbox" name="edit" id="inlineCheckbox3" value="editar" > Editar
-                </label>
-              </div>
-              <div class="form-check form-check-inline disabled">
-                <label class="form-check-label">
-                  <input class="form-check-input" type="checkbox" name="delete" id="inlineCheckbox3" value="eliminar" > Eliminar
-                </label>
-              </div>
 						</div>
 					</div>
 				  <div class="form-group row mb-0">

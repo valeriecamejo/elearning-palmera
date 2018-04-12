@@ -22,14 +22,10 @@ class Role extends Model
   */
   public static function insertRole($request) {
 
-    $all_level  = Role::all();
-    $last_level = $all_level->last();
-    $level      = $last_level['level'];
-
     $role  = new Role;
     $role->name = $request['name'];
-    $role->permission = $request['modulo'];
-    $role->level = ++$level;
+    $role->permission = "";
+    $role->level = $request['level'];
     $role->save();
 
     if ($role->save()) {
