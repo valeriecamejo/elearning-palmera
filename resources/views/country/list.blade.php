@@ -7,10 +7,10 @@
       <div class="card-header">
         <ul class="nav nav-tabs card-header-tabs">
           <li class="nav-item">
-            <a class="nav-link active">Usuarios</a>
+            <a class="nav-link active">Paises</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="{{ url('/users/create') }}">Nuevo</a>
+            <a class="nav-link" href="{{ url('/countries/create') }}">Nuevo</a>
           </li>
         </ul>
       </div>
@@ -19,20 +19,20 @@
         <table class="table table-striped">
           <tr>
             <th>ID</th>
-            <th>Email</th>
             <th>Nombre</th>
+            <th>Nickname</th>
             <th>Creado</th>
           </tr>
-          @foreach ($users as $user)
+          @foreach ($countries as $country)
           <tr>
-            <td>{{ $user->id }}</td>
-            <td>{{ $user->email }}</td>
-            <td>{{ $user->name }}</td>
-            <td>{{ $user->created_at }}</td>
+            <td>{{ $country->id }}</td>
+            <td>{{ $country->name }}</td>
+            <td>{{ $country->nickname }}</td>
+            <td>{{ $country->created_at }}</td>
           </tr>
           @endforeach
         </table>
-        {{ $users->links() }}
+        {{ $countries->links() }}
       </div>
     </div>
   </div>
