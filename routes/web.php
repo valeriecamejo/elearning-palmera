@@ -33,6 +33,7 @@ Route::get('/home', 'HomeController@index')->name('home');
 Route::get('roles/list', 'RoleController@list')->name('roles/list');
 Route::get('roles/create', 'RoleController@create')->name('roles/create');
 Route::post('roles/create', 'RoleController@store')->name('roles/create');
+Route::post('roles/permission', 'RoleController@permission')->name('roles/permission');
 
 // User Routes...
 Route::get('/users', 'UserController@index')->name('users');
@@ -50,3 +51,6 @@ Route::post('/brands/create', 'BrandController@store')->name('brands/create');
 Route::get('/countries', 'CountryController@index')->name('countries');
 Route::get('/countries/create', 'CountryController@create')->name('countries/create');
 Route::post('/countries/create', 'CountryController@store')->name('countries/create');
+
+// Modules Routes...
+Route::post('modules/list', 'ModuleController@list')->name('modules/list');

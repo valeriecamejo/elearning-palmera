@@ -37,11 +37,11 @@
 					<div class="form-group row">
 						<label for="email" class="col-md-4 col-form-label text-md-right">{{ __('Nivel') }}</label>
 						<div class="col-md-6">
-              <select name="level" class="custom-select">
-                <option selected>Seleccionar</option>
-                <option value="2">Medio</option>
-                <option value="3">Bajo</option>
-              </select>
+							<select name="level" class="custom-select">
+								<option selected>Seleccionar</option>
+								<option value="2">Medio</option>
+								<option value="3">Bajo</option>
+							</select>
 						</div>
 					</div>
 				  <div class="form-group row mb-0">
