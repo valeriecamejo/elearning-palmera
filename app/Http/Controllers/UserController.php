@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\User;
 use App\Http\Requests\UserRequest;
+use App\Http\Requests\UserProfileRequest;
 use Illuminate\Support\Facades\Session;
 use App\Brand;
 use App\Country;
