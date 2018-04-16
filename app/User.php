@@ -55,4 +55,16 @@ class User extends Authenticatable {
       return $user;
     }
   }
+
+  public static function activeDeactive($id) {
+    $user           = User::find($id);
+    if ($user->active == true) {
+      $user->active = false;
+    } else {
+      $user->active = true;
+    }
+    if ($user->save()) {
+      return $user;
+    }
+  }
 }

@@ -21,14 +21,32 @@
             <th>ID</th>
             <th>Email</th>
             <th>Nombre</th>
+            <th>Apellido</th>
             <th>Creado</th>
+            <th>Opciones</th>
           </tr>
           @foreach ($users as $user)
           <tr>
             <td>{{ $user->id }}</td>
             <td>{{ $user->email }}</td>
             <td>{{ $user->name }}</td>
+            <td>{{ $user->last_name }}</td>
             <td>{{ $user->created_at }}</td>
+            <td>
+              <a class="" href="{{ url('/users/show/'.$user->id) }}" title="Ver">
+                <i class="fas fa-eye"></i>
+              </a>
+              <a class="" href="{{ url('/users/edit/'.$user->id) }}" title="Editar">
+                <i class="fas fa-edit"></i>
+              </a>
+              <a class="" href="{{ url('/users/active_deactive/'.$user->id) }}" title="Activar / Desactivar">
+              @if ($user->active == true)
+                <i class="fas fa-minus-circle text-danger"></i>
+              @else
+                <i class="fas fa-play-circle text-success"></i>
+              @endif
+              </a>
+            </td>
           </tr>
           @endforeach
         </table>

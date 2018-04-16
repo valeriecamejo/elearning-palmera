@@ -9,6 +9,7 @@ use App\Http\Requests\UserProfileRequest;
 use Illuminate\Support\Facades\Session;
 use App\Brand;
 use App\Country;
+use App\Role;
 use Illuminate\Support\Facades\Auth;
 
 class UserController extends Controller {
@@ -38,7 +39,8 @@ class UserController extends Controller {
   public function create() {
     $brands    = Brand::all();
     $countries = Country::all();
-    return view('user.create', compact('brands','countries'));
+    $roles     = Role::all();
+    return view('user.create', compact('brands','countries','roles'));
   }
   /**
    * Show the application Create Users.
@@ -87,5 +89,48 @@ class UserController extends Controller {
     }
     return redirect()->to('users/profile');
   }
+
+    /**
+   * Show the application show.
+   *
+   * @return \Illuminate\Http\Response
+   */
+  public function show($id) {
+    $user      = User::find($id);
+    $brand     = Brand::find($user->brand_id);
+    $country   = Country::find($user->country_id);
+    $role      = Role::find($user->role_id);
+    return view('user.show', compact('user','brand','country','role'));
+  }
+
+    /**
+   * Show the application Edit.
+   *
+   * @return \Illuminate\Http\Response
+   */
+  public function edit($id) {
+    $user       = User::find($id);
+    $brands     = Brand::all();
+    $countries  = Country::all();
+    $roles      = Role::all();
+    return view('user.edit', compact('user','brands','countries','roles'));
+  }
+    /**
+   * Show the application Active Deactive.
+   *
+   * @return \Illuminate\Http\Response
+   */
+  public function activeDeactive($id) {
+    $user = User::activeDeactive($id);
+    if ($user) {
+      Session::flash('message', 'Actualizado correctamente.');
+      Session::flash('class', 'success');
+    } else {
+      Session::flash('message', 'Error al actualizar los datos.');
+      Session::flash('class', 'danger');
+    }
+    return redirect()->to('users');
+  }
+
 
 }

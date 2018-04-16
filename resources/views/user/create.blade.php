@@ -65,7 +65,11 @@
 					<div class="form-group row">
 						<label for="role_id" class="col-md-4 col-form-label text-md-right">{{ __('Rol') }}</label>
 						<div class="col-md-6">
-							<input id="role_id" type="text" class="form-control{{ $errors->has('role_id') ? ' is-invalid' : '' }}" name="role_id" value="1" autofocus required>
+							<select id="role_id" class="form-control{{ $errors->has('role_id') ? ' is-invalid' : '' }}" name="role_id" autofocus required>
+                @foreach ($roles as $rol)
+                <option value="{{ $rol->id }}"> {{ $rol->name }} </option>
+                @endforeach
+              </select>
 							@if ($errors->has('role_id'))
 								<span class="invalid-feedback">
 									<strong>{{ $errors->first('role_id') }}</strong>
