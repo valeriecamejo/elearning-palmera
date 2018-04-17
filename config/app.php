@@ -26,7 +26,7 @@ return [
     |
     */
 
-    'env' => env('APP_ENV', 'production'),
+    'env' => env('APP_ENV', 'local'),
 
     /*
     |--------------------------------------------------------------------------
@@ -219,3 +219,15 @@ return [
     ],
 
 ];
+
+    /*
+    enviroment development
+    */
+    if (env('APP_ENV') === 'local') {
+        $result['providers'][] = Barryvdh\Debugbar\ServiceProvider::class;
+        $result['aliases'][]   = Barryvdh\Debugbar\Facade::class;
+
+    }
+
+    return $result;
+

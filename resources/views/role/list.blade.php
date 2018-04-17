@@ -1,7 +1,8 @@
 @extends('layouts.app')
 
 @section('content')
-<div id="permission">
+<link href="{{ asset('/js/components/role/permission.js') }}">
+<div id="role">
   <div class="row justify-content-center">
     <div class="col-md-6">
       <div class="card">
@@ -31,20 +32,18 @@
             <tr>
               <td>{{ $role->name }}</td>
               <td>
-                <a v-on:click="permission" data-toggle="modal" data-target="#exampleModalCenter">
+                <a @click="permission({{ $role->id }})" data-toggle="modal" data-target="#exampleModalCenter" >
                   <i class="fas fa-plus-circle"></i>
                 </a>
               </td>
             </tr>
             @endforeach
           </table>
-          
         </div>
       </div>
     </div>
   </div>
-  @include('modal')
 </div>
 
- <link href="{{ asset('/js/components/role/permission.js') }}">
+<script src="/js/permission.js"></script>
 @endsection
