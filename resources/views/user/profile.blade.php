@@ -14,13 +14,13 @@
 					<div class="form-group row">
 						<label for="name" class="col-md-4 col-form-label text-md-right">{{ __('Nombre') }}</label>
 						<div class="col-md-6">
-              <p class="form-control">{{ $user->name }}</p> 
+              <p class="col-form-label">{{ $user->name }}</p> 
 						</div>
 					</div>
 					<div class="form-group row">
 						<label for="last_name" class="col-md-4 col-form-label text-md-right">{{ __('Apellido') }}</label>
 						<div class="col-md-6">
-              <p class="form-control">{{ $user->last_name }}</p> 
+              <p class="col-form-label">{{ $user->last_name }}</p> 
 						</div>
 					</div>
 					<div class="form-group row">
@@ -37,7 +37,7 @@
 					<div class="form-group row">
 						<label for="dni" class="col-md-4 col-form-label text-md-right">{{ __('DNI') }}</label>
 						<div class="col-md-6">
-              <p class="form-control">{{ $user->dni }}</p> 
+              <p class="col-form-label">{{ $user->dni }}</p> 
 						</div>
 					</div>
 					<div class="form-group row">
@@ -54,7 +54,7 @@
 					<div class="form-group row">
 						<label for="email" class="col-md-4 col-form-label text-md-right">{{ __('E-Mail Address') }}</label>
 						<div class="col-md-6">
-              <p class="form-control">{{ $user->email }}</p> 
+              <p class="col-form-label">{{ $user->email }}</p> 
 						</div>
 					</div>
 					<div class="form-group row">
