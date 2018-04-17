@@ -12,7 +12,8 @@ class UsersTableSeeder extends Seeder
      */
     public function run() {
       DB::table('users')->insert([
-        'name'        => 'Palm ERA',
+        'name'        => 'Solsiret',
+        'last_name'   => 'Vasquez',
         'username'    => 'Super Admin',
         'email'       => 'solsiret@palmera.marketing',
         'dni'         => '22904405',
