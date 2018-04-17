@@ -38,14 +38,25 @@ class RoleController extends Controller
      */
     public function store() {
 
-      $new_role = Role::insertRole($_POST);
-      if ($new_role) {
+      $role = Role::insertRole($_POST);
+      if ($role) {
         Session::flash('message', 'Rol registrado correctamente.');
         Session::flash('class', 'success');
         } else {
         Session::flash('message', 'Error al registrar los datos.');
         Session::flash('class', 'danger');
         }
+      return redirect()->to('roles/create');
+    }
+
+    /**
+     * Create new role.
+     *
+     * @return void
+     */
+    public function permission() {
+
+      $permission = Role::insertPermission($_POST);
       return redirect()->to('roles/create');
     }
 }

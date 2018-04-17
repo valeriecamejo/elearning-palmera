@@ -26,7 +26,7 @@ return [
     |
     */
 
-    'env' => env('APP_ENV', 'production'),
+    'env' => env('APP_ENV', 'local'),
 
     /*
     |--------------------------------------------------------------------------
@@ -209,6 +209,25 @@ return [
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
 
+        /*
+        * Vendor ALiases
+        */
+
+        'Form' => 'Collective\Html\FormFacade',
+        'Html' => 'Collective\Html\HtmlFacade',
+
     ],
 
 ];
+
+    /*
+    enviroment development
+    */
+    if (env('APP_ENV') === 'local') {
+        $result['providers'][] = Barryvdh\Debugbar\ServiceProvider::class;
+        $result['aliases'][]   = Barryvdh\Debugbar\Facade::class;
+
+    }
+
+    return $result;
+

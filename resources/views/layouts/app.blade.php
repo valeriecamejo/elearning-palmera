@@ -8,8 +8,6 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>{{ config('app.name') }}</title>
-    <!-- Scripts -->
-    <script src="{{ asset('js/app.js') }}" defer></script>
     <!-- Fonts -->
     <link rel="dns-prefetch" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css?family=Raleway:300,400,600" rel="stylesheet" type="text/css">
@@ -17,9 +15,17 @@
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <!-- fontawesome -->
     <link href="{{ asset('fontawesome/css/fontawesome-all.css') }}" rel="stylesheet">
+    <!-- Vue.js -->
+    @if(App::environment('production'))
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.js"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    @else
+      {!! Html::script('js/vue/vue.js') !!}
+      {!! Html::script('js/vue/axios.min.js') !!}
+    @endif
 </head>
   <body>
-    <div id="app"> 
+    <div>
         @include('layouts.menu')
         <main class="py-4">
           <div class="container-fluid">
