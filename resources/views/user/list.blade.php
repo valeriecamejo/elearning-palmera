@@ -19,18 +19,24 @@
         <table class="table table-striped">
           <tr>
             <th>ID</th>
-            <th>Email</th>
+            <th>DNI</th>
             <th>Nombre</th>
             <th>Apellido</th>
+            <th>Email</th>
+            <th>Username</th>
+            <th>Activo</th>
             <th>Creado</th>
             <th>Opciones</th>
           </tr>
           @foreach ($users as $user)
           <tr>
             <td>{{ $user->id }}</td>
-            <td>{{ $user->email }}</td>
+            <td>{{ $user->dni }}</td>
             <td>{{ $user->name }}</td>
             <td>{{ $user->last_name }}</td>
+            <td>{{ $user->email }}</td>
+            <td>{{ $user->username }}</td>
+            <td>{{ $user->active ? 'SI' : 'NO' }}</td>
             <td>{{ $user->created_at }}</td>
             <td>
               <a class="" href="{{ url('/users/show/'.$user->id) }}" title="Ver">
