@@ -15,6 +15,7 @@
     <script src="{{ asset('js/app.js') }}" defer></script>
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/modal.css') }}" rel="stylesheet">
     <!-- fontawesome -->
     <link href="{{ asset('fontawesome/css/fontawesome-all.css') }}" rel="stylesheet">
     <!-- Vue.js -->
@@ -25,6 +26,8 @@
       {!! Html::script('js/vue/vue.js') !!}
       {!! Html::script('js/vue/axios.min.js') !!}
     @endif
+    <!-- Bulma -->
+    <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.3.1/css/bulma.min.css"/> -->
 </head>
   <body>
     <div>

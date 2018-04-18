@@ -20,11 +20,17 @@ class Role extends Model
   * @param  int  $id
   * @return Response
   */
-  public static function insertRole($request) {
+  public static function insertRole($request, $modules) {
 
+    $role_permission = [];
     $role  = new Role;
     $role->name = $request['name'];
-    $role->permission = "";
+    foreach ($modules as $module){
+      $permission = '{"modulo_id": '.$module->id.',"permisos": {"crear": 0,"editar": 0,"ver": 0,"eliminar": 0}}';
+    array_push($role_permission, ".$permission.");
+    };
+    $permissions = implode($role_permission);
+    $role->permission = ".$permissions.";
     $role->level = $request['level'];
     $role->save();
 

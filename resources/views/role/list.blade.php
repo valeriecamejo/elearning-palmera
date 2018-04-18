@@ -4,7 +4,7 @@
 <link href="{{ asset('/js/components/role/permission.js') }}">
 <div id="role">
   <div class="row justify-content-center">
-    <div class="col-md-6">
+    <div class="col-md-8">
       <div class="card">
         <div class="card-header">
           <ul class="nav nav-tabs card-header-tabs">
@@ -26,16 +26,18 @@
           <table class="table table-striped">
             <tr>
               <th>Nombre</th>
-              <th>Agregar Permisos</th>
+              <th>Permisos</th>
             </tr>
             @foreach ($roles as $role)
             <tr>
               <td>{{ $role->name }}</td>
               <td>
-                <a id="roles" class="roleModal" @click="permission({{ $role->id }})" >
-                  <i class="fas fa-plus-circle"></i>
-                  <div id="roleModal"></div>
-                </a>
+                <i id="show-modal" @click="permission({{ $role->id }}, {{ $modules }}, showModal = true)" class="fas fa-plus-circle"></i>
+                <div id="role">
+                    <modal v-if="showModal" @close="showModal = false">
+                      <h3 slot="header">Agregar Permisos</h3>
+                    </modal>
+                </div>
               </td>
             </tr>
             @endforeach
@@ -45,7 +47,8 @@
     </div>
   </div>
 </div>
-@include('modal.role')
 
+@include('modal.role')
+<!-- <script src="/js/prueba.js"></script> -->
 <script src="/js/permission.js"></script>
 @endsection

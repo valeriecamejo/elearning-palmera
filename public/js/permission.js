@@ -1,18 +1,20 @@
 Vue.component('modal', {
-  template: '#modal-template'
+  template: '#role-modal'
 })
 
-vm = new Vue({
-  el: "#role",
+new Vue({
+  el: '#role',
   data: {
-    showModal: false
+    showModal: false,
+    modules: [],
   },
   methods: {
-    permission: function (role_id) {
+    permission: function (role_id, user_modules, act_modal) {
       axios.get('/roles/permission/' + role_id , {
       }).then(function(response){
         this.role = response.data;
-        console.log('entro');
+        this.modules = user_modules;
+        console.log(modules);
       }).catch(function(data){
         this.errors = data.responseJSON
     })

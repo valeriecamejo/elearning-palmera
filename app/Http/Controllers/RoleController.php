@@ -38,7 +38,8 @@ class RoleController extends Controller
      */
     public function store() {
 
-      $role = Role::insertRole($_POST);
+      $modules = Module::all();
+      $role = Role::insertRole($_POST, $modules);
       if ($role) {
         Session::flash('message', 'Rol registrado correctamente.');
         Session::flash('class', 'success');
