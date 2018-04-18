@@ -41,6 +41,10 @@ Route::get('/users/create', 'UserController@create')->name('users/create');
 Route::post('/users/create', 'UserController@store')->name('users/create');
 Route::get('/users/profile', 'UserController@profile')->name('users/profile');
 Route::post('/users/profile', 'UserController@saveProfile')->name('users/profile');
+Route::get('/users/edit/{id}', 'UserController@edit')->name('users/edit');
+Route::post('/users/edit', 'UserController@update')->name('users/edit');
+Route::get('/users/show/{id}', 'UserController@show')->name('users/show');
+Route::get('/users/active_deactive/{id}', 'UserController@activeDeactive')->name('users/active_deactive');
 
 // Brand Routes...
 Route::get('/brands', 'BrandController@index')->name('brands');
