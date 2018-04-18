@@ -50,7 +50,28 @@ class User extends Authenticatable {
     $user           = User::find(Auth::user()->id);
     $user->username = $request['username'];
     $user->phone    = $request['phone'];
-    $user->password = Hash::make($request['password']);
+    if($request['password']!= null) {
+      $user->password = Hash::make($request['password']);
+    }
+    if ($user->save()) {
+      return $user;
+    }
+  }
+
+  public static function saveUpdate($request, $id) {
+    $user             = User::find($id);
+    $user->name       = $request['name'];
+    $user->last_name  = $request['last_name'];
+    $user->username   = $request['username'];
+    $user->email      = $request['email'];
+    $user->dni        = $request['dni'];
+    $user->role_id    = $request['role_id'];
+    $user->brand_id   = $request['brand_id'];
+    $user->country_id = $request['country_id'];
+    $user->phone      = $request['phone'];
+    if($request['password']!= null) {
+      $user->password = Hash::make($request['password']);
+    }
     if ($user->save()) {
       return $user;
     }
