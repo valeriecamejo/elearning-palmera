@@ -18,10 +18,13 @@
           <li><a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a></li>
         @else
           <li class="nav-link">
-            Lección o Tema
+            Categorias
           </li>
           <li class="nav-link">
-            Evaluación
+            Productos
+          </li>
+          <li class="nav-link">
+            Evaluaciones
           </li>
           <li class="nav-item dropdown">
             <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
@@ -57,6 +60,12 @@
               </a>
               <a class="dropdown-item" href="{{ url('/countries') }}">
                 Paises
+              </a>
+              <a class="dropdown-item" href="#">
+                Estados / Provincias
+              </a>
+              <a class="dropdown-item" href="#">
+                Ciudades
               </a>
             </div>
           </li>
