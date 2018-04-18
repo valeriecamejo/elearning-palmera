@@ -33,7 +33,7 @@ Route::get('/home', 'HomeController@index')->name('home');
 Route::get('roles/list', 'RoleController@list')->name('roles/list');
 Route::get('roles/create', 'RoleController@create')->name('roles/create');
 Route::post('roles/create', 'RoleController@store')->name('roles/create');
-Route::post('roles/permission', 'RoleController@permission')->name('roles/permission');
+Route::get('roles/permission/{role_id}', 'RoleController@permission');
 
 // User Routes...
 Route::get('/users', 'UserController@index')->name('users');

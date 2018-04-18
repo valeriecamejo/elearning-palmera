@@ -50,14 +50,15 @@ class RoleController extends Controller
     }
 
     /**
-     * Create new role.
+     * Add permission for Role.
      *
      * @return void
      */
-    public function permission() {
+    public function permission($role_id) {
 
-      $permission = Role::insertPermission($_POST);
-      return redirect()->to('roles/create');
+      $permission = Role::find($role_id);
+      return $permission;
     }
 }
 ?>
+

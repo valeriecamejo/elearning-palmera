@@ -32,8 +32,9 @@
             <tr>
               <td>{{ $role->name }}</td>
               <td>
-                <a @click="permission({{ $role->id }})" data-toggle="modal" data-target="#exampleModalCenter" >
+                <a id="roles" class="roleModal" @click="permission({{ $role->id }})" >
                   <i class="fas fa-plus-circle"></i>
+                  <div id="roleModal"></div>
                 </a>
               </td>
             </tr>
@@ -44,6 +45,7 @@
     </div>
   </div>
 </div>
+@include('modal.role')
 
 <script src="/js/permission.js"></script>
 @endsection
