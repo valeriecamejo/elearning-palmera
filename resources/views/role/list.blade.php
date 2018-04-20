@@ -46,9 +46,9 @@
       </div>
     </div>
   </div>
+  @include('modal.role')
 </div>
 
-@include('modal.role')
 <!-- <script src="/js/prueba.js"></script> -->
 <script src="/js/permission.js"></script>
 @endsection

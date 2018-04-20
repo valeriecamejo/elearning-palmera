@@ -1,4 +1,3 @@
-<form method="POST" action="{{ route('roles/create') }}">
   <script type="text/x-template" id="role-modal">
     <transition name="modal">
       <div class="modal-mask">
@@ -15,11 +14,11 @@
                 <div class="form-group row">
                   <label for="email" class="col-md-3 col-form-label text-md-right">{{ __('Módulos') }}</label>
                   <div class="col-md-8">
-                    <select name="modulo" class="custom-select">
+                    <select class="custom-select" required>
                       <option selected>Seleccionar</option>
-                              @foreach ($modules as $module)
-                        <option value={{ $module->id }}>{{ $module->name }}</option>
-                              @endforeach
+                        @foreach ($modules as $module)
+                          <option v-bind:title="{{ $module->id }}">{{ $module->name }}</option>
+                        @endforeach
                     </select>
                   </div>
                 </div>
@@ -30,22 +29,22 @@
               <div class="col-md-8">
                 <div class="form-check form-check-inline">
                   <label class="form-check-label">
-                    <input class="form-check-input" type="checkbox" name="show" id="inlineCheckbox1" value="ver" checked> Ver
+                    <input class="form-check-input" type="checkbox" name="show" id="ver" value="ver" v-model="checkedNames" v-bind:checkedNames="checkedNames" checked> Ver
                   </label>
                 </div>
                 <div class="form-check form-check-inline">
                   <label class="form-check-label">
-                    <input class="form-check-input" type="checkbox" name="create" id="inlineCheckbox2" value="crear"> Crear
+                    <input class="form-check-input" type="checkbox" name="create" id="crear" value="crear" v-model="checkedNames" v-bind:checkedNames="checkedNames"> Crear
                   </label>
                 </div>
                 <div class="form-check form-check-inline disabled">
                   <label class="form-check-label">
-                    <input class="form-check-input" type="checkbox" name="edit" id="inlineCheckbox3" value="editar" > Editar
+                    <input class="form-check-input" type="checkbox" name="edit" id="editar" value="editar" v-model="checkedNames" v-bind:checkedNames="checkedNames"> Editar
                   </label>
                 </div>
                 <div class="form-check form-check-inline disabled">
                   <label class="form-check-label">
-                    <input class="form-check-input" type="checkbox" name="delete" id="inlineCheckbox3" value="eliminar" > Eliminar
+                    <input class="form-check-input" type="checkbox" name="delete" id="eliminar" value="eliminar" v-model="checkedNames" v-bind:checkedNames="checkedNames"> Eliminar
                   </label>
                 </div>
             </div>
@@ -53,7 +52,7 @@
             <div class="modal-footer">
               <slot name="footer">
                 <button type="button" class="btn btn-secondary" @click="$emit('close')">Cerrar</button>
-                <button type="submit" class="btn btn-primary" @click="$emit('close')">Guardar</button>
+                <button type="submit" class="btn btn-primary" @click="$savePermission()">Guardar</button>
               </slot>
             </div>
           </div>
@@ -61,4 +60,3 @@
       </div>
     </transition>
   </script>
-</form>

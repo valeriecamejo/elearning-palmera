@@ -4,12 +4,20 @@ namespace App\Http\Controllers;
 
 use Illuminate\Support\Facades\Session;
 use Illuminate\Http\Request;
+use App\Http\Requests\RoleRequest;
 use App\Role;
 use App\Module;
 
 class RoleController extends Controller
 {
-
+/**
+   * Create a new controller instance.
+   *
+   * @return void
+   */
+  public function __construct() {
+    $this->middleware('auth');
+  }
   /**
   * Show the application List for Roles.
      *
@@ -36,10 +44,10 @@ class RoleController extends Controller
      *
      * @return void
      */
-    public function store() {
+    public function store(RoleRequest $request) {
 
       $modules = Module::all();
-      $role = Role::insertRole($_POST, $modules);
+      $role = Role::insertRole($request, $modules);
       if ($role) {
         Session::flash('message', 'Rol registrado correctamente.');
         Session::flash('class', 'success');
@@ -51,7 +59,7 @@ class RoleController extends Controller
     }
 
     /**
-     * Add permission for Role.
+     * Consult permissions for a Role.
      *
      * @return void
      */
@@ -59,6 +67,16 @@ class RoleController extends Controller
 
       $permission = Role::find($role_id);
       return $permission;
+    }
+
+    /**
+     * Add permission for a Role.
+     *
+     * @return void
+     */
+    public function storePermission($request, $id) {
+
+      var_dump("llegue");exit();
     }
 }
 ?>

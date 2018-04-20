@@ -8,7 +8,14 @@ use App\Module;
 
 class ModuleController extends Controller
 {
-
+/**
+   * Create a new controller instance.
+   *
+   * @return void
+   */
+  public function __construct() {
+    $this->middleware('auth');
+  }
   /**
   * Show the application List for Modules.
      *
