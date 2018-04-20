@@ -4,7 +4,29 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Category extends Model
-{
-    //
+class Category extends Model {
+     /**
+   * The attributes that are mass assignable.
+   *
+   * @var array
+   */
+  protected $fillable = [
+    'name', 'description'
+  ];
+
+  /**
+   * The attributes that should be hidden for arrays.
+   *
+   * @var array
+   */
+  protected $hidden = [];
+
+  public static function insertCategory($request) {
+    $category               = new Category;
+    $category->name         = $request['name'];
+    $category->description     = $request['description'];
+    if ($category->save()) {
+      return $category;
+    }
+  }
 }
