@@ -57,5 +57,16 @@ Route::get('/countries', 'CountryController@index')->name('countries');
 Route::get('/countries/create', 'CountryController@create')->name('countries/create');
 Route::post('/countries/create', 'CountryController@store')->name('countries/create');
 
+// Category Routes...
+Route::get('/categories', 'CategoryController@index')->name('categories');
+Route::get('/categories/create', 'CategoryController@create')->name('categories/create');
+Route::post('/categories/create', 'CategoryController@store')->name('categories/create');
+
+// Product Routes...
+Route::get('/products', 'ProductController@index')->name('products');
+Route::get('/products/list', 'ProductController@list')->name('products/list');
+Route::get('/products/create', 'ProductController@create')->name('products/create');
+Route::post('/products/create', 'ProductController@store')->name('products/create');
+
 // Modules Routes...
 Route::post('modules/list', 'ModuleController@list')->name('modules/list');
