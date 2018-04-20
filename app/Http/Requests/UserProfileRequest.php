@@ -25,7 +25,7 @@ class UserProfileRequest extends FormRequest
     return [
       'username'    => 'required|max:255|unique:users,username,'.Auth::user()->id,
       'phone'       => 'required|numeric|min:000999999',
-      'password'    => 'required|min:6|confirmed',
+      'password'    => 'min:6|confirmed',
     ];
   }
   public function messages() {

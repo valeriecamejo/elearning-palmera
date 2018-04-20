@@ -18,30 +18,21 @@
           <li><a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a></li>
         @else
           <li class="nav-link">
-            Lección o Tema
+            Categorias
           </li>
           <li class="nav-link">
-            Evaluación
+            Productos
+          </li>
+          <li class="nav-link">
+            Evaluaciones
           </li>
           <li class="nav-item dropdown">
             <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-            {{ Auth::user()->name }} <i class="fas fa-cogs"></i> <span class="caret"></span>
+            {{ Auth::user()->name }} <span class="caret"></span>
             </a>
             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
               <a class="dropdown-item" href="{{ url('/users/profile') }}">
                 Perfil
-              </a>
-              <a class="dropdown-item" href="{{ url('/brands') }}">
-                Marca
-              </a>
-              <a class="dropdown-item" href="{{ url('/users') }}">
-                Usuarios
-              </a>
-              <a class="dropdown-item" href="{{ route('roles/list') }}">
-                Roles
-              </a>
-              <a class="dropdown-item" href="{{ url('/countries') }}">
-                Paises
               </a>
               <a class="dropdown-item" href="{{ route('logout') }}"
                 onclick="event.preventDefault();
@@ -51,6 +42,31 @@
               <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                 @csrf
               </form>
+            </div>
+          </li>
+          <li class="nav-item dropdown">
+            <a id="navbarDropdown" class="nav-link " href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+              <i class="fas fa-cogs"></i>
+            </a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <a class="dropdown-item" href="{{ url('/users') }}">
+                Usuarios
+              </a>
+              <a class="dropdown-item" href="{{ route('roles/list') }}">
+                Roles
+              </a>
+              <a class="dropdown-item" href="{{ url('/brands') }}">
+                Marca
+              </a>
+              <a class="dropdown-item" href="{{ url('/countries') }}">
+                Paises
+              </a>
+              <a class="dropdown-item" href="#">
+                Estados / Provincias
+              </a>
+              <a class="dropdown-item" href="#">
+                Ciudades
+              </a>
             </div>
           </li>
         @endguest
