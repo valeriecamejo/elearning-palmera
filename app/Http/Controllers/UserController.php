@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\User;
 use App\Http\Requests\UserRequest;
 use App\Http\Requests\UserProfileRequest;
+use App\Http\Requests\UserUpdateRequest;
 use Illuminate\Support\Facades\Session;
 use App\Brand;
 use App\Country;
@@ -114,6 +115,18 @@ class UserController extends Controller {
     $countries  = Country::all();
     $roles      = Role::all();
     return view('user.edit', compact('user','brands','countries','roles'));
+  }
+
+  public function saveUpdate(UserUpdateRequest $request, $id) {
+    $user = User::saveUpdate($request->all(), $id);
+    if ($user) {
+      Session::flash('message', 'Actualizado correctamente.');
+      Session::flash('class', 'success');
+    } else {
+      Session::flash('message', 'Error al guardar los datos.');
+      Session::flash('class', 'danger');
+    }
+    return redirect()->to('users/edit/'.$id);
   }
     /**
    * Show the application Active Deactive.
