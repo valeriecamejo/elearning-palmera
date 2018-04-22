@@ -17,14 +17,20 @@
         @guest
           <li><a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a></li>
         @else
-          <li class="nav-link">
-            Categorias
+          <li>
+            <a class="nav-link" href="{{ url('/categories') }}">
+              Categorias
+            </a>
           </li>
-          <li class="nav-link">
-            Productos
+          <li>
+            <a class="nav-link" href="{{ url('/products') }}">
+              Productos
+            </a>
           </li>
-          <li class="nav-link">
-            Evaluaciones
+          <li>
+            <a class="nav-link" href="#">
+              Evaluaciones
+            </a>
           </li>
           <li class="nav-item dropdown">
             <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
