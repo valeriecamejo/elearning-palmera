@@ -160,6 +160,9 @@ return [
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
 
+        //provider PalmLib
+        App\Providers\SettingVariablesProvider::class,
+
     ],
 
     /*
@@ -215,6 +218,8 @@ return [
 
         'Form' => 'Collective\Html\FormFacade',
         'Html' => 'Collective\Html\HtmlFacade',
+
+        'SettingVariables' => 'App\PalmLib\SettingVariables',
 
     ],
 

@@ -29,6 +29,8 @@ class ProductRequest extends FormRequest {
       'version'       => 'required|max:255',
       'category_id'   => 'required|numeric',
       'brand_id'      => 'required|numeric',
+      'valoration'    => 'required|numeric',
+      'price'         => 'required',
       'photo'         => 'max:255',
     ];
   }

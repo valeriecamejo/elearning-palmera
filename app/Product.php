@@ -4,7 +4,7 @@ namespace App;
 use Illuminate\Database\Eloquent\Model;
 class Product extends Model {
   protected $fillable = [
-    'name', 'description', 'model', 'version', 'category_id', 'brand_id', 'photo'
+    'name', 'description', 'model', 'version', 'category_id', 'brand_id', 'photo', 'price', 'valoration'
   ];
 
   /**
@@ -23,6 +23,8 @@ class Product extends Model {
     $product->category_id  = $request['category_id'];
     $product->brand_id     = $request['brand_id'];
     $product->photo        = $request['photo'];
+    $product->price        = $request['price'];
+    $product->valoration   = $request['valoration'];
     if ($product->save()) {
       return $product;
     }

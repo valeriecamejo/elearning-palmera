@@ -24,6 +24,8 @@
             <th>ID</th>
             <th>Nombre</th>
             <th>Descripción</th>
+            <th>Precio</th>
+            <th>Valoración/Puntaje</th>
             <th>Creado</th>
           </tr>
           @foreach ($products as $product)
@@ -31,6 +33,8 @@
             <td>{{ $product->id }}</td>
             <td>{{ $product->name }}</td>
             <td>{{ $product->description }}</td>
+            <td>{{ $product->price }}</td>
+            <td>{{ $product->valoration }}</td>
             <td>{{ $product->created_at }}</td>
           </tr>
           @endforeach
