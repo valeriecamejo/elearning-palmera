@@ -107,6 +107,27 @@
 							@endif
 						</div>
 					</div>
+					<div class="form-group row">
+						<label for="valoration" class="col-md-4 col-form-label text-md-right">{{ __('Valoración / Puntaje') }}</label>
+						<div class="col-md-6">
+							<input id="valoration" type="text" class="form-control{{ $errors->has('valoration') ? ' is-invalid' : '' }}" name="valoration" value="{{ old('valoration') }}" required autofocus>
+							@if ($errors->has('valoration'))
+								<span class="invalid-feedback">
+									<strong>{{ $errors->first('valoration') }}</strong>
+								</span>
+							@endif
+						</div>
+					</div><div class="form-group row">
+						<label for="price" class="col-md-4 col-form-label text-md-right">{{ __('Precio') }}</label>
+						<div class="col-md-6">
+							<input id="price" type="text" class="form-control{{ $errors->has('price') ? ' is-invalid' : '' }}" name="price" value="{{ old('price') }}" required autofocus>
+							@if ($errors->has('price'))
+								<span class="invalid-feedback">
+									<strong>{{ $errors->first('price') }}</strong>
+								</span>
+							@endif
+						</div>
+					</div>
 				  <div class="form-group row mb-0">
 						<div class="col-md-6 offset-md-4">
 							<button type="submit" class="btn btn-primary">
