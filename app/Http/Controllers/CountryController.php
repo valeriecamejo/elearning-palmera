@@ -43,7 +43,7 @@ class CountryController extends Controller {
   public function store(CountryRequest $request) {
     $country = Country::insertCountry($request->all());
     if ($country) {
-      Session::flash('message', 'País creada correctamente.');
+      Session::flash('message', 'País creado correctamente.');
       Session::flash('class', 'success');
     } else {
       Session::flash('message', 'Error al registrar los datos.');
