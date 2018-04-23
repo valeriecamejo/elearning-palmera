@@ -12,7 +12,9 @@ class SettingVariables {
    */
   static function retrieveSettingsDB() {
     if (self::$settings == null) {
-      self::$settings = Brand::find(Auth::user()->brand_id);
+      if (!Auth::guest()) {
+        self::$settings = Brand::find(Auth::user()->brand_id);
+      }
     }
   }
 
@@ -23,8 +25,9 @@ class SettingVariables {
   public static function getSettings($setting_required) {
     self::retrieveSettingsDB();
     $return   = null;
-    $return   = self::$settings->$setting_required;
-
+    if (!Auth::guest()) {
+      $return   = self::$settings->$setting_required;
+    }
     return $return;
   }
 }
