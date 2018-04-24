@@ -64,5 +64,5 @@
 
 <!-- <script src="/js/vueJs/role/permission.js"></script> -->
 {!! Html::script('/js/vueJs/role/permission.js') !!}
-<script> role.permission( {{ $role_id }} )</script>
+<script> role.permissionRoles( {{ $role_id }} )</script>
 @endsection

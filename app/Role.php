@@ -24,13 +24,15 @@ class Role extends Model
 
     $role_permission = [];
     $role  = new Role;
-    $role->name = ucwords($request['name']);
+    $name = strtolower($request['name']);
+    $role->name = ucwords($name);
     foreach ($modules as $module){
-      $permission = '{"modulo_id": '.$module->id.',"permisos": [{"crear": 0,"editar": 0,"ver": 0,"eliminar": 0}]}';
-    array_push($role_permission, $permission);
+      $permission = ['modulo_id' => $module->id, 'is_active' => 0, 'permissions' => ['crear' => 0, 'editar' => 0, 'ver' => 0, 'eliminar' => 0]];
+      array_push($role_permission, $permission);
+      $permission = '';
     };
-    $permissions = implode($role_permission);
-    $role->permission = "' .$permissions. '";
+    $permissions = json_encode($role_permission);
+    $role->permission = $permissions;
     $role->level = $request['level'];
     $role->save();
 

@@ -36,6 +36,7 @@
             </tr>
             @endforeach
           </table>
+          {{ $roles->links() }}
         </div>
       </div>
     </div>

@@ -1,17 +1,18 @@
-// Vue.component('modal', {
-//   template: '#role-modal',
+Vue.component('permission', {
+  template: '#permission',
+  props: []
 //   data() {
 //     return {
 //       checkedNames: [],
 //     };
 // },
-// });
+});
 
 role = new Vue({
   el: '#role',
   data: {
-    modules:          {},
-    role_permissions: {},
+    modules:          [],
+    role_permissions: [],
   },
   mounted() {
     axios.get('/modules/list' , {
@@ -22,13 +23,10 @@ role = new Vue({
       });
   },
   methods: {
-    permission: function (role_id) {
+    permissionRoles: function (role_id) {
       axios.get('/roles/permission/create/' + role_id , {
       }).then(function(response){
-        role.role_permissions = JSON.parse(response.data);
-        // b = JSON.stringify(response.data);
-        //   var role_permissions = JSON.parse(b);
-        console.log(role.role_permissions);
+        role.role_permissions = eval(response.data);
       }).catch(function(data){
         this.errors = data.responseJSON
       });
