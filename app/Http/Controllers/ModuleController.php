@@ -16,16 +16,15 @@ class ModuleController extends Controller
   public function __construct() {
     $this->middleware('auth');
   }
-  /**
-  * Show the application List for Modules.
+    /**
+    * Show the application List for Modules.
      *
      * @return view(role/list)`
      */
-    public function list()
+    public function index()
     {
       $modules = Module::all();
-      return view('role/list', compact('modules'));
+      return $modules;
     }
-
 }
 ?>
