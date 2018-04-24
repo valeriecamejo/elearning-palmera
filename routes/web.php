@@ -33,7 +33,9 @@ Route::get('/home', 'HomeController@index')->name('home');
 Route::get('roles/list', 'RoleController@list')->name('roles/list');
 Route::get('roles/create', 'RoleController@create')->name('roles/create');
 Route::post('roles/create', 'RoleController@store')->name('roles/create');
-Route::post('roles/permission', 'RoleController@permission')->name('roles/permission');
+Route::get('roles/permission/{role_id}', 'RoleController@permission')->name('permission');
+Route::get('roles/permission/create/{id}', 'RoleController@indexPermission')->name('modules/create');
+Route::post('roles/permission/{role_id}', 'RoleController@storePermission')->name('roles/permission');
 
 // User Routes...
 Route::get('/users', 'UserController@index')->name('users');
@@ -68,4 +70,4 @@ Route::get('/products/create', 'ProductController@create')->name('products/creat
 Route::post('/products/create', 'ProductController@store')->name('products/create');
 
 // Modules Routes...
-Route::post('modules/list', 'ModuleController@list')->name('modules/list');
+Route::get('modules/list', 'ModuleController@index')->name('modules');

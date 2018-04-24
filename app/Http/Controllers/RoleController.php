@@ -4,12 +4,20 @@ namespace App\Http\Controllers;
 
 use Illuminate\Support\Facades\Session;
 use Illuminate\Http\Request;
+use App\Http\Requests\RoleRequest;
 use App\Role;
 use App\Module;
 
 class RoleController extends Controller
 {
-
+/**
+   * Create a new controller instance.
+   *
+   * @return void
+   */
+  public function __construct() {
+    $this->middleware('auth');
+  }
   /**
   * Show the application List for Roles.
      *
@@ -17,7 +25,7 @@ class RoleController extends Controller
      */
     public function list()
     {
-      $roles   = Role::paginate(15);
+      $roles   = Role::paginate(8);
       $modules = Module::all();
       return view('role/list', compact('roles', 'modules'));
     }
@@ -36,9 +44,10 @@ class RoleController extends Controller
      *
      * @return void
      */
-    public function store() {
+    public function store(RoleRequest $request) {
 
-      $role = Role::insertRole($_POST);
+      $modules = Module::all();
+      $role = Role::insertRole($request, $modules);
       if ($role) {
         Session::flash('message', 'Rol registrado correctamente.');
         Session::flash('class', 'success');
@@ -50,14 +59,39 @@ class RoleController extends Controller
     }
 
     /**
-     * Create new role.
+     * Consult permissions for a Role.
      *
      * @return void
      */
-    public function permission() {
+    public function permission($role_id) {
 
-      $permission = Role::insertPermission($_POST);
-      return redirect()->to('roles/create');
+      $permissions = Role::find($role_id);
+      $role_name   = $permissions->name;
+      return view('/permission/create', compact('role_name', 'role_id'));
     }
+
+    /**
+     * Permissions of a role.
+     *
+     * @return void
+     */
+    public function indexPermission($role_id) {
+
+      $role = Role::find($role_id);
+      $role_permissions = $role->permission;
+      return json_decode($role_permissions);
+    }
+
+    /**
+     * Add permission for a Role.
+     *
+     * @return void
+     */
+    public function storePermission($request, $id) {
+
+      var_dump("llegue");exit();
+    }
+
 }
 ?>
+
