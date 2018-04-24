@@ -17,10 +17,17 @@
             <div class="form-group row">
               <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('Módulos') }}</label>
               <div class="col-md-6">
-                <select class="custom-select" required>
+                <!-- <select class="custom-select" required>
                   <option selected>Seleccionar</option>
-
+                    <option>
+                    </option>
+                </select> -->
+                <select v-model="selected">
+                  <option v-for="option in options" v-bind:value="option.value">
+                    @{{ option.text }}
+                  </option>
                 </select>
+                <span>Selected: @{{ selected }}</span>
               </div>
             </div>
             <div class="form-group row">
@@ -64,5 +71,5 @@
 
 <!-- <script src="/js/vueJs/role/permission.js"></script> -->
 {!! Html::script('/js/vueJs/role/permission.js') !!}
-<script> role.permissionRoles( {{ $role_id }} )</script>
+<script> role.permission( {{ $role_id }} )</script>
 @endsection
