@@ -25,7 +25,7 @@ class RoleController extends Controller
      */
     public function list()
     {
-      $roles   = Role::paginate(15);
+      $roles   = Role::paginate(8);
       $modules = Module::all();
       return view('role/list', compact('roles', 'modules'));
     }
@@ -65,8 +65,21 @@ class RoleController extends Controller
      */
     public function permission($role_id) {
 
-      $permission = Role::find($role_id);
-      return $permission;
+      $permissions = Role::find($role_id);
+      $role_name   = $permissions->name;
+      return view('/permission/create', compact('role_name', 'role_id'));
+    }
+
+    /**
+     * Permissions of a role.
+     *
+     * @return void
+     */
+    public function indexPermission($role_id) {
+
+      $role = Role::find($role_id);
+      $role_permissions = $role->permission;
+      return json_decode($role_permissions);
     }
 
     /**
@@ -78,6 +91,7 @@ class RoleController extends Controller
 
       var_dump("llegue");exit();
     }
+
 }
 ?>
 

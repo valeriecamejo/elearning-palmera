@@ -77,6 +77,7 @@
 							@endif
 						</div>
 					</div>
+					@if (Auth::user()->role_id == 1)
 					<div class="form-group row">
 						<label for="brand_id" class="col-md-4 col-form-label text-md-right">{{ __('Marca') }}</label>
 						<div class="col-md-6">
@@ -92,6 +93,9 @@
 							@endif
 						</div>
 					</div>
+					@else
+					{{ Form::hidden('brand_id', Auth::user()->brand_id , array('id' => 'brand_id')) }}
+					@endif
 					<div class="form-group row">
 						<label for="country_id" class="col-md-4 col-form-label text-md-right">{{ __('País') }}</label>
 						<div class="col-md-6">

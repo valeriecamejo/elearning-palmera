@@ -2,7 +2,6 @@
 
 @section('content')
 <link href="{{ asset('/js/components/role/permission.js') }}">
-<div id="role">
   <div class="row justify-content-center">
     <div class="col-md-8">
       <div class="card">
@@ -32,23 +31,15 @@
             <tr>
               <td>{{ $role->name }}</td>
               <td>
-                <i id="show-modal" @click="permission({{ $role->id }}, {{ $modules }}, showModal = true)" class="fas fa-plus-circle"></i>
-                <div id="role">
-                    <modal v-if="showModal" @close="showModal = false">
-                      <h3 slot="header">Agregar Permisos</h3>
-                    </modal>
-                </div>
+                <a href="{{ url('roles/permission/'.$role->id) }}"><i class="fas fa-plus-circle"></i></a>
               </td>
             </tr>
             @endforeach
           </table>
+          {{ $roles->links() }}
         </div>
       </div>
     </div>
   </div>
-  @include('modal.role')
-</div>
 
-<!-- <script src="/js/prueba.js"></script> -->
-<script src="/js/permission.js"></script>
 @endsection
