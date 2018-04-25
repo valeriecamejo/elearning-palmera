@@ -27,7 +27,7 @@ class Role extends Model
     $name = strtolower($request['name']);
     $role->name = ucwords($name);
     foreach ($modules as $module){
-      $permission = ['modulo_id' => $module->id, 'is_active' => 0, 'permissions' => ['crear' => 0, 'editar' => 0, 'ver' => 0, 'eliminar' => 0]];
+      $permission = ['module_id' => $module->id, 'is_active' => 0, 'permissions' => ['crear' => 0, 'editar' => 0, 'ver' => 0, 'eliminar' => 0]];
       array_push($role_permission, $permission);
       $permission = '';
     };
