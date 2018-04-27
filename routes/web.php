@@ -69,5 +69,14 @@ Route::get('/products/list', 'ProductController@list')->name('products/list');
 Route::get('/products/create', 'ProductController@create')->name('products/create');
 Route::post('/products/create', 'ProductController@store')->name('products/create');
 
+// Evaluation Routes...
+Route::get('/evaluations', 'EvaluationController@index')->name('evaluations');
+Route::get('/evaluations/list', 'EvaluationController@list')->name('evaluations/list');
+Route::get('/evaluations/create', 'EvaluationController@create')->name('evaluations/create');
+Route::post('/evaluations/create', 'EvaluationController@store')->name('evaluations/create');
+Route::get('/evaluations/show/{id}', 'EvaluationController@show')->name('evaluations/show');
+Route::get('/evaluations/{id}/questions/create', 'QuestionController@create')->name('questions/create');
+Route::post('/evaluations/{id}/questions/create', 'QuestionController@store')->name('questions/create');
+
 // Modules Routes...
 Route::get('modules/list', 'ModuleController@index')->name('modules');
