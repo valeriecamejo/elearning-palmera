@@ -23,7 +23,11 @@
           @foreach ($products as $product)
           <div class="col-sm-12 col-md-4">
             <div class="card">
-              <img class="card-img-top" src="{{ asset('img/sinfoto.png') }}" alt="{{ $product->name }}">
+              @if ($product->photo)
+              <img class="card-img-top" src="{{ asset('storage/'.$product->photo) }}"alt="{{ $product->name }}">
+              @else
+              <img class="card-img-top" src="{{ asset('img/sinfoto.png') }}"alt="{{ $product->name }}">
+              @endif
               <div class="card-body">
                 <h5 class="card-title">{{ $product->name }}</h5>
                 <p class="card-text">

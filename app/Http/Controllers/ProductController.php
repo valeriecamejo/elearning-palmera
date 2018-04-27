@@ -9,7 +9,7 @@ use Illuminate\Support\Facades\Session;
 use App\Category;
 use App\Brand;
 use Illuminate\Support\Facades\Auth;
-
+use Illuminate\Support\Facades\Storage;
 
 class ProductController extends Controller {
       /**
