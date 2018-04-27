@@ -87,11 +87,11 @@ class RoleController extends Controller
      *
      * @return void
      */
-    public function storePermission(Request $request, $id) {
+    public function storePermission(Request $request, $role_id) {
 
-      var_dump("llegue", $id, $request->all());exit();
+      $permission = Role::insertPermission($request, $role_id);
+      return response()->json($permission);
     }
-
 }
 ?>
 
