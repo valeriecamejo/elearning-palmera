@@ -2,9 +2,8 @@
 
 @section('content')
 <link href="{{ asset('/js/components/role/permission.js') }}">
-<div id="role">
   <div class="row justify-content-center">
-    <div class="col-md-6">
+    <div class="col-md-8">
       <div class="card">
         <div class="card-header">
           <ul class="nav nav-tabs card-header-tabs">
@@ -26,24 +25,21 @@
           <table class="table table-striped">
             <tr>
               <th>Nombre</th>
-              <th>Agregar Permisos</th>
+              <th>Permisos</th>
             </tr>
             @foreach ($roles as $role)
             <tr>
               <td>{{ $role->name }}</td>
               <td>
-                <a @click="permission({{ $role->id }})" data-toggle="modal" data-target="#exampleModalCenter" >
-                  <i class="fas fa-plus-circle"></i>
-                </a>
+                <a href="{{ url('roles/permission/'.$role->id) }}"><i class="fas fa-plus-circle"></i></a>
               </td>
             </tr>
             @endforeach
           </table>
+          {{ $roles->links() }}
         </div>
       </div>
     </div>
   </div>
-</div>
 
-<script src="/js/permission.js"></script>
 @endsection
