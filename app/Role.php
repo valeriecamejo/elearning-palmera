@@ -57,4 +57,40 @@ class Role extends Model
       return $role;
     }
   }
+
+  /**
+  * Modify permissions.
+  *
+  * @param  int  $role_id
+  * @return $role_permission
+  */
+  public static function storeEditedPermission($request, $role_id) {
+
+    $role             = Role::find($role_id);
+    $permissions      = json_encode($request->permissions);
+    $role->permission = $permissions;
+
+    if($role->save()) {
+      return $role;
+    }
+  }
+
+  /**
+  * Save modified role.
+  *
+  * @param  int  $role_id
+  * @return $role_permission
+  */
+  public static function saveEditRole($request, $role_id) {
+
+    $role        = Role::find($role_id);
+    $name = strtolower($request['name']);
+    $role->name = ucwords($name);
+    $role->level = $request['level'];
+    $role->save();
+
+    if($role->save()) {
+      return $role;
+    }
+  }
 }

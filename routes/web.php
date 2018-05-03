@@ -36,6 +36,10 @@ Route::post('roles/create', 'RoleController@store')->name('roles/create');
 Route::get('roles/permission/{id}', 'RoleController@permission')->name('permission');
 Route::get('roles/permission/create/{id}', 'RoleController@indexPermission')->name('roles/permission');
 Route::post('roles/permission/store/{id}', 'RoleController@storePermission');
+Route::get('roles/permission/show/{id}', 'RoleController@showPermission')->name('roles/permission/show/{id}');
+Route::get('roles/edit/{id}', 'RoleController@editRole')->name('roles/edit/{id}');
+Route::post('roles/edit/{id}', 'RoleController@saveEditRole')->name('roles/edit');
+Route::post('roles/permission/edit/{id}', 'RoleController@storeEditedPermission')->name('roles/permission/edit/{id}');
 
 // User Routes...
 Route::get('/users', 'UserController@index')->name('users');
