@@ -13,6 +13,7 @@
     <link href="https://fonts.googleapis.com/css?family=Raleway:300,400,600" rel="stylesheet" type="text/css">
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}" defer></script>
+    <script src="{{ asset('js/buttonBack.js') }}" defer></script>
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <link href="{{ asset('css/modal.css') }}" rel="stylesheet">
@@ -26,8 +27,6 @@
       {!! Html::script('js/vue/vue.js') !!}
       {!! Html::script('js/vue/axios.min.js') !!}
     @endif
-    <!-- Bulma -->
-    <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.3.1/css/bulma.min.css"/> -->
 </head>
   <body>
     <div>
@@ -43,9 +42,15 @@
                 @endif
               </div>
             </div>
+            <div>
+              <a class="text-dark" onclick="goBack()">
+                <i class="fas fa-arrow-left"></i>
+              </a>
+            </div>
             @yield('content')
           </div>
         </main>
     </div>
   </body>
 </html>
+
