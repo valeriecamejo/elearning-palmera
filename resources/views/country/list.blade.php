@@ -22,6 +22,7 @@
             <th>Nombre</th>
             <th>Nickname</th>
             <th>Creado</th>
+            <th>Acciones</th>
           </tr>
           @foreach ($countries as $country)
           <tr>
@@ -29,6 +30,11 @@
             <td>{{ $country->name }}</td>
             <td>{{ $country->nickname }}</td>
             <td>{{ $country->created_at }}</td>
+            <td>
+              <a href="{{ url('/countries/edit/'.$country->id) }}" title="Editar País">
+                <i class="fas fa-edit"></i>
+              </a>
+            </td>
           </tr>
           @endforeach
         </table>

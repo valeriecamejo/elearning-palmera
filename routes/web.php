@@ -30,16 +30,17 @@ $this->post('password/reset', 'Auth\ResetPasswordController@reset');
 Route::get('/home', 'HomeController@index')->name('home');
 
 // Roles Routes...
-Route::get('roles/list', 'RoleController@list')->name('roles/list');
-Route::get('roles/create', 'RoleController@create')->name('roles/create');
-Route::post('roles/create', 'RoleController@store')->name('roles/create');
-Route::get('roles/permission/{id}', 'RoleController@permission')->name('permission');
-Route::get('roles/permission/create/{id}', 'RoleController@indexPermission')->name('roles/permission');
-Route::post('roles/permission/store/{id}', 'RoleController@storePermission');
-Route::get('roles/permission/show/{id}', 'RoleController@showPermission')->name('roles/permission/show/{id}');
-Route::get('roles/edit/{id}', 'RoleController@editRole')->name('roles/edit/{id}');
-Route::post('roles/edit/{id}', 'RoleController@saveEditRole')->name('roles/edit');
-Route::post('roles/permission/edit/{id}', 'RoleController@storeEditedPermission')->name('roles/permission/edit/{id}');
+Route::get('/roles/list', 'RoleController@list')->name('roles/list');
+Route::get('/roles/create', 'RoleController@create')->name('roles/create');
+Route::post('/roles/create', 'RoleController@store')->name('roles/create');
+Route::get('/roles/permission/{id}', 'RoleController@permission')->name('permission');
+Route::get('/roles/permission/create/{id}', 'RoleController@indexPermission')->name('roles/permission');
+Route::post('/roles/permission/store/{id}', 'RoleController@storePermission');
+Route::get('/roles/permission/show/{id}', 'RoleController@showPermission')->name('roles/permission/show/{id}');
+Route::post('/roles/permission/edit/{id}', 'RoleController@storeEditedPermission')->name('roles/permission/edit/{id}');
+Route::get('/roles/edit/{id}', 'RoleController@editRole')->name('roles/edit/{id}');
+Route::post('/roles/edit/{id}', 'RoleController@saveEditRole')->name('roles/edit');
+Route::get('/roles/show/{id}', 'RoleController@showRole')->name('roles/show/{id}');
 
 // User Routes...
 Route::get('/users', 'UserController@index')->name('users');
@@ -61,6 +62,8 @@ Route::post('/brands/create', 'BrandController@store')->name('brands/create');
 Route::get('/countries', 'CountryController@index')->name('countries');
 Route::get('/countries/create', 'CountryController@create')->name('countries/create');
 Route::post('/countries/create', 'CountryController@store')->name('countries/create');
+Route::get('/countries/edit/{id}', 'CountryController@edit')->name('countries/edit/{id}');
+Route::post('/countries/edit/{id}', 'CountryController@saveEdit')->name('countries/edit/{id}');
 
 // Category Routes...
 Route::get('/categories', 'CategoryController@index')->name('categories');

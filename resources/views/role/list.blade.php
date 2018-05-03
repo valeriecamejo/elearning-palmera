@@ -30,11 +30,14 @@
             @foreach ($roles as $role)
             <tr>
               <td>
-                <a href="{{ url('roles/edit/'.$role->id) }}" title="Editar Role">
+                <a href="{{ url('/roles/edit/'.$role->id) }}" title="Editar Role">
                   <i class="fas fa-edit"></i>
                 </a>
               {{ $role->name }}</td>
               <td>
+                <a class="" href="{{ url('/roles/show/'.$role->id) }}" title="Ver">
+                  <i class="fas fa-eye"></i>
+                </a>
                 <a href="{{ url('/roles/permission/'.$role->id) }}"  title="Agregar">
                   <i class="fas fa-plus-circle"></i>
                 </a>

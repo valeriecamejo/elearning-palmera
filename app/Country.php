@@ -31,5 +31,22 @@ class Country extends Model {
     }
   }
 
+  /**
+  * Save country edited.
+  *
+  * @return country
+  */
+  public static function saveEdit($request, $country_id) {
+// var_dump($request);exit();
+    $country  = Country::find($country_id);
+    $name = strtolower($request['name']);
+    $country->name = ucwords($name);
+    $country->nickname = strtoupper($request['nickname']);
+
+    if ($country->save()) {
+      return $country;
+    }
+  }
+
 
 }
