@@ -113,7 +113,13 @@ Role = new Vue({
       }).catch(function(data){
         this.errors   = data.responseJSON
       });
-    }
+    },
+
+    //Mostrar los detalles de un rol con los permisos de modulos activos
+    showRole: function(role_id) {
+      Role.permission(role_id);
+
+    },
   }
 })
 

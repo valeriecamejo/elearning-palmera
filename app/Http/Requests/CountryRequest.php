@@ -27,4 +27,12 @@ class CountryRequest extends FormRequest
         'nickname'      => 'required|max:255|unique:countries,nickname',
       ];
     }
+    public function messages() {
+      return [
+        'name.required'     => 'Debe asignar un nombre.',
+        'name.unique'       => 'Ya existe un pais con este nombre',
+        'nickname.required' => 'Debe asignar un nickname.',
+        'nickname.unique'   => 'Ya existe un pais con este nickname',
+      ];
+    }
 }

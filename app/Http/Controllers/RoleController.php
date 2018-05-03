@@ -145,6 +145,17 @@ class RoleController extends Controller
      }
      return redirect()->to('roles/edit/'.$id);
     }
+
+    /**
+     * Show a role.
+     *
+     * @return void
+     */
+    public function showRole($role_id) {
+
+      $role      = Role::find($role_id);
+      return view('role.show', compact('role', 'role_id'));
+     }
 }
 ?>
 
