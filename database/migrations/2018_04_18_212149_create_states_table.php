@@ -17,6 +17,7 @@ class CreateStatesTable extends Migration
       $table->increments('id');
       $table->string('name');
       $table->integer('country_id');
+      $table->boolean('active');
       $table->timestamps();
     });
   }

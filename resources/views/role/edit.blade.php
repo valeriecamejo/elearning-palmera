@@ -7,7 +7,7 @@
 			<div class="card-header">
 				<ul class="nav nav-tabs card-header-tabs">
 					<li class="nav-item">
-						<a class="nav-link" href="{{ url('/roles/list') }}">Roles</a>
+						<a class="nav-link" href="{{ url('/roles') }}">Roles</a>
 					</li>
 				</ul>
 			</div>

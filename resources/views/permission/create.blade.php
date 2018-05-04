@@ -8,7 +8,7 @@
         <div class="card-header">
           <ul class="nav nav-tabs card-header-tabs">
             <li class="nav-item">
-              <a class="nav-link" href="{{ url('/roles/list') }}">Roles</a>
+              <a class="nav-link" href="{{ url('/roles') }}">Roles</a>
             </li>
           </ul>
         </div>
@@ -28,7 +28,7 @@
               <div class="form-group row">
                 <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('Módulos') }}</label>
                 <div class="col-md-6">
-                  <select v-model="module_permissions.module_id" class="custom-select" required>
+                  <select v-model="module_permissions.module_id" class="form-control" required>
                   <option disabled value="">Seleccione</option>
                     <option v-for="active_module in active_modules" v-bind:value="active_module.id">
                       @{{ active_module.name }}
