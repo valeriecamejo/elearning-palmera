@@ -5,10 +5,14 @@
 	<div class="col-md-8">
 		<div class="card">
 			<div class="card-header">
-        <h4>Editar pais {{ $country->name }} </h4>
+			<ul class="nav nav-tabs card-header-tabs">
+					<li class="nav-item">
+						<a class="nav-link" href="{{ url('/countries') }}">Paises</a>
+					</li>
+				</ul>
 			</div>
 			<div class="card-body">
-				<h5 class="card-title">Crear un nuevo país</h5>
+			<h5>Editar pais {{ $country->name }} </h5>
 				<form method="POST" action="{{ url('countries/edit/'.$country->id) }}">
 					@csrf
 					<div class="form-group row">

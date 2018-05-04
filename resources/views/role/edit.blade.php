@@ -5,9 +5,14 @@
 	<div class="col-md-8">
 		<div class="card">
 			<div class="card-header">
-				<h4>Editar rol {{ $role->name }} </h4>
+				<ul class="nav nav-tabs card-header-tabs">
+					<li class="nav-item">
+						<a class="nav-link" href="{{ url('/roles/list') }}">Roles</a>
+					</li>
+				</ul>
 			</div>
 			<div class="card-body">
+			<h5>Editar rol {{ $role->name }} </h5>
 				@if (session('status'))
 					<div class="alert alert-success">
 						{{ session('status') }}

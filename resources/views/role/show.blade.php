@@ -5,11 +5,16 @@
   <div class="row justify-content-center">
     <div class="col-md-8">
       <div class="card">
-      <template v-if="show_modules_deactive !== ''">
-        <div class="alert alert-secondary" role="alert">
-            <h4>Permisos de {{ $role->name }}</h4>
+      <div class="card-header">
+          <ul class="nav nav-tabs card-header-tabs">
+            <li class="nav-item">
+              <a class="nav-link" href="{{ url('/roles/list') }}">Roles</a>
+            </li>
+          </ul>
         </div>
+      <template v-if="show_modules_deactive !== ''">
         <div class="card-body">
+        <h5>Permisos de {{ $role->name }}</h5>
           @if (session('status'))
             <div class="alert alert-success">
               {{ session('status') }}

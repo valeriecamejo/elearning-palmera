@@ -23,9 +23,11 @@ class Country extends Model {
   protected $hidden = [];
 
   public static function insertCountry($request) {
-    $country               = new Country;
-    $country->name         = $request['name'];
-    $country->nickname     = $request['nickname'];
+    $country            = new Country;
+    $name               = strtolower($request['name']);
+    $country->name      = ucwords($name);
+    $country->nickname  = strtoupper($request['nickname']);
+    $country->active    = true;
     if ($country->save()) {
       return $country;
     }
@@ -37,10 +39,10 @@ class Country extends Model {
   * @return country
   */
   public static function saveEdit($request, $country_id) {
-// var_dump($request);exit();
-    $country  = Country::find($country_id);
-    $name = strtolower($request['name']);
-    $country->name = ucwords($name);
+
+    $country           = Country::find($country_id);
+    $name              = strtolower($request['name']);
+    $country->name     = ucwords($name);
     $country->nickname = strtoupper($request['nickname']);
 
     if ($country->save()) {
@@ -48,5 +50,23 @@ class Country extends Model {
     }
   }
 
+  /**
+   * Activate/Deactivate a Country.
+   *
+   * @param  country_id
+   * @return $country
+   */
+  public static function activeDeactive($country_id) {
+
+    $country             = Country::find($country_id);
+    if ($country->active == true) {
+      $country->active   = false;
+    } else {
+      $country->active   = true;
+    }
+    if ($country->save()) {
+      return $country;
+    }
+  }
 
 }

@@ -17,8 +17,64 @@ class RolesTableSeeder extends Seeder
 
       DB::table('roles')->insert(array (
                                         'name'       =>  "Super Admin",
-                                        'permission' =>  "Todos",
-                                        'level'      =>  1
+                                        'level'      =>  1,
+                                        'permission' =>  '[{"is_active":true,
+                                                            "module_id":1,
+                                                            "permissions":
+                                                                          {"crear":true,
+                                                                           "editar":true,
+                                                                           "ver":true,
+                                                                           "eliminar":true}
+                                                                          },
+                                                           {"is_active":true,
+                                                            "module_id":2,
+                                                            "permissions":
+                                                                          {"crear":true,
+                                                                           "editar":true,
+                                                                           "ver":true,
+                                                                           "eliminar":true}
+                                                                          },
+                                                           {"module_id":3,
+                                                            "is_active":true,
+                                                            "permissions":
+                                                                          {"crear":true,
+                                                                           "editar":true,
+                                                                           "ver":true,
+                                                                           "eliminar":true}
+                                                                          },
+                                                           {"module_id":4,
+                                                            "is_active":true,
+                                                            "permissions":
+                                                                          {"crear":true,
+                                                                           "editar":true,
+                                                                           "ver":true,
+                                                                           "eliminar":true}
+                                                                          },
+                                                           {"module_id":5,
+                                                            "is_active":true,
+                                                            "permissions":
+                                                                          {"crear":true,
+                                                                           "editar":true,
+                                                                           "ver":true,
+                                                                           "eliminar":true}
+                                                                          },
+                                                           {"module_id":6,
+                                                            "is_active":true,
+                                                            "permissions":
+                                                                          {"crear":true,
+                                                                           "editar":true,
+                                                                           "ver":true,
+                                                                           "eliminar":true}
+                                                                          },
+                                                           {"module_id":7,
+                                                            "is_active":true,
+                                                            "permissions":
+                                                                          {"crear":true,
+                                                                           "editar":true,
+                                                                           "ver":true,
+                                                                           "eliminar":true}
+                                                                          }
+                                                          ]',
                                       ));
     }
 }

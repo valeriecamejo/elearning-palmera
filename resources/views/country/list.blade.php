@@ -31,8 +31,18 @@
             <td>{{ $country->nickname }}</td>
             <td>{{ $country->created_at }}</td>
             <td>
+              <a href="{{ url('/countries/show/'.$country->id) }}" title="Ver">
+                <i class="fas fa-eye"></i>
+              </a>
               <a href="{{ url('/countries/edit/'.$country->id) }}" title="Editar País">
                 <i class="fas fa-edit"></i>
+              </a>
+              <a class="" href="{{ url('/countries/active_deactive/'.$country->id) }}" title="Activar / Desactivar">
+              @if ($country->active == true)
+                <i class="fas fa-minus-circle text-danger"></i>
+              @else
+                <i class="fas fa-play-circle text-success"></i>
+              @endif
               </a>
             </td>
           </tr>
