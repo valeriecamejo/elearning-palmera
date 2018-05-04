@@ -64,6 +64,8 @@ Route::get('/countries/create', 'CountryController@create')->name('countries/cre
 Route::post('/countries/create', 'CountryController@store')->name('countries/create');
 Route::get('/countries/edit/{id}', 'CountryController@edit')->name('countries/edit/{id}');
 Route::post('/countries/edit/{id}', 'CountryController@saveEdit')->name('countries/edit/{id}');
+Route::get('/countries/show/{id}', 'CountryController@show')->name('countries/show/{id}');
+Route::get('/countries/active_deactive/{id}', 'CountryController@activeDeactive')->name('countries/active_deactive');
 
 // Category Routes...
 Route::get('/categories', 'CategoryController@index')->name('categories');

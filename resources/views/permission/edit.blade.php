@@ -5,6 +5,13 @@
   <div class="row justify-content-center">
     <div class="col-md-8">
       <div class="card">
+      <div class="card-header">
+          <ul class="nav nav-tabs card-header-tabs">
+            <li class="nav-item">
+              <a class="nav-link" href="{{ url('/roles/list') }}">Roles</a>
+            </li>
+          </ul>
+        </div>
       <template v-if="show_modules_deactive !== ''">
         <div v-if="showModal == true" class="alert alert-secondary" role="alert">
             Permisos editados exitosamente

@@ -5,6 +5,13 @@
   <div class="row justify-content-center">
     <div class="col-md-8">
       <div class="card">
+        <div class="card-header">
+          <ul class="nav nav-tabs card-header-tabs">
+            <li class="nav-item">
+              <a class="nav-link" href="{{ url('/roles/list') }}">Roles</a>
+            </li>
+          </ul>
+        </div>
       <template v-if="show_modules !== ''">
         <div v-if="showModal == true" class="alert alert-secondary" role="alert">
           Permiso agregado exitosamente
@@ -56,7 +63,8 @@
               </div>
               <div class="form-group row mb-0">
                 <div class="col-md-6 offset-md-4">
-                  <button v-if="module_permissions.module_id" type="submit" @click="addPermission({{ $role_id }})" class="btn btn-primary">
+                  <button v-if="((module_permissions.permissions.ver) || (module_permissions.permissions.crear) || (module_permissions.permissions.editar) || (module_permissions.permissions.eliminar))
+                                " type="submit" @click="addPermission({{ $role_id }})" class="btn btn-primary">
                     {{ __('Crear') }}
                   </button>
                 </div>
