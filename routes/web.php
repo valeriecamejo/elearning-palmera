@@ -30,7 +30,7 @@ $this->post('password/reset', 'Auth\ResetPasswordController@reset');
 Route::get('/home', 'HomeController@index')->name('home');
 
 // Roles Routes...
-Route::get('/roles/list', 'RoleController@list')->name('roles/list');
+Route::get('/roles', 'RoleController@list')->name('roles');
 Route::get('/roles/create', 'RoleController@create')->name('roles/create');
 Route::post('/roles/create', 'RoleController@store')->name('roles/create');
 Route::get('/roles/permission/{id}', 'RoleController@permission')->name('permission');
@@ -66,6 +66,7 @@ Route::get('/countries/edit/{id}', 'CountryController@edit')->name('countries/ed
 Route::post('/countries/edit/{id}', 'CountryController@saveEdit')->name('countries/edit/{id}');
 Route::get('/countries/show/{id}', 'CountryController@show')->name('countries/show/{id}');
 Route::get('/countries/active_deactive/{id}', 'CountryController@activeDeactive')->name('countries/active_deactive');
+Route::get('/countries/all', 'CountryController@allCountries')->name('/countries/all');
 
 // Category Routes...
 Route::get('/categories', 'CategoryController@index')->name('categories');
@@ -89,3 +90,12 @@ Route::post('/evaluations/{id}/questions/create', 'QuestionController@store')->n
 
 // Modules Routes...
 Route::get('modules/list', 'ModuleController@index')->name('modules');
+
+// State Routes...
+Route::get('states', 'StateController@index')->name('states');
+Route::get('/states/create', 'StateController@create')->name('states/create');
+Route::post('/states/create', 'StateController@store')->name('states/create');
+Route::get('/states/show/{id}', 'StateController@show')->name('/states/show/{id}');
+Route::get('/states/edit/{id}', 'StateController@edit')->name('/states/edit/{id}');
+Route::post('/states/edit/{id}', 'StateController@saveEdit')->name('/states/edit/{id}');
+Route::get('/states/active_deactive/{id}', 'StateController@active_deactive')->name('/states/active_deactive/{id}');

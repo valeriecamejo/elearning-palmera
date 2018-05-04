@@ -58,7 +58,7 @@
               <a class="dropdown-item" href="{{ url('/users') }}">
                 Usuarios
               </a>
-              <a class="dropdown-item" href="{{ route('roles/list') }}">
+              <a class="dropdown-item" href="{{ route('roles') }}">
                 Roles
               </a>
               <a class="dropdown-item" href="{{ url('/brands') }}">
@@ -67,7 +67,7 @@
               <a class="dropdown-item" href="{{ url('/countries') }}">
                 Paises
               </a>
-              <a class="dropdown-item" href="#">
+              <a class="dropdown-item" href="{{ url('/states') }}">
                 Estados / Provincias
               </a>
               <a class="dropdown-item" href="#">

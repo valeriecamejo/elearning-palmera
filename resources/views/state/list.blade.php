@@ -7,10 +7,10 @@
       <div class="card-header">
         <ul class="nav nav-tabs card-header-tabs">
           <li class="nav-item">
-            <a class="nav-link active">Paises</a>
+            <a class="nav-link active">Estados/Provincias</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="{{ url('/countries/create') }}">Nuevo</a>
+            <a class="nav-link" href="{{ url('/states/create') }}">Nuevo</a>
           </li>
         </ul>
       </div>
@@ -20,25 +20,23 @@
           <tr>
             <th>ID</th>
             <th>Nombre</th>
-            <th>Nickname</th>
             <th>Creado</th>
             <th>Acciones</th>
           </tr>
-          @foreach ($countries as $country)
+          @foreach ($states as $state)
           <tr>
-            <td>{{ $country->id }}</td>
-            <td>{{ $country->name }}</td>
-            <td>{{ $country->nickname }}</td>
-            <td>{{ $country->created_at }}</td>
+            <td>{{ $state->id }}</td>
+            <td>{{ $state->name }}</td>
+            <td>{{ $state->created_at }}</td>
             <td>
-              <a href="{{ url('/countries/show/'.$country->id) }}" title="Ver">
+              <a href="{{ url('/states/show/'.$state->id) }}" title="Ver">
                 <i class="fas fa-eye"></i>
               </a>
-              <a href="{{ url('/countries/edit/'.$country->id) }}" title="Editar">
+              <a href="{{ url('/states/edit/'.$state->id) }}" title="Editar">
                 <i class="fas fa-edit"></i>
               </a>
-              <a class="" href="{{ url('/countries/active_deactive/'.$country->id) }}" title="Activar / Desactivar">
-              @if ($country->active == true)
+              <a href="{{ url('/states/active_deactive/'.$state->id) }}" title="Activar/Desactivar">
+              @if ($state->active == true)
                 <i class="fas fa-minus-circle text-danger"></i>
               @else
                 <i class="fas fa-play-circle text-success"></i>
@@ -48,7 +46,7 @@
           </tr>
           @endforeach
         </table>
-        {{ $countries->links() }}
+        {{ $states->links() }}
       </div>
     </div>
   </div>

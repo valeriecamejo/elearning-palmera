@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+Use DB;
 use Illuminate\Http\Request;
 use App\Country;
 use App\Http\Requests\CountryRequest;
@@ -26,6 +27,17 @@ class CountryController extends Controller {
     public function index() {
       $countries = Country::paginate(15);
       return view('country.list', compact('countries'));
+    }
+
+    /**
+   * All countries.
+   *
+   * @return countries
+   */
+    public function allCountries() {
+      // $countries = Country::all();
+      $countries = DB::table('countries')->where('active', true)->get();
+      return $countries;
     }
 
   /**
@@ -74,7 +86,7 @@ class CountryController extends Controller {
    * @return $id
    */
     public function saveEdit(CountryUpdateRequest $request, $id) {
-      // var_dump($request);exit();
+      
       $country = Country::saveEdit($request->all(), $id);
       if ($country) {
         Session::flash('message', 'Rol actualizado correctamente.');
