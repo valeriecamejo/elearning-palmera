@@ -35,7 +35,6 @@ class CountryController extends Controller {
    * @return countries
    */
     public function allCountries() {
-      // $countries = Country::all();
       $countries = DB::table('countries')->where('active', true)->get();
       return $countries;
     }

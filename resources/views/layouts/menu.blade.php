@@ -70,7 +70,7 @@
               <a class="dropdown-item" href="{{ url('/states') }}">
                 Estados / Provincias
               </a>
-              <a class="dropdown-item" href="#">
+              <a class="dropdown-item" href="{{ url('/cities') }}">
                 Ciudades
               </a>
             </div>

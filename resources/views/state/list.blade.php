@@ -35,11 +35,11 @@
               <a href="{{ url('/states/edit/'.$state->id) }}" title="Editar">
                 <i class="fas fa-edit"></i>
               </a>
-              <a href="{{ url('/states/active_deactive/'.$state->id) }}" title="Activar/Desactivar">
+              <a href="{{ url('/states/active_deactive/'.$state->id) }}">
               @if ($state->active == true)
-                <i class="fas fa-minus-circle text-danger"></i>
+                <i class="fas fa-minus-circle text-danger" title="Desactivar"></i>
               @else
-                <i class="fas fa-play-circle text-success"></i>
+                <i class="fas fa-play-circle text-success" title="Activar"></i>
               @endif
               </a>
             </td>

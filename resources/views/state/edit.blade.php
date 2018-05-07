@@ -31,7 +31,7 @@
 							<div class="form-group row">
                 <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('Pais') }}</label>
                 <div class="col-md-6">
-                  <select v-model="country_id" name="country_id" class="form-control" required>
+                  <select v-model="previous_country" name="country_id" class="form-control" required>
                     <option disabled value="">Seleccione</option>
                     <option v-for="country in countries" :value="country.id">
                         @{{ country.name }}
@@ -55,4 +55,5 @@
 </div>
 
 {!! Html::script('/js/vueJs/state/create.js') !!}
+<script> State.country_data( {{ $country->id }} )</script>
 @endsection

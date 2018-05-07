@@ -99,3 +99,13 @@ Route::get('/states/show/{id}', 'StateController@show')->name('/states/show/{id}
 Route::get('/states/edit/{id}', 'StateController@edit')->name('/states/edit/{id}');
 Route::post('/states/edit/{id}', 'StateController@saveEdit')->name('/states/edit/{id}');
 Route::get('/states/active_deactive/{id}', 'StateController@active_deactive')->name('/states/active_deactive/{id}');
+Route::get('/states/all/{id}', 'StateController@states')->name('/states/all/{id}');
+
+
+// Cities Routes...
+Route::get('cities', 'CityController@index')->name('cities');
+Route::get('/cities/create', 'CityController@create')->name('cities/create');
+Route::post('/cities/create', 'CityController@store')->name('cities/create');
+Route::get('/cities/show/{id}', 'CityController@show')->name('/cities/show/{id}');
+Route::get('/cities/active_deactive/{id}', 'CityController@activeDeactive')->name('cities/active_deactive/{id}');
+
