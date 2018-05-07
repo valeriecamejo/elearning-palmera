@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\Session;
 use Illuminate\Http\Request;
 use App\State;
 use App\Country;
+Use DB;
 
 class StateController extends Controller
 {
@@ -26,6 +27,19 @@ class StateController extends Controller
   public function index() {
     $states = State::paginate(15);
     return view('state.list', compact('states'));
+  }
+
+   /**
+   * All states.
+   *
+   * @return states
+   */
+  public function states($country_id) {
+    $states = DB::table('states')
+                ->where('active', true)
+                ->where('country_id' , $country_id)
+                ->get();
+    return $states;
   }
 
   /**

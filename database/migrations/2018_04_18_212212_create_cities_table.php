@@ -17,6 +17,7 @@ class CreateCitiesTable extends Migration
       $table->increments('id');
       $table->string('name');
       $table->integer('state_id');
+      $table->boolean('active');
       $table->timestamps();
     });
   }
