@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Http\Request;
 use App\Http\Requests\RoleRequest;
+use App\Http\Requests\RoleUdpateRequest;
 use App\Role;
 use App\Module;
 
@@ -87,11 +88,74 @@ class RoleController extends Controller
      *
      * @return void
      */
-    public function storePermission($request, $id) {
+    public function storePermission(Request $request, $role_id) {
 
-      var_dump("llegue");exit();
+      $permission = Role::insertPermission($request, $role_id);
+      return response()->json($permission);
     }
 
+    /**
+     * Edit permission for a Role.
+     *
+     * @return void
+     */
+    public function showPermission($role_id) {
+
+      $permissions = Role::find($role_id);
+      $role_name   = $permissions->name;
+      return view('/permission/edit', compact('role_name', 'role_id'));
+    }
+
+    /**
+     * Save edited permission.
+     *
+     * @return void
+     */
+    public function storeEditedPermission(Request $request, $role_id) {
+
+      $permission = Role::storeEditedPermission($request, $role_id);
+      return response()->json($permission);
+    }
+
+    /**
+     * Edit a role.
+     *
+     * @return void
+     */
+    public function editRole($role_id) {
+
+      $role = Role::find($role_id);
+      return view('role/edit', compact('role', 'role_id'));
+    }
+
+    /**
+     * Edit a role.
+     *
+     * @return void
+     */
+    public function saveEditRole(RoleUdpateRequest $request, $id) {
+
+     $role = Role::saveEditRole($request->all(), $id);
+     if ($role) {
+       Session::flash('message', 'Rol actualizado correctamente.');
+       Session::flash('class', 'success');
+     } else {
+       Session::flash('message', 'Error al actualizar los datos.');
+       Session::flash('class', 'danger');
+     }
+     return redirect()->to('roles/edit/'.$id);
+    }
+
+    /**
+     * Show a role.
+     *
+     * @return void
+     */
+    public function showRole($role_id) {
+
+      $role      = Role::find($role_id);
+      return view('role.show', compact('role', 'role_id'));
+     }
 }
 ?>
 

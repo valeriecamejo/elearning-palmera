@@ -12,15 +12,18 @@ class CountriesTableSeeder extends Seeder
   public function run() {
     DB::table('countries')->insert([
       'name'      => 'Venezuela',
-      'nickname'  => 'VE'
+      'nickname'  => 'VE',
+      'active'    => true
     ]);
     DB::table('countries')->insert([
       'name'      => 'Colombia',
-      'nickname'  => 'CO'
+      'nickname'  => 'CO',
+      'active'    => true
     ]);
     DB::table('countries')->insert([
       'name'      => 'Portugal',
-      'nickname'  => 'PT'
+      'nickname'  => 'PT',
+      'active'    => true
     ]);
   }
 }

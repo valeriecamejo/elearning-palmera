@@ -22,6 +22,7 @@
             <th>Nombre</th>
             <th>Nickname</th>
             <th>Creado</th>
+            <th>Acciones</th>
           </tr>
           @foreach ($countries as $country)
           <tr>
@@ -29,6 +30,21 @@
             <td>{{ $country->name }}</td>
             <td>{{ $country->nickname }}</td>
             <td>{{ $country->created_at }}</td>
+            <td>
+              <a href="{{ url('/countries/show/'.$country->id) }}" title="Ver">
+                <i class="fas fa-eye"></i>
+              </a>
+              <a href="{{ url('/countries/edit/'.$country->id) }}" title="Editar">
+                <i class="fas fa-edit"></i>
+              </a>
+              <a class="" href="{{ url('/countries/active_deactive/'.$country->id) }}">
+              @if ($country->active == true)
+                <i class="fas fa-minus-circle text-danger" title="Desactivar"></i>
+              @else
+                <i class="fas fa-play-circle text-success" title="Activar"></i>
+              @endif
+              </a>
+            </td>
           </tr>
           @endforeach
         </table>

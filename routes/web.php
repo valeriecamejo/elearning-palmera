@@ -30,12 +30,17 @@ $this->post('password/reset', 'Auth\ResetPasswordController@reset');
 Route::get('/home', 'HomeController@index')->name('home');
 
 // Roles Routes...
-Route::get('roles/list', 'RoleController@list')->name('roles/list');
-Route::get('roles/create', 'RoleController@create')->name('roles/create');
-Route::post('roles/create', 'RoleController@store')->name('roles/create');
-Route::get('roles/permission/{role_id}', 'RoleController@permission')->name('permission');
-Route::get('roles/permission/create/{id}', 'RoleController@indexPermission')->name('modules/create');
-Route::post('roles/permission/{role_id}', 'RoleController@storePermission')->name('roles/permission');
+Route::get('/roles', 'RoleController@list')->name('roles');
+Route::get('/roles/create', 'RoleController@create')->name('roles/create');
+Route::post('/roles/create', 'RoleController@store')->name('roles/create');
+Route::get('/roles/permission/{id}', 'RoleController@permission')->name('permission');
+Route::get('/roles/permission/create/{id}', 'RoleController@indexPermission')->name('roles/permission');
+Route::post('/roles/permission/store/{id}', 'RoleController@storePermission');
+Route::get('/roles/permission/show/{id}', 'RoleController@showPermission')->name('roles/permission/show/{id}');
+Route::post('/roles/permission/edit/{id}', 'RoleController@storeEditedPermission')->name('roles/permission/edit/{id}');
+Route::get('/roles/edit/{id}', 'RoleController@editRole')->name('roles/edit/{id}');
+Route::post('/roles/edit/{id}', 'RoleController@saveEditRole')->name('roles/edit');
+Route::get('/roles/show/{id}', 'RoleController@showRole')->name('roles/show/{id}');
 
 // User Routes...
 Route::get('/users', 'UserController@index')->name('users');
@@ -57,6 +62,11 @@ Route::post('/brands/create', 'BrandController@store')->name('brands/create');
 Route::get('/countries', 'CountryController@index')->name('countries');
 Route::get('/countries/create', 'CountryController@create')->name('countries/create');
 Route::post('/countries/create', 'CountryController@store')->name('countries/create');
+Route::get('/countries/edit/{id}', 'CountryController@edit')->name('countries/edit/{id}');
+Route::post('/countries/edit/{id}', 'CountryController@saveEdit')->name('countries/edit/{id}');
+Route::get('/countries/show/{id}', 'CountryController@show')->name('countries/show/{id}');
+Route::get('/countries/active_deactive/{id}', 'CountryController@activeDeactive')->name('countries/active_deactive');
+Route::get('/countries/all', 'CountryController@allCountries')->name('/countries/all');
 
 // Category Routes...
 Route::get('/categories', 'CategoryController@index')->name('categories');
@@ -69,5 +79,33 @@ Route::get('/products/list', 'ProductController@list')->name('products/list');
 Route::get('/products/create', 'ProductController@create')->name('products/create');
 Route::post('/products/create', 'ProductController@store')->name('products/create');
 
+// Evaluation Routes...
+Route::get('/evaluations', 'EvaluationController@index')->name('evaluations');
+Route::get('/evaluations/list', 'EvaluationController@list')->name('evaluations/list');
+Route::get('/evaluations/create', 'EvaluationController@create')->name('evaluations/create');
+Route::post('/evaluations/create', 'EvaluationController@store')->name('evaluations/create');
+Route::get('/evaluations/show/{id}', 'EvaluationController@show')->name('evaluations/show');
+Route::get('/evaluations/{id}/questions/create', 'QuestionController@create')->name('questions/create');
+Route::post('/evaluations/{id}/questions/create', 'QuestionController@store')->name('questions/create');
+
 // Modules Routes...
 Route::get('modules/list', 'ModuleController@index')->name('modules');
+
+// State Routes...
+Route::get('states', 'StateController@index')->name('states');
+Route::get('/states/create', 'StateController@create')->name('states/create');
+Route::post('/states/create', 'StateController@store')->name('states/create');
+Route::get('/states/show/{id}', 'StateController@show')->name('/states/show/{id}');
+Route::get('/states/edit/{id}', 'StateController@edit')->name('/states/edit/{id}');
+Route::post('/states/edit/{id}', 'StateController@saveEdit')->name('/states/edit/{id}');
+Route::get('/states/active_deactive/{id}', 'StateController@active_deactive')->name('/states/active_deactive/{id}');
+Route::get('/states/all/{id}', 'StateController@states')->name('/states/all/{id}');
+
+
+// Cities Routes...
+Route::get('cities', 'CityController@index')->name('cities');
+Route::get('/cities/create', 'CityController@create')->name('cities/create');
+Route::post('/cities/create', 'CityController@store')->name('cities/create');
+Route::get('/cities/show/{id}', 'CityController@show')->name('/cities/show/{id}');
+Route::get('/cities/active_deactive/{id}', 'CityController@activeDeactive')->name('cities/active_deactive/{id}');
+

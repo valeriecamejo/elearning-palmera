@@ -7,7 +7,7 @@
 			<div class="card-header">
 				<ul class="nav nav-tabs card-header-tabs">
 					<li class="nav-item">
-						<a class="nav-link" href="{{ url('/roles/list') }}">Roles</a>
+						<a class="nav-link" href="{{ url('/roles') }}">Roles</a>
 					</li>
 					<li class="nav-item">
 						<a class="nav-link active">Nuevo</a>
@@ -38,7 +38,6 @@
 						<label for="email" class="col-md-4 col-form-label text-md-right">{{ __('Nivel') }}</label>
 						<div class="col-md-6">
 							<select name="level" class="custom-select">
-								<option selected>Seleccionar</option>
 								<option value="2">Medio</option>
 								<option value="3">Bajo</option>
 							</select>

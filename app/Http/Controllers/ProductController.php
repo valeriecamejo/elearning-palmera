@@ -8,6 +8,8 @@ use App\Http\Requests\ProductRequest;
 use Illuminate\Support\Facades\Session;
 use App\Category;
 use App\Brand;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
 
 class ProductController extends Controller {
       /**
@@ -25,7 +27,12 @@ class ProductController extends Controller {
    * @return \Illuminate\Http\Response
    */
   public function index() {
-    $products = Product::paginate(15);
+    if(Auth::user()->role_id == 1) {
+      $products = Product::paginate(15);
+    } else {
+      $products = Product::where('brand_id','=', Auth::user()->brand_id)
+      ->paginate(15);
+    }
     return view('product.products', compact('products'));
   }
   /**
@@ -34,7 +41,12 @@ class ProductController extends Controller {
    * @return \Illuminate\Http\Response
    */
   public function list() {
-    $products = Product::paginate(15);
+    if(Auth::user()->role_id == 1) {
+      $products = Product::paginate(15);
+    } else {
+      $products = Product::where('brand_id','=', Auth::user()->brand_id)
+      ->paginate(15);
+    }
     return view('product.list', compact('products'));
   }
   /**

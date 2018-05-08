@@ -19,7 +19,7 @@
 			</div>
 			<div class="card-body">
 				<h5 class="card-title">Crear un nuevo producto</h5>
-				<form method="POST" action="{{ route('products/create') }}">
+				<form method="POST" action="{{ route('products/create') }}" files=”true” enctype="multipart/form-data">
 					@csrf
 					<div class="form-group row">
 						<label for="name" class="col-md-4 col-form-label text-md-right">{{ __('Nombre') }}</label>
@@ -36,7 +36,7 @@
 						<label for="description" class="col-md-4 col-form-label text-md-right">{{ __('Descripción') }}</label>
 						<div class="col-md-6">
 							<textarea class="form-control{{ $errors->has('description') ? ' is-invalid' : '' }}" id="description" rows="3" 
-							name="description" value="{{ old('description') }}" required autofocus></textarea>
+							name="description" value="{{ old('description') }}" maxlength="255" required autofocus> {{ old('description') }} </textarea>
 							@if ($errors->has('description'))
 								<span class="invalid-feedback">
 									<strong>{{ $errors->first('description') }}</strong>
@@ -99,7 +99,7 @@
 					<div class="form-group row">
 						<label for="photo" class="col-md-4 col-form-label text-md-right">{{ __('Foto') }}</label>
 						<div class="col-md-6">
-							<input id="photo" type="text" class="form-control{{ $errors->has('photo') ? ' is-invalid' : '' }}" name="photo" value="{{ old('photo') }}" autofocus>
+							<input type="file" class="form-control{{ $errors->has('photo') ? ' is-invalid' : '' }}" name="photo">
 							@if ($errors->has('photo'))
 								<span class="invalid-feedback">
 									<strong>{{ $errors->first('photo') }}</strong>

@@ -27,7 +27,7 @@ class Role extends Model
     $name = strtolower($request['name']);
     $role->name = ucwords($name);
     foreach ($modules as $module){
-      $permission = ['modulo_id' => $module->id, 'is_active' => 0, 'permissions' => ['crear' => 0, 'editar' => 0, 'ver' => 0, 'eliminar' => 0]];
+      $permission = ['module_id' => $module->id, 'is_active' => false, 'permissions' => ['crear' => false, 'editar' => false, 'ver' => false, 'eliminar' => false]];
       array_push($role_permission, $permission);
       $permission = '';
     };
@@ -44,13 +44,53 @@ class Role extends Model
   /**
   * Show the profile for the given user.
   *
-  * @param  int  $id
-  * @return Response
+  * @param  int  $request
+  * @return $role_permission
   */
-  public static function insertPermission($request) {
+  public static function insertPermission($request, $role_id) {
 
-    $permission = $request['modulo'];
-    var_dump(permission);exit();
+    $role             = Role::find($role_id);
+    $permissions      = json_encode($request->permissions);
+    $role->permission = $permissions;
 
+    if($role->save()) {
+      return $role;
+    }
+  }
+
+  /**
+  * Modify permissions.
+  *
+  * @param  int  $role_id
+  * @return $role_permission
+  */
+  public static function storeEditedPermission($request, $role_id) {
+
+    $role             = Role::find($role_id);
+    $permissions      = json_encode($request->permissions);
+    $role->permission = $permissions;
+
+    if($role->save()) {
+      return $role;
+    }
+  }
+
+  /**
+  * Save modified role.
+  *
+  * @param  int  $role_id
+  * @return $role_permission
+  */
+  public static function saveEditRole($request, $role_id) {
+
+    $role        = Role::find($role_id);
+    $name = strtolower($request['name']);
+    $role->name = ucwords($name);
+    $role->level = $request['level'];
+    $role->save();
+
+    if($role->save()) {
+      return $role;
+    }
   }
 }
