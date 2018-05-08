@@ -34,8 +34,7 @@ class State extends Model
   public static function saveEdit($request, $state_id) {
 
     $state             = State::find($state_id);
-    $name              = strtolower($request['name']);
-    $state->name       = ucwords($name);
+    $state->name       = ucwords($request['name']);
     $state->country_id = $request['country_id'];
     if ($state->save()) {
       return $state;

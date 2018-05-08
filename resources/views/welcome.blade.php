@@ -80,7 +80,6 @@
                 <div class="title m-b-md">
                     E-learning PalmERA
                 </div>
-
                 <div class="links">
                     <a href="/home">Home</a>
                     <a href="/login">Login</a>

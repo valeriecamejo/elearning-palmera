@@ -18,17 +18,6 @@
 						<form method="POST" action="{{ url('states/edit/'.$state->id) }}">
 							@csrf
 							<div class="form-group row">
-								<label for="name" class="col-md-4 col-form-label text-md-right">{{ __('Nombre') }}</label>
-								<div class="col-md-6">
-									<input id="name" type="text" class="form-control{{ $errors->has('name') ? ' is-invalid' : '' }}" name="name" value="{{ $state->name }}" required autofocus>
-									@if ($errors->has('name'))
-										<span class="invalid-feedback">
-											<strong>{{ $errors->first('name') }}</strong>
-										</span>
-									@endif
-								</div>
-							</div>
-							<div class="form-group row">
                 <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('Pais') }}</label>
                 <div class="col-md-6">
                   <select v-model="previous_country" name="country_id" class="form-control" required>
@@ -39,6 +28,17 @@
                   </select>
                 </div>
               </div>
+							<div class="form-group row">
+								<label for="name" class="col-md-4 col-form-label text-md-right">{{ __('Nombre') }}</label>
+								<div class="col-md-6">
+									<input id="name" type="text" class="form-control{{ $errors->has('name') ? ' is-invalid' : '' }}" name="name" value="{{ $state->name }}" required autofocus>
+									@if ($errors->has('name'))
+										<span class="invalid-feedback">
+											<strong>{{ $errors->first('name') }}</strong>
+										</span>
+									@endif
+								</div>
+							</div>
 							<div class="form-group row mb-0">
 								<div class="col-md-6 offset-md-4">
 									<button type="submit" class="btn btn-primary">
