@@ -36,10 +36,10 @@ class UserRequest extends FormRequest
   }
   public function messages() {
     return [
-      'dni.min'              => 'La cédula no debe ser menor de 6 dígitos.',
-      'dni.numeric'          => 'La cédula solo puede contener números.',
-      'phone.min'            => 'El número de teléfono debe contener 7 dígitos.',
-      'phone.numeric'        => 'El número de teléfono solo puede contener números.',
+      'dni.min'       => 'La cédula no debe ser menor de 6 dígitos.',
+      'dni.numeric'   => 'La cédula solo puede contener números.',
+      'phone.min'     => 'El número de teléfono debe contener 7 dígitos.',
+      'phone.numeric' => 'El número de teléfono solo puede contener números.',
     ];
   }
 }

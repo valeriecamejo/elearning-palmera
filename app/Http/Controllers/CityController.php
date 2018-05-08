@@ -7,8 +7,7 @@ use Illuminate\Http\Request;
 use App\City;
 use App\State;
 use App\Country;
-// use App\Http\Requests\CountryRequest;
-// use App\Http\Requests\CountryUpdateRequest;
+use App\Http\Requests\CityUpdateRequest;
 use Illuminate\Support\Facades\Session;
 
 class CityController extends Controller {
@@ -72,6 +71,20 @@ class CityController extends Controller {
   }
 
   /**
+   * Edit a city.
+   *
+   * @param  country_id
+   * @return $country
+   */
+  public function edit($city_id) {
+
+    $city    = City::find($city_id);
+    $state   = State::find($city->state_id);
+    $country = Country::find($state->country_id);
+    return view('city.edit', compact('city', 'state', 'country'));
+  }
+
+  /**
    * Activate/Deactivate a Country.
    *
    * @return \Illuminate\Http\Response
@@ -86,6 +99,25 @@ class CityController extends Controller {
       Session::flash('class', 'danger');
     }
     return redirect()->to('cities');
+  }
+
+  /**
+   * Save city edited.
+   *
+   * @param  Request $request, id
+   * @return $id
+   */
+  public function saveEdit(CityUpdateRequest $request, $id) {
+    // var_dump($request->all());exit();
+    $city = City::saveEdit($request->all(), $id);
+    if ($city) {
+      Session::flash('message', 'Rol actualizado correctamente.');
+      Session::flash('class', 'success');
+    } else {
+      Session::flash('message', 'Error al actualizar los datos.');
+      Session::flash('class', 'danger');
+    }
+    return redirect()->to('cities/edit/'.$id);
   }
 
 }

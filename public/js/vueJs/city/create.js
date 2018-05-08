@@ -7,6 +7,7 @@ City = new Vue({
     data_ready:     false,
     state_id:       '',
     country_id:       '',
+    previous_country: '',
     previous_state: '',
     changedValue:   '',
 },
@@ -25,6 +26,11 @@ City = new Vue({
         }).catch(function(data){
           this.errors   = data.responseJSON;
       });
+    },
+    country_data: function (country, state) {
+      City.previous_country = country;
+      City.previous_state   = state;
+      City.statesOfCountry(country);
     },
   }
 })

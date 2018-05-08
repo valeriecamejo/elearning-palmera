@@ -107,5 +107,10 @@ Route::get('cities', 'CityController@index')->name('cities');
 Route::get('/cities/create', 'CityController@create')->name('cities/create');
 Route::post('/cities/create', 'CityController@store')->name('cities/create');
 Route::get('/cities/show/{id}', 'CityController@show')->name('/cities/show/{id}');
+Route::get('/cities/edit/{id}', 'CityController@edit')->name('/cities/edit/{id}');
+Route::post('/cities/edit/{id}', 'CityController@saveEdit')->name('/cities/edit/{id}');
 Route::get('/cities/active_deactive/{id}', 'CityController@activeDeactive')->name('cities/active_deactive/{id}');
 
+// Contents Routes...
+Route::get('contents', 'ContentController@index')->name('contents');
+Route::get('/contents/create', 'ContentController@create')->name('/contents/create');

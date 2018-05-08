@@ -24,8 +24,7 @@ class Country extends Model {
 
   public static function insertCountry($request) {
     $country            = new Country;
-    $name               = strtolower($request['name']);
-    $country->name      = ucwords($name);
+    $country->name      = ucwords($request['name']);
     $country->nickname  = strtoupper($request['nickname']);
     $country->active    = true;
     if ($country->save()) {
@@ -41,8 +40,7 @@ class Country extends Model {
   public static function saveEdit($request, $country_id) {
 
     $country           = Country::find($country_id);
-    $name              = strtolower($request['name']);
-    $country->name     = ucwords($name);
+    $country->name     = ucwords($request['name']);
     $country->nickname = strtoupper($request['nickname']);
 
     if ($country->save()) {

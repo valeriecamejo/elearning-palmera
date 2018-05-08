@@ -25,10 +25,24 @@ class City extends Model
 
   public static function insertCity($request) {
     $city               = new City;
-    $name               = strtolower($request['name']);
-    $city->name         = ucwords($name);
+    $city->name         = ucwords($request['name']);
     $city->state_id     = $request['state_id'];
     $city->active       = true;
+    if ($city->save()) {
+      return $city;
+    }
+  }
+
+  /**
+  * Save city edited.
+  *
+  * @return city
+  */
+  public static function saveEdit($request, $city_id) {
+
+    $city            = City::find($city_id);
+    $city->name      = ucwords($request['name']);
+    $city->state_id  = $request['state_id'];
     if ($city->save()) {
       return $city;
     }
