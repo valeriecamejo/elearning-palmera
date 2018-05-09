@@ -92,7 +92,7 @@ Route::post('/evaluations/{id}/questions/create', 'QuestionController@store')->n
 Route::get('modules/list', 'ModuleController@index')->name('modules');
 
 // State Routes...
-Route::get('states', 'StateController@index')->name('states');
+Route::get('/states', 'StateController@index')->name('states');
 Route::get('/states/create', 'StateController@create')->name('states/create');
 Route::post('/states/create', 'StateController@store')->name('states/create');
 Route::get('/states/show/{id}', 'StateController@show')->name('/states/show/{id}');
@@ -103,7 +103,7 @@ Route::get('/states/all/{id}', 'StateController@states')->name('/states/all/{id}
 
 
 // Cities Routes...
-Route::get('cities', 'CityController@index')->name('cities');
+Route::get('/cities', 'CityController@index')->name('cities');
 Route::get('/cities/create', 'CityController@create')->name('cities/create');
 Route::post('/cities/create', 'CityController@store')->name('cities/create');
 Route::get('/cities/show/{id}', 'CityController@show')->name('/cities/show/{id}');
@@ -112,5 +112,7 @@ Route::post('/cities/edit/{id}', 'CityController@saveEdit')->name('/cities/edit/
 Route::get('/cities/active_deactive/{id}', 'CityController@activeDeactive')->name('cities/active_deactive/{id}');
 
 // Contents Routes...
-Route::get('contents', 'ContentController@index')->name('contents');
+Route::get('/contents', 'ContentController@index')->name('contents');
 Route::get('/contents/create', 'ContentController@create')->name('/contents/create');
+Route::post('/contents/create/{id}', 'ContentController@store')->name('/contents/create/{id}');
+Route::get('/contents/show/{id}', 'ContentController@show')->name('/contents/show/{id}');
