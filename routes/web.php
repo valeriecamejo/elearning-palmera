@@ -116,3 +116,7 @@ Route::get('/contents', 'ContentController@index')->name('contents');
 Route::get('/contents/create', 'ContentController@create')->name('/contents/create');
 Route::post('/contents/create/{id}', 'ContentController@store')->name('/contents/create/{id}');
 Route::get('/contents/show/{id}', 'ContentController@show')->name('/contents/show/{id}');
+Route::get('/contents/edit/{id}', 'ContentController@edit')->name('/contents/edit/{id}');
+Route::post('/contents/edit/{id}', 'ContentController@saveEdit')->name('/contents/edit/{id}');
+Route::get('/contents/delete/{id}', 'ContentController@delete')->name('/contents/delete/{id}');
+
