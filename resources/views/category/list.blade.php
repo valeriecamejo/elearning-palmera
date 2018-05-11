@@ -20,13 +20,31 @@
           <tr>
             <th>ID</th>
             <th>Nombre</th>
+            <th>Activo</th>
             <th>Creado</th>
+            <th>Opciones</th>
           </tr>
           @foreach ($categories as $category)
           <tr>
             <td>{{ $category->id }}</td>
             <td>{{ $category->name }}</td>
+            <td>{{ $category->active ? 'SI' : 'NO' }}</td>
             <td>{{ $category->created_at }}</td>
+            <td>
+              <a class="" href="{{ url('/categories/show/'.$category->id) }}" title="Ver">
+                <i class="fas fa-eye"></i>
+              </a>
+              <a class="" href="{{ url('/categories/edit/'.$category->id) }}" title="Editar">
+                <i class="fas fa-edit"></i>
+              </a>
+              <a class="" href="{{ url('/categories/active_deactive/'.$category->id) }}" title="Activar / Desactivar">
+              @if ($category->active == true)
+                <i class="fas fa-minus-circle text-danger"></i>
+              @else
+                <i class="fas fa-play-circle text-success"></i>
+              @endif
+              </a>
+            </td>
           </tr>
           @endforeach
         </table>

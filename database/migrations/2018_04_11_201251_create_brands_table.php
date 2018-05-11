@@ -19,6 +19,7 @@ class CreateBrandsTable extends Migration
             $table->string('navbar_color');
             $table->text('logo')->nullable();
             $table->text('header')->nullable();
+            $table->boolean('active')->default(true);
             $table->timestamps();
         });
     }

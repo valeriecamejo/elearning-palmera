@@ -24,7 +24,7 @@ class BrandRequest extends FormRequest {
       'name'         => 'required|max:255|unique:brands,name',
       'navbar_color' => 'required|max:255',
       'logo'         => 'max:255',
-      'header'       => 'max:255',
+      'header'       => 'max:255'
     ];
   }
 }

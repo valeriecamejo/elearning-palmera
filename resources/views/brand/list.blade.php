@@ -23,7 +23,9 @@
             <th>Color de Menú</th>
             <th>Logo</th>
             <th>Imagen Header</th>
+            <th>Activo</th>
             <th>Creado</th>
+            <th>Opciones</th>
           </tr>
           @foreach ($brands as $brand)
           <tr>
@@ -32,7 +34,23 @@
             <td>{{ $brand->navbar_color }}</td>
             <td>{{ $brand->logo }}</td>
             <td>{{ $brand->header }}</td>
+            <td>{{ $brand->active ? 'SI' : 'NO' }}</td>
             <td>{{ $brand->created_at }}</td>
+            <td>
+              <a class="" href="{{ url('/brands/show/'.$brand->id) }}" title="Ver">
+                <i class="fas fa-eye"></i>
+              </a>
+              <a class="" href="{{ url('/brands/edit/'.$brand->id) }}" title="Editar">
+                <i class="fas fa-edit"></i>
+              </a>
+              <a class="" href="{{ url('/brands/active_deactive/'.$brand->id) }}" title="Activar / Desactivar">
+              @if ($brand->active == true)
+                <i class="fas fa-minus-circle text-danger"></i>
+              @else
+                <i class="fas fa-play-circle text-success"></i>
+              @endif
+              </a>
+            </td>
           </tr>
           @endforeach
         </table>

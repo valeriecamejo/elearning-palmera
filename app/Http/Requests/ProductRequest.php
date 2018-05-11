@@ -31,7 +31,7 @@ class ProductRequest extends FormRequest {
       'brand_id'      => 'required|numeric',
       'valoration'    => 'required|numeric',
       'price'         => 'required',
-      'photo'         => 'image',
+      'photo'         => 'image'
     ];
   }
 }

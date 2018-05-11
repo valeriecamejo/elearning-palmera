@@ -24,6 +24,7 @@ class CreateProductsTable extends Migration
       $table->text('photo')->nullable();
       $table->integer('valoration')->nullable();
       $table->float('price')->nullable();
+      $table->boolean('active')->default(true);
       $table->timestamps();
     });
   }
