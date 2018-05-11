@@ -108,7 +108,6 @@ class CityController extends Controller {
    * @return $id
    */
   public function saveEdit(CityUpdateRequest $request, $id) {
-    // var_dump($request->all());exit();
     $city = City::saveEdit($request->all(), $id);
     if ($city) {
       Session::flash('message', 'Rol actualizado correctamente.');

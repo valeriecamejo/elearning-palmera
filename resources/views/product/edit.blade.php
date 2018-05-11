@@ -5,9 +5,14 @@
 	<div class="col-md-8">
 		<div class="card">
 			<div class="card-header">
-        Editar Producto
+					<ul class="nav nav-tabs card-header-tabs">
+							<li class="nav-item">
+								<a class="nav-link" href="{{ url('/products') }}">Productos</a>
+							</li>
+						</ul>
 			</div>
 			<div class="card-body">
+				<h3>Editar Producto</h3>
         <form method="POST" action="{{ url('products/edit/'.$product->id) }}" files=”true” enctype="multipart/form-data">
 					@csrf
 					<div class="form-group row">

@@ -17,23 +17,23 @@ class Product extends Model {
   protected $hidden = [];
 
   public static function insertProduct($request) {
-    if($request['photo']){
+    $product = new Product;
+    if(isset($request['photo'])){
       // antes de hacer esto por primera vez hay que hacer php artisan storage:link
       // obtenemos el campo file definido en el formulario
       $file = $request['photo'];
       // obtenemos el nombre del archivo
       $name = $file->getClientOriginalName();
       // indicamos que queremos guardar en la carpeta public de storage
-      $file->storeAs('public/', $name); 
+      $file->storeAs('public/', $name);
+      $product->photo      = $name;
     }
-    $product               = new Product;
     $product->name         = $request['name'];
     $product->description  = $request['description'];
     $product->model        = $request['model'];
     $product->version      = $request['version'];
     $product->category_id  = $request['category_id'];
     $product->brand_id     = $request['brand_id'];
-    $product->photo        = $name;
     $product->price        = $request['price'];
     $product->valoration   = $request['valoration'];
     if ($product->save()) {
@@ -42,23 +42,23 @@ class Product extends Model {
   }
 
   public static function saveUpdate($request, $id) {
-    if($request['photo']){
+    $product = Product::find($id);
+    if(isset($request['photo'])){
       // antes de hacer esto por primera vez hay que hacer php artisan storage:link
       // obtenemos el campo file definido en el formulario
       $file = $request['photo'];
       // obtenemos el nombre del archivo
       $name = $file->getClientOriginalName();
       // indicamos que queremos guardar en la carpeta public de storage
-      $file->storeAs('public/', $name); 
+      $file->storeAs('public/', $name);
+      $product->photo        = $name;
     }
-    $product               = Product::find($id);
     $product->name         = $request['name'];
     $product->description  = $request['description'];
     $product->model        = $request['model'];
     $product->version      = $request['version'];
     $product->category_id  = $request['category_id'];
     $product->brand_id     = $request['brand_id'];
-    $product->photo        = $name;
     $product->price        = $request['price'];
     $product->valoration   = $request['valoration'];
     if ($product->save()) {

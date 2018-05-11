@@ -10,7 +10,7 @@
             <a class="nav-link active">Contenidos</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="{{ url('/contents/create') }}">Nuevo</a>
+            <a class="nav-link" href="{{ url('/contents/create/'.$product->id) }}">Nuevo</a>
           </li>
         </ul>
       </div>

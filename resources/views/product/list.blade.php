@@ -23,7 +23,6 @@
           <tr>
             <th>ID</th>
             <th>Nombre</th>
-            <th>Descripción</th>
             <th>Precio</th>
             <th>Valoración/Puntaje</th>
             <th>Activo</th>
@@ -34,7 +33,6 @@
           <tr>
             <td>{{ $product->id }}</td>
             <td>{{ $product->name }}</td>
-            <td>{{ $product->description }}</td>
             <td>{{ $product->price }}</td>
             <td>{{ $product->valoration }}</td>
             <td>{{ $product->active ? 'SI' : 'NO' }}</td>
@@ -45,6 +43,9 @@
               </a>
               <a class="" href="{{ url('/products/edit/'.$product->id) }}" title="Editar">
                 <i class="fas fa-edit"></i>
+              </a>
+              <a class="" href="{{ url('contents/'.$product->id) }}" title="Contenidos">
+                <i class="fas fa-file-alt"></i>
               </a>
               <a class="" href="{{ url('/products/active_deactive/'.$product->id) }}" title="Activar / Desactivar">
               @if ($product->active == true)

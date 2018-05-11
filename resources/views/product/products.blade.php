@@ -24,16 +24,16 @@
           <div class="col-sm-12 col-md-4">
             <div class="card">
               @if ($product->photo)
-              <img class="card-img-top" src="{{ asset('storage/'.$product->photo) }}"alt="{{ $product->name }}">
+              <img class="card-img-top" src="{{ asset('storage/'.$product->photo) }}" alt="{{ $product->name }}">
               @else
-              <img class="card-img-top" src="{{ asset('img/sinfoto.png') }}"alt="{{ $product->name }}">
+              <img class="card-img-top" src="{{ asset('img/sinfoto.png') }}" alt="{{ $product->name }}">
               @endif
               <div class="card-body">
                 <h5 class="card-title">{{ $product->name }}</h5>
                 <p class="card-text">
                   {{ $product->description }}
                 </p>
-                <a href="#" class="btn btn-primary">Ver</a>
+                <a href="{{ url('/products/show/'.$product->id) }}" class="btn btn-primary">Ver</a>
               </div>
             </div>
           </div>
