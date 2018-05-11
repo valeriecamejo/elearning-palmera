@@ -5,19 +5,19 @@
 	<div class="col-md-8">
 		<div class="card">
 			<div class="card-header">
-      {{ $product->name }}
+				<h3>{{ $product->name }}</h3>
 			</div>
 			<div class="card-body">
 					<div class="form-group row">
 						<label for="name" class="col-md-4 col-form-label text-md-right">{{ __('Nombre') }}</label>
 						<div class="col-md-6">
-            <p class="col-form-label">{{ $product->name }}</p>						
+            <p class="col-form-label">{{ $product->name }}</p>
 						</div>
 					</div>
 					<div class="form-group row">
 						<label for="description" class="col-md-4 col-form-label text-md-right">{{ __('Descripción') }}</label>
 						<div class="col-md-6">
-            <p class="col-form-label">{{ $product->description }}</p>						
+            <p class="col-form-label">{{ $product->description }}</p>
 						</div>
 					</div>
 					<div class="form-group row">
@@ -29,7 +29,7 @@
                   {{ $brand->name }}
                   @endif
               @endforeach
-            </p>						
+            </p>
 						</div>
 					</div>
 					<div class="form-group row">
@@ -46,7 +46,7 @@
 					<div class="form-group row">
 						<label for="model" class="col-md-4 col-form-label text-md-right">{{ __('Modelo') }}</label>
 						<div class="col-md-6">
-            <p class="col-form-label">{{ $product->model }}</p>						
+            <p class="col-form-label">{{ $product->model }}</p>
 						</div>
 					</div>
 					<div class="form-group row">
@@ -58,7 +58,11 @@
 					<div class="form-group row">
 						<label for="photo" class="col-md-4 col-form-label text-md-right">{{ __('Foto') }}</label>
 						<div class="col-md-6">
-            <p class="col-form-label">{{ $product->photo }}</p>
+							@if ($product->photo)
+              <img class="card-img-top" src="{{ asset('storage/'.$product->photo) }}" alt="{{ $product->name }}">
+              @else
+              <img class="card-img-top" src="{{ asset('img/sinfoto.png') }}" alt="{{ $product->name }}">
+              @endif
 						</div>
 					</div>
 					<div class="form-group row">

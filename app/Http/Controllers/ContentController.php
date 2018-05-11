@@ -24,10 +24,9 @@ class ContentController extends Controller
    *
    * @return void
    */
-  //TODO: SUSTITUIR EL VALOR DE PRODUCT_ID
-  public function index() {
-    $contents = Content::paginate(15);
-    $product  = Product::find(1);
+  public function index($product_id) {
+    $contents = Content::where('product_id', $product_id)->paginate(15);
+    $product  = Product::find($product_id);
     return view('content.list', compact('contents', 'product'));
   }
 
@@ -36,8 +35,8 @@ class ContentController extends Controller
    *
    * @return view
    */
-  public function create() {
-    return view('content.create');
+  public function create($product_id) {
+    return view('content.create', compact('product_id'));
   }
 
   /**
@@ -47,7 +46,6 @@ class ContentController extends Controller
    * @return view
    */
   public function store(Request $request, $product_id) {
-    // var_dump($request->all());exit();
     $content = Content::insertContent($request->all(), $product_id);
     if ($content) {
       Session::flash('message', 'Contenido guardado exitosamente.');
@@ -56,7 +54,7 @@ class ContentController extends Controller
       Session::flash('message', 'Error al guardar contenido.');
       Session::flash('class', 'danger');
     }
-    return redirect()->to('contents/create');
+    return redirect()->to('contents/create/'.$product_id);
   }
 
   /**

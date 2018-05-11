@@ -8,12 +8,12 @@
         <div class="card-header">
           <ul class="nav nav-tabs card-header-tabs">
             <li class="nav-item">
-              <a class="nav-link" href="{{ url('/contents') }}">Contenidos</a>
+              <a class="nav-link" href="{{ url('contents/'.$product_id) }}">Contenidos</a>
             </li>
           </ul>
         </div>
           <div class="card-body">
-            <form method="POST" action="{{ url('contents/create/1') }}">
+            <form method="POST" action="{{ url('/contents/create/'.$product_id) }}">
               @csrf
               <div class="form-group row">
                 <label for="name" class="col-md-12 col-form-label"><h4>{{ __('Titulo') }}</h4></label>
