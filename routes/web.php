@@ -57,6 +57,11 @@ Route::get('/users/active_deactive/{id}', 'UserController@activeDeactive')->name
 Route::get('/brands', 'BrandController@index')->name('brands');
 Route::get('/brands/create', 'BrandController@create')->name('brands/create');
 Route::post('/brands/create', 'BrandController@store')->name('brands/create');
+Route::get('/brands/edit/{id}', 'BrandController@edit')->name('brands/edit/{id}');
+Route::post('/brands/edit/{id}', 'BrandController@saveUpdate')->name('brands/edit');
+Route::get('/brands/show/{id}', 'BrandController@show')->name('brands/show');
+Route::get('/brands/active_deactive/{id}', 'BrandController@activeDeactive')->name('brands/active_deactive');
+
 
 // Country Routes...
 Route::get('/countries', 'CountryController@index')->name('countries');
@@ -72,12 +77,20 @@ Route::get('/countries/all', 'CountryController@allCountries')->name('/countries
 Route::get('/categories', 'CategoryController@index')->name('categories');
 Route::get('/categories/create', 'CategoryController@create')->name('categories/create');
 Route::post('/categories/create', 'CategoryController@store')->name('categories/create');
+Route::get('/categories/edit/{id}', 'CategoryController@edit')->name('categories/edit/{id}');
+Route::post('/categories/edit/{id}', 'CategoryController@saveUpdate')->name('categories/edit');
+Route::get('/categories/show/{id}', 'CategoryController@show')->name('categories/show');
+Route::get('/categories/active_deactive/{id}', 'CategoryController@activeDeactive')->name('categories/active_deactive');
 
 // Product Routes...
 Route::get('/products', 'ProductController@index')->name('products');
 Route::get('/products/list', 'ProductController@list')->name('products/list');
 Route::get('/products/create', 'ProductController@create')->name('products/create');
 Route::post('/products/create', 'ProductController@store')->name('products/create');
+Route::get('/products/edit/{id}', 'ProductController@edit')->name('products/edit/{id}');
+Route::post('/products/edit/{id}', 'ProductController@saveUpdate')->name('products/edit');
+Route::get('/products/show/{id}', 'ProductController@show')->name('products/show');
+Route::get('/products/active_deactive/{id}', 'ProductController@activeDeactive')->name('products/active_deactive');
 
 // Evaluation Routes...
 Route::get('/evaluations', 'EvaluationController@index')->name('evaluations');

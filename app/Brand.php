@@ -33,4 +33,25 @@ class Brand extends Model {
       return $brand;
     }
   }
+
+  public static function saveUpdate($request, $id) {
+    $brand               = Brand::find($id);
+    $brand->name         = $request['name'];
+    $brand->navbar_color = $request['navbar_color'];
+    $brand->logo         = $request['logo'];
+    $brand->header       = $request['header'];
+    return $brand;
+  }
+
+  public static function activeDeactive($id) {
+    $brand           = Brand::find($id);
+    if ($brand->active == true) {
+      $brand->active = false;
+    } else {
+      $brand->active = true;
+    }
+    if ($brand->save()) {
+      return $brand;
+    }
+  }
 }
