@@ -133,3 +133,7 @@ Route::get('/contents/edit/{id}', 'ContentController@edit')->name('/contents/edi
 Route::post('/contents/edit/{id}', 'ContentController@saveEdit')->name('/contents/edit/{id}');
 Route::get('/contents/delete/{id}', 'ContentController@delete')->name('/contents/delete/{id}');
 
+
+// Catalogs Routes...
+Route::get('/catalogs', 'CatalogController@index')->name('catalogs');
+Route::get('/catalogs/products', 'CatalogController@allProducts')->name('catalogs/products');

@@ -28,6 +28,11 @@
             </a>
           </li>
           <li>
+            <a class="nav-link" href="{{ url('/catalogs') }}">
+              Catálogo
+            </a>
+          </li>
+          <li>
             <a class="nav-link" href="{{ url('/evaluations') }}">
               Evaluaciones
             </a>
