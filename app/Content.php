@@ -59,4 +59,16 @@ class Content extends Model {
     $content = DB::table('contents')->where('id', '=', $content_id)->delete();
     return $content;
   }
+
+  /**
+   * Content by Product.
+   *
+   * @param  content_id
+   * @return $content
+   */
+  public static function contentByProduct($product_id) {
+
+    $contents = DB::table('contents')->where('product_id', '=', $product_id)->get();
+    return $contents;
+  }
 }

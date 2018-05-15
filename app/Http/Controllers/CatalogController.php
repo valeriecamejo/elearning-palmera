@@ -39,6 +39,7 @@ class CatalogController extends Controller {
       $products = Product::paginate(10);
     } else {
       $products = DB::table('products')
+                    ->where('products.active', true)
                     ->where('products.brand_id', Auth::user()->brand_id)
                     ->paginate(10);
     }
