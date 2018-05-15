@@ -19,7 +19,7 @@
         @else
           <li>
             <a class="nav-link" href="{{ url('/categories') }}">
-              Categorias
+              Categorías
             </a>
           </li>
           <li>
