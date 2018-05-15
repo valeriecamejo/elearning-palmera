@@ -126,6 +126,7 @@ class ContentController extends Controller
    */
   public function contentByProduct($product_id) {
     $contents = Content::contentByProduct($product_id);
-    return view('catalog.product', compact('contents'));
+    $product  = Product::find($product_id);
+    return view('catalog.product', compact('contents', 'product'));
   }
 }
