@@ -103,7 +103,7 @@ class ContentController extends Controller
    * Activate/Deactivate a Content.
    *
    * @param  content_id
-   * @return view
+   * @return contents
    */
   public function delete($content_id) {
 
@@ -116,5 +116,17 @@ class ContentController extends Controller
       Session::flash('class', 'danger');
     }
     return redirect()->to('contents');
+  }
+
+  /**
+   * Content by Product.
+   *
+   * @param  product_id
+   * @return content
+   */
+  public function contentByProduct($product_id) {
+    $contents = Content::contentByProduct($product_id);
+    $product  = Product::find($product_id);
+    return view('catalog.product', compact('contents', 'product'));
   }
 }

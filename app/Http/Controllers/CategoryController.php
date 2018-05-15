@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use DB;
 use App\Category;
 use App\Http\Requests\CategoryRequest;
 use App\Http\Requests\EditCategoryRequest;
@@ -99,5 +100,17 @@ class CategoryController extends Controller {
       Session::flash('class', 'danger');
     }
     return redirect()->to('categories');
+  }
+
+  /**
+   * All active categories for the catalog view.
+   *
+   * @return \Illuminate\Http\Response
+   */
+  public function allCategories() {
+    $categories = DB::table('categories')
+                    ->where('categories.active', true)
+                    ->get();
+    return $categories;
   }
 }

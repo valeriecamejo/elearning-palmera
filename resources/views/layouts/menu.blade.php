@@ -19,12 +19,17 @@
         @else
           <li>
             <a class="nav-link" href="{{ url('/categories') }}">
-              Categorias
+              Categorías
             </a>
           </li>
           <li>
             <a class="nav-link" href="{{ url('/products') }}">
               Productos
+            </a>
+          </li>
+          <li>
+            <a class="nav-link" href="{{ url('/catalogs') }}">
+              Catálogo
             </a>
           </li>
           <li>

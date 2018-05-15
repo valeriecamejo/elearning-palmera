@@ -75,6 +75,7 @@ Route::get('/countries/all', 'CountryController@allCountries')->name('/countries
 
 // Category Routes...
 Route::get('/categories', 'CategoryController@index')->name('categories');
+Route::get('/categories/all', 'CategoryController@allCategories')->name('categories/all');
 Route::get('/categories/create', 'CategoryController@create')->name('categories/create');
 Route::post('/categories/create', 'CategoryController@store')->name('categories/create');
 Route::get('/categories/edit/{id}', 'CategoryController@edit')->name('categories/edit/{id}');
@@ -132,4 +133,9 @@ Route::get('/contents/show/{id}', 'ContentController@show')->name('/contents/sho
 Route::get('/contents/edit/{id}', 'ContentController@edit')->name('/contents/edit/{id}');
 Route::post('/contents/edit/{id}', 'ContentController@saveEdit')->name('/contents/edit/{id}');
 Route::get('/contents/delete/{id}', 'ContentController@delete')->name('/contents/delete/{id}');
+Route::get('/contents/product/{id}', 'ContentController@contentByProduct')->name('/contents/product/{id}');
 
+
+// Catalogs Routes...
+Route::get('/catalogs', 'CatalogController@index')->name('catalogs');
+Route::get('/catalogs/products', 'CatalogController@allProducts')->name('catalogs/products');
