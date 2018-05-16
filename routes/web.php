@@ -139,3 +139,9 @@ Route::get('/contents/product/{id}', 'ContentController@contentByProduct')->name
 // Catalogs Routes...
 Route::get('/catalogs', 'CatalogController@index')->name('catalogs');
 Route::get('/catalogs/products', 'CatalogController@allProducts')->name('catalogs/products');
+
+// Downloads Routes...
+Route::get('/downloads', 'DownloadController@index')->name('downloads');
+Route::get('/downloads/create', 'DownloadController@create')->name('/downloads/create');
+Route::post('/downloads/create', 'DownloadController@store')->name('/downloads/create');
+Route::get('/downloads/show/{id}', 'DownloadController@show')->name('/downloads/show/{id}');

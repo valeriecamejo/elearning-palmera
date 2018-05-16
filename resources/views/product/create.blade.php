@@ -35,7 +35,7 @@
 					<div class="form-group row">
 						<label for="description" class="col-md-4 col-form-label text-md-right">{{ __('Descripción') }}</label>
 						<div class="col-md-6">
-							<textarea class="form-control{{ $errors->has('description') ? ' is-invalid' : '' }}" id="description" rows="3" 
+							<textarea class="form-control{{ $errors->has('description') ? ' is-invalid' : '' }}" id="description" rows="3"
 							name="description" value="{{ old('description') }}" maxlength="255" required autofocus> {{ old('description') }} </textarea>
 							@if ($errors->has('description'))
 								<span class="invalid-feedback">
