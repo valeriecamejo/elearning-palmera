@@ -83,7 +83,7 @@ class Role extends Model
   public static function saveEditRole($request, $role_id) {
 
     $role        = Role::find($role_id);
-    $role->name = ucwords($request['name']);
+    $role->name  = ucwords($request['name']);
     $role->level = $request['level'];
     $role->save();
 

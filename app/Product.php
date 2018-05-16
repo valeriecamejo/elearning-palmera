@@ -1,12 +1,15 @@
 <?php
 
 namespace App;
+use DB;
+use App\Product;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Auth;
 
 class Product extends Model {
   protected $fillable = [
-    'name', 'description', 'model', 'version', 'category_id', 'brand_id', 'photo', 'price', 'valoration', 'active'
+    'name', 'description', 'model', 'version', 'category_id', 'brand_id', 'photo', 'valoration', 'price', 'active'
   ];
 
   /**

@@ -4,11 +4,11 @@ Search = new Vue({
   data: {
     allProducts: [],
     categories:  [],
-    category:    'all',
-    category_id: '',
     products:    [],
+    category_id: '',
     filter:      '',
     search:      '',
+    category:    'all',
   },
   mounted() {
     //Consulta de todos los productos
