@@ -18,10 +18,10 @@
               <div class="form-group row">
                 <label for="name" class="col-md-12 col-form-label"><h4>{{ __('Titulo') }}</h4></label>
                 <div class="col-md-12">
-                  <input id="name" type="text" class="form-control{{ $errors->has('name') ? ' is-invalid' : '' }}" name="title" value="{{ old('title') }}" required autofocus>
-                  @if ($errors->has('title'))
+                  <input id="name" type="text" class="form-control{{ $errors->has('name') ? ' is-invalid' : '' }}" name="name" value="{{ old('name') }}" required autofocus>
+                  @if ($errors->has('name'))
                     <span class="invalid-feedback">
-                      <strong>{{ $errors->first('title') }}</strong>
+                      <strong>{{ $errors->first('name') }}</strong>
                     </span>
                   @endif
                 </div>
@@ -29,7 +29,7 @@
               <div class="form-group row">
                 <div class="col-md-12">
                 <label for="name" class="col-md-12 col-form-label"><h4>{{ __('Carga de contenido') }}</h4></label><br>
-                <textarea class="ckeditor" name="editor1" value="{{ old('editor1') }}" id="editor1" rows="10" cols="80">
+                <textarea class="ckeditor" name="editor1" value="{{ old('editor1') }}" id="editor1" rows="10" cols="80" required>
                 </textarea>
                 </div>
               </div>
