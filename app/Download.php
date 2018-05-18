@@ -17,10 +17,8 @@ class Download extends Model {
    *
    * @var array
    */
-  protected $hidden = [];
 
   public static function insertDownload($request) {
-    // var_dump();exit();
     $download = new Download;
     $download->name         = ucwords($request['name']);
     $download->description  = $request['description'];
@@ -34,7 +32,6 @@ class Download extends Model {
         $file = $request['file'];
         // obtenemos el nombre del archivo y le concatenamos el id al inicio
         $name = $download->id . '_' . $file->getClientOriginalName();
-        // var_dump($name);exit();
         //Almacenamos en folder el id de la marca que sera el nombre de la carpeta a guardar el archivo
         $folder = Auth::user()->brand_id;
         // indicamos que queremos guardar en la carpeta public de storage seguido del id de la marca a la cual pertenece el usuario

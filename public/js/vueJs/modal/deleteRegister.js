@@ -17,7 +17,6 @@ Delete = new Vue({
       });
     },
     activeAlert: function (url, id) {
-      console.log(url, id)
       Delete.download_id = id
       Delete.active      = true
       Delete.delete_url  = url

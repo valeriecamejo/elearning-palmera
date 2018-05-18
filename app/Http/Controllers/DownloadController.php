@@ -2,9 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\DownloadUpdateRequest;
 use Illuminate\Support\Facades\Session;
 use App\Http\Requests\DownloadRequest;
-use App\Http\Requests\DownloadUpdateRequest;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use App\Download;
 Use DB;
@@ -27,7 +28,7 @@ class DownloadController extends Controller {
    */
   //TODO: consultar todos los archivos
     public function index() {
-      $downloads = Download::paginate(15);
+      $downloads = Download::where('brand_id', Auth::user()->brand_id)->paginate(15);
       return view('download.list', compact('downloads'));
     }
 

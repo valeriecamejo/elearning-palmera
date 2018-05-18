@@ -25,7 +25,7 @@ class Content extends Model {
   public static function insertContent($request, $product_id) {
     $content             = new Content;
     $content->product_id = $product_id;
-    $content->name      = ucwords($request['name']);
+    $content->name       = ucwords($request['name']);
     $content->data       = $request['editor1'];
     if ($content->save()) {
       return $content;
@@ -40,11 +40,10 @@ class Content extends Model {
   public static function saveEdit($request, $content_id) {
 
     $content        = Content::find($content_id);
-    $content->name = ucwords($request['name']);
+    $content->name  = ucwords($request['name']);
     $content->data  = $request['editor1'];
 
     if ($content->save()) {
-      // var_dump($content->save());exit();
       return $content;
     }
   }

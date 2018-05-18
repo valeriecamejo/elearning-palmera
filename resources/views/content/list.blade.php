@@ -7,10 +7,13 @@
       <div class="card-header">
         <ul class="nav nav-tabs card-header-tabs">
           <li class="nav-item">
+            <a class="nav-link" href="{{ url('/products/list') }}">Listado de Productos</a>
+          </li>
+          <li class="nav-item">
             <a class="nav-link active">Contenidos</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="{{ url('/contents/create/'.$product->id) }}">Nuevo</a>
+            <a class="nav-link" href="{{ url('/contents/create/'.$product_id) }}">Nuevo</a>
           </li>
         </ul>
       </div>
