@@ -17,7 +17,7 @@ class CreateDownloadsTable extends Migration
             $table->increments('id');
             $table->integer('brand_id');
             $table->string('name');
-            $table->text('description');
+            $table->text('description')->nullable();
             $table->text('file')->nullable();
             $table->boolean('from_content');
             $table->timestamps();

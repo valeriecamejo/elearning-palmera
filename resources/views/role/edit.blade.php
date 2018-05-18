@@ -35,10 +35,10 @@
 						<label for="email" class="col-md-4 col-form-label text-md-right">{{ __('Nivel') }}</label>
 						<div class="col-md-6">
 							<select name="level" class="custom-select">
-							@if ($role->level == 1)
+							@if (Auth::user()->role_id == 1)
 								<option value="1">Alto</option>
 								<option value="2">Medio</option>
-							@elseif ($role->level == 2)
+							@else
 							<option value="2">Medio</option>
 							@endif
 							<option value="3">Bajo</option>

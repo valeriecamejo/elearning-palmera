@@ -3,11 +3,13 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\ContentUpdateRequest;
-use App\Http\Requests\ContentRequest;
 use Illuminate\Support\Facades\Session;
+use App\Http\Requests\ContentRequest;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use App\Content;
 use App\Product;
+use App\Download;
 use DB;
 
 class ContentController extends Controller
@@ -29,7 +31,7 @@ class ContentController extends Controller
   public function index($product_id) {
     $contents = Content::where('product_id', $product_id)->paginate(15);
     $product  = Product::find($product_id);
-    return view('content.list', compact('contents', 'product'));
+    return view('content.list', compact('contents', 'product', 'product_id'));
   }
 
 /**
@@ -38,7 +40,8 @@ class ContentController extends Controller
    * @return view
    */
   public function create($product_id) {
-    return view('content.create', compact('product_id'));
+    $product = Product::find($product_id);
+    return view('content.create', compact('product'));
   }
 
   /**
@@ -48,7 +51,6 @@ class ContentController extends Controller
    * @return view
    */
   public function store(ContentRequest $request, $id) {
-    // var_dump($request['title'], $request['editor1']);exit();
     $content = Content::insertContent($request->all(), $id);
     if ($content) {
       Session::flash('message', 'Contenido guardado exitosamente.');
@@ -135,5 +137,45 @@ class ContentController extends Controller
     $contents = Content::contentByProduct($product_id);
     $product  = Product::find($product_id);
     return view('catalog.product', compact('contents', 'product'));
+  }
+
+  /**
+   * Content by Product.
+   *
+   * @param  void
+   * @return view
+   */
+  public function contentImages($brand_id) {
+    $images = Download::where('brand_id', $brand_id)
+                      ->where('from_content', true)
+                      ->paginate(15);
+    return view('content.images', compact('images'));
+  }
+  /**
+   * Content by Product.
+   *
+   * @param  void
+   * @return view
+   */
+  public function newImage() {
+    return view('content.new_image');
+  }
+
+  /**
+   * Save content edited.
+   *
+   * @param  Request $request, id
+   * @return $id
+   */
+  public function saveNewImage(Request $request, $brand_id) {
+    $newImage = Download::insertDownload($request->all(), $brand_id);
+    if ($newImage) {
+      Session::flash('message', 'Imagen agregada correctamente.');
+      Session::flash('class', 'success');
+    } else {
+      Session::flash('message', 'Error al actualizar el contenido.');
+      Session::flash('class', 'danger');
+    }
+    return redirect()->to('/contents/images/'.$brand_id);
   }
 }
