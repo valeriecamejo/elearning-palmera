@@ -16,12 +16,12 @@
 			</div>
 			<div class="card-body">
 				<h5 class="card-title">Cargar un Archivo</h5>
-				<form method="POST" action="{{ url('downloads/create') }}" files=”true” enctype="multipart/form-data">
+				<form method="POST" action="{{ url('downloads/edit/'.$download->id) }}" files=”true” enctype="multipart/form-data">
 					@csrf
 					<div class="form-group row">
 						<label for="name" class="col-md-4 col-form-label text-md-right">{{ __('Nombre') }}</label>
 						<div class="col-md-6">
-							<input id="name" type="text" class="form-control{{ $errors->has('name') ? ' is-invalid' : '' }}" name="name" value="{{ old('name') }}" required autofocus>
+							<input id="name" type="text" class="form-control{{ $errors->has('name') ? ' is-invalid' : '' }}" name="name" value="{{ $download->name }}" required autofocus>
 							@if ($errors->has('name'))
 								<span class="invalid-feedback">
 									<strong>{{ $errors->first('name') }}</strong>
@@ -33,7 +33,7 @@
 						<label for="description" class="col-md-4 col-form-label text-md-right">{{ __('Descripción') }}</label>
 						<div class="col-md-6">
 							<textarea class="form-control{{ $errors->has('description') ? ' is-invalid' : '' }}" id="description" rows="3"
-							name="description" value="{{ old('description') }}" maxlength="255" required autofocus> {{ old('description') }} </textarea>
+							name="description" value="{{ old('description') }}" maxlength="255" required autofocus> {{ $download->description }} </textarea>
 							@if ($errors->has('description'))
 								<span class="invalid-feedback">
 									<strong>{{ $errors->first('description') }}</strong>
@@ -41,10 +41,10 @@
 							@endif
 						</div>
 					</div>
-					<div class="form-group row">
+					{{-- <div class="form-group row">
 						<label for="file" class="col-md-4 col-form-label text-md-right">{{ __('Archivo') }}</label>
 						<div class="col-md-6">
-							<input type="file" class="form-control{{ $errors->has('file') ? ' is-invalid' : '' }}" name="file" value="{{ old('name') }}" required>
+							<input type="file" class="form-control{{ $errors->has('file') ? ' is-invalid' : '' }}" name="file" value="{{ old('file') }}" required>
 							<input type="hidden" class="form-control{{ $errors->has('file') ? ' is-invalid' : '' }}" name="from_content" value="0">
 							@if ($errors->has('file'))
 								<span class="invalid-feedback">
@@ -52,7 +52,7 @@
 								</span>
 							@endif
 						</div>
-					</div>
+					</div> --}}
 				  <div class="form-group row mb-0">
 						<div class="col-md-6 offset-md-4">
 							<button type="submit" class="btn btn-primary">

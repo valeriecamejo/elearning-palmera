@@ -7,10 +7,13 @@
       <div class="card-header">
         <ul class="nav nav-tabs card-header-tabs">
           <li class="nav-item">
+            <a class="nav-link" href="{{ url('/products/list') }}">Listado de Productos</a>
+          </li>
+          <li class="nav-item">
             <a class="nav-link active">Contenidos</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="{{ url('/contents/create/'.$product->id) }}">Nuevo</a>
+            <a class="nav-link" href="{{ url('/contents/create/'.$product_id) }}">Nuevo</a>
           </li>
         </ul>
       </div>
@@ -27,7 +30,7 @@
           @foreach ($contents as $content)
           <tr>
             <td>{{ $content->id }}</td>
-            <td>{{ $content->title }}</td>
+            <td>{{ $content->name }}</td>
             <td>{{ $product->name }}</td>
             <td>{{ $content->created_at }}</td>
             <td>
@@ -37,9 +40,10 @@
               <a href="{{ url('/contents/edit/'.$content->id) }}" title="Editar">
                 <i class="fas fa-edit"></i>
               </a>
-              <a href="#modal1" data-toggle="modal"><i class="fas fa-trash-alt" title="Desactivar"></i></a>
+              <a href="{{ url('/contents/delete/'.$content->id.'/'.$product->id) }}"><i class="fas fa-trash-alt" title="Desactivar"></i></a>
+              {{-- <a href="#modal1" data-toggle="modal"><i class="fas fa-trash-alt" title="Desactivar"></i></a> --}}
               {{-- Modal para confirmacion al eliminar un contenido --}}
-              <div class="modal fade" id="modal1" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+              {{-- <div class="modal fade" id="modal1" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                 <div class="modal-dialog" role="document">
                   <div class="modal-content">
                     <div class="modal-body">
@@ -53,7 +57,7 @@
                     </div>
                   </div>
                 </div>
-              </div>
+              </div> --}}
               {{-- Fin de Modal para confirmacion al eliminar un contenido --}}
             </td>
           </tr>

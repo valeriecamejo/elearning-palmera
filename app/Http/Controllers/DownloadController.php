@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\DownloadUpdateRequest;
 use Illuminate\Support\Facades\Session;
 use App\Http\Requests\DownloadRequest;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use App\Download;
 Use DB;
@@ -26,7 +28,7 @@ class DownloadController extends Controller {
    */
   //TODO: consultar todos los archivos
     public function index() {
-      $downloads = Download::paginate(15);
+      $downloads = Download::where('brand_id', Auth::user()->brand_id)->paginate(15);
       return view('download.list', compact('downloads'));
     }
 
@@ -69,4 +71,53 @@ class DownloadController extends Controller {
       return view('download.show', compact('download'));
     }
 
+    /**
+   * Delete a File.
+   *
+   * @param  download_id
+   * @return view
+   */
+  public function delete($download_id) {
+
+    $download = Download::deleteDownload($download_id);
+    if ($download) {
+      Session::flash('message', 'Actualizado correctamente.');
+      Session::flash('class', 'success');
+    } else {
+      Session::flash('message', 'Error al eliminar el archivo.');
+      Session::flash('class', 'danger');
+    }
+    return redirect()->to('downloads');
+  }
+
+   /**
+   * Edit a file.
+   *
+   * @param  download_id
+   * @return $download
+   */
+    public function edit($download_id) {
+
+      $download = Download::find($download_id);
+        return view('download.edit', compact('download'));
+    }
+
+    /**
+   * Save country edited.
+   *
+   * @param  Request $request, id
+   * @return $id
+   */
+    public function saveEdit(DownloadUpdateRequest $request, $id) {
+
+      $download = Download::saveEdit($request->all(), $id);
+      if ($download) {
+        Session::flash('message', 'Archivo actualizado correctamente.');
+        Session::flash('class', 'success');
+      } else {
+        Session::flash('message', 'Error al actualizar los datos.');
+        Session::flash('class', 'danger');
+      }
+      return redirect()->to('downloads/edit/'.$id);
+    }
 }

@@ -29,7 +29,7 @@
                 <label class="form-check-label" for="navbar_color">
                   <span class="badge badge-light">navbar-light</span>
                 </label>
-              </div> 
+              </div>
               <div class="form-check">
                 <input class="form-check-input" type="radio" name="navbar_color" id="navbar_color" value="navbar-dark bg-primary" @if ($brand->navbar_color == 'navbar-dark bg-primary') checked @endif>
                 <label class="form-check-label" for="navbar_color">

@@ -5,9 +5,17 @@
 	<div class="col-md-8">
 		<div class="card">
 			<div class="card-header">
-				<h3>{{ $product->name }}</h3>
+				<ul class="nav nav-tabs card-header-tabs">
+					<li class="nav-item">
+						<a class="nav-link" href="{{ url('/products') }}">Productos</a>
+					</li>
+					<li class="nav-item">
+            <a class="nav-link" href="{{ url('/products/list') }}">Listado</a>
+          </li>
+				</ul>
 			</div>
 			<div class="card-body">
+				<h3>{{ $product->name }}</h3>
 					<div class="form-group row">
 						<label for="name" class="col-md-4 col-form-label text-md-right">{{ __('Nombre') }}</label>
 						<div class="col-md-6">

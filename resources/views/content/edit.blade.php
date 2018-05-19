@@ -18,18 +18,21 @@
               <div class="form-group row">
                 <label for="name" class="col-md-12 col-form-label"><h4>{{ __('Titulo') }}</h4></label>
                 <div class="col-md-12">
-                  <input id="name" type="text" class="form-control{{ $errors->has('name') ? ' is-invalid' : '' }}" name="title" value="{{ $content->title }}" required autofocus>
-                  @if ($errors->has('title'))
+                  <input id="name" type="text" class="form-control{{ $errors->has('name') ? ' is-invalid' : '' }}" name="name" value="{{ $content->name }}" required autofocus>
+                  @if ($errors->has('name'))
                     <span class="invalid-feedback">
-                      <strong>{{ $errors->first('title') }}</strong>
+                      <strong>{{ $errors->first('name') }}</strong>
                     </span>
                   @endif
                 </div>
               </div>
               <div class="form-group row">
+                <label for="name" class="col-md-6 col-form-label"><h4>{{ __('Carga de contenido') }}</h4></label>
+                <a class="col-md-5 text-md-right" href="{{ url('/contents/images/'.Auth::user()->brand_id) }}" target="_blank">
+                  <i class="far fa-image">IMÁGENES</i>
+                </a><br>
                 <div class="col-md-12">
-                <label for="name" class="col-md-12 col-form-label"><h4>{{ __('Carga de contenido') }}</h4></label><br>
-                <textarea class="ckeditor" name="editor1" value="{{ old('editor1') }}" id="editor1" rows="10" cols="80">
+                <textarea class="ckeditor" name="editor1" value="{{ old('editor1') }}" id="editor1" rows="10" cols="80" required>
                   {!! $content->data !!}
                 </textarea>
                 </div>

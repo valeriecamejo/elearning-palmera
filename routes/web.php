@@ -126,15 +126,18 @@ Route::post('/cities/edit/{id}', 'CityController@saveEdit')->name('/cities/edit/
 Route::get('/cities/active_deactive/{id}', 'CityController@activeDeactive')->name('cities/active_deactive/{id}');
 
 // Contents Routes...
-Route::get('/contents/{id}', 'ContentController@index')->name('contents/{id}');
+Route::get('/contents/{product_id}', 'ContentController@index')->name('contents/{product_id}');
 Route::get('/contents/create/{id}', 'ContentController@create')->name('/contents/create');
 Route::post('/contents/create/{id}', 'ContentController@store')->name('/contents/create/{id}');
 Route::get('/contents/show/{id}', 'ContentController@show')->name('/contents/show/{id}');
 Route::get('/contents/edit/{id}', 'ContentController@edit')->name('/contents/edit/{id}');
 Route::post('/contents/edit/{id}', 'ContentController@saveEdit')->name('/contents/edit/{id}');
-Route::get('/contents/delete/{id}', 'ContentController@delete')->name('/contents/delete/{id}');
+Route::get('/contents/delete/{content_id}/{product_id}', 'ContentController@delete')->name('/contents/delete');
 Route::get('/contents/product/{id}', 'ContentController@contentByProduct')->name('/contents/product/{id}');
-
+Route::get('/contents/product/{id}', 'ContentController@contentByProduct')->name('/contents/product/{id}');
+Route::get('/contents/images/{id}', 'ContentController@contentImages')->name('/contents/images');
+Route::get('/contents/images/add/{id}', 'ContentController@newImage')->name('/contents/images/add');
+Route::post('/contents/images/add/{id}', 'ContentController@saveNewImage')->name('/contents/images/add/{id}');
 
 // Catalogs Routes...
 Route::get('/catalogs', 'CatalogController@index')->name('catalogs');
@@ -145,6 +148,9 @@ Route::get('/downloads', 'DownloadController@index')->name('downloads');
 Route::get('/downloads/create', 'DownloadController@create')->name('/downloads/create');
 Route::post('/downloads/create', 'DownloadController@store')->name('/downloads/create');
 Route::get('/downloads/show/{id}', 'DownloadController@show')->name('/downloads/show/{id}');
+Route::get('/downloads/delete/{id}', 'DownloadController@delete')->name('/downloads/delete/{id}');
+Route::get('/downloads/edit/{id}', 'DownloadController@edit')->name('/downloads/edit/{id}');
+Route::post('/downloads/edit/{id}', 'DownloadController@saveEdit')->name('/downloads/edit/{id}');
 
 // Sale Routes...
 Route::get('/sales', 'SaleController@index')->name('sales');

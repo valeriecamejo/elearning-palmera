@@ -3,33 +3,37 @@
 @section('content')
 <div id="city">
   <div class="row justify-content-center">
-    <div class="col-md-8">
+    <div class="col-md-10">
       <div class="card">
         <div class="card-header">
           <ul class="nav nav-tabs card-header-tabs">
             <li class="nav-item">
-              <a class="nav-link" href="{{ url('contents/'.$product_id) }}">Contenidos</a>
+              <a class="nav-link" href="{{ url('contents/'.$product->id) }}">Contenidos</a>
             </li>
           </ul>
         </div>
           <div class="card-body">
-            <form method="POST" action="{{ url('/contents/create/'.$product_id) }}">
+          <h3><strong>Contenido para {{ $product->name }} </strong></h3><br>
+            <form method="POST" action="{{ url('/contents/create/'.$product->id) }}">
               @csrf
               <div class="form-group row">
-                <label for="name" class="col-md-12 col-form-label"><h4>{{ __('Titulo') }}</h4></label>
+                <label for="name" class="col-md-4 col-form-label text-md"><h4>{{ __('Titulo') }}</h4></label>
                 <div class="col-md-12">
-                  <input id="name" type="text" class="form-control{{ $errors->has('name') ? ' is-invalid' : '' }}" name="title" value="{{ old('title') }}" required autofocus>
-                  @if ($errors->has('title'))
+                  <input id="name" type="text" class="form-control{{ $errors->has('name') ? ' is-invalid' : '' }}" name="name" value="{{ old('name') }}" required autofocus>
+                  @if ($errors->has('name'))
                     <span class="invalid-feedback">
-                      <strong>{{ $errors->first('title') }}</strong>
+                      <strong>{{ $errors->first('name') }}</strong>
                     </span>
                   @endif
                 </div>
-              </div>
+              </div><br>
               <div class="form-group row">
+                <label for="name" class="col-md-6 col-form-label"><h4>{{ __('Carga de contenido') }}</h4></label>
+                <a class="col-md-5 text-md-right" href="{{ url('/contents/images/'.Auth::user()->brand_id) }}" target="_blank">
+                  <i class="far fa-image">IMÁGENES</i>
+                </a><br>
                 <div class="col-md-12">
-                <label for="name" class="col-md-12 col-form-label"><h4>{{ __('Carga de contenido') }}</h4></label><br>
-                <textarea class="ckeditor" name="editor1" value="{{ old('editor1') }}" id="editor1" rows="10" cols="80">
+                <textarea class="ckeditor" name="editor1" value="{{ old('editor1') }}" id="editor1" rows="10" cols="80" required>
                 </textarea>
                 </div>
               </div>

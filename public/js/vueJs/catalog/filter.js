@@ -9,6 +9,7 @@ Search = new Vue({
     filter:      '',
     search:      '',
     category:    'all',
+    ready:       false,
   },
   mounted() {
     //Consulta de todos los productos
@@ -23,7 +24,7 @@ Search = new Vue({
     axios.get('/categories/all' , {
       }).then((response) => {
         Search.categories = response.data
-        console.log(Search.categories)
+        Search.ready = true;
       }).catch(function(data){
           this.errors   = data.responseJSON
         });
