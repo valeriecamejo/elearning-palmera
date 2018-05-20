@@ -35,7 +35,7 @@
 					<div class="form-group row">
 						<label for="description" class="col-md-4 col-form-label text-md-right">{{ __('Descripción') }}</label>
 						<div class="col-md-6">
-							<textarea class="form-control{{ $errors->has('description') ? ' is-invalid' : '' }}" id="description" rows="3" 
+							<textarea class="form-control{{ $errors->has('description') ? ' is-invalid' : '' }}" id="description" rows="3"
 							name="description" value="{{ old('description') }}" maxlength="255" required autofocus> {{ old('description') }} </textarea>
 							@if ($errors->has('description'))
 								<span class="invalid-feedback">
@@ -44,6 +44,7 @@
 							@endif
 						</div>
 					</div>
+					@if (Auth::user()->role_id == 1)
 					<div class="form-group row">
 						<label for="brand_id" class="col-md-4 col-form-label text-md-right">{{ __('Marca') }}</label>
 						<div class="col-md-6">
@@ -59,6 +60,9 @@
 							@endif
 						</div>
 					</div>
+					@else
+					{{ Form::hidden('brand_id', Auth::user()->brand_id , array('id' => 'brand_id')) }}
+					@endif
 					<div class="form-group row">
 						<label for="category_id" class="col-md-4 col-form-label text-md-right">{{ __('Categoría') }}</label>
 						<div class="col-md-6">

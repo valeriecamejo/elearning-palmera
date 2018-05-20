@@ -21,10 +21,10 @@ class BrandRequest extends FormRequest {
    */
   public function rules() {
     return [
-      'name'              => 'required|max:255|unique:brands,name',
-      'navbar_color'      => 'required|max:255',
-      'logo'              => 'max:255',
-      'header'            => 'max:255',
+      'name'         => 'required|max:255|unique:brands,name',
+      'navbar_color' => 'required|max:255',
+      'logo'         => 'max:255',
+      'header'       => 'max:255'
     ];
   }
 }

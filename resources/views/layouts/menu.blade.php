@@ -19,7 +19,7 @@
         @else
           <li>
             <a class="nav-link" href="{{ url('/categories') }}">
-              Categorias
+              Categorías
             </a>
           </li>
           <li>
@@ -28,8 +28,23 @@
             </a>
           </li>
           <li>
+            <a class="nav-link" href="{{ url('/catalogs') }}">
+              Catálogo
+            </a>
+          </li>
+          <li>
             <a class="nav-link" href="{{ url('/evaluations') }}">
               Evaluaciones
+            </a>
+          </li>
+          <li>
+            <a class="nav-link"  href="{{ url('/sales') }}">
+              Ventas
+            </a>
+          </li>
+          <li>
+            <a class="nav-link" href="{{ url('/downloads') }}">
+              Descargables
             </a>
           </li>
           <li class="nav-item dropdown">

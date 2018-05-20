@@ -57,6 +57,11 @@ Route::get('/users/active_deactive/{id}', 'UserController@activeDeactive')->name
 Route::get('/brands', 'BrandController@index')->name('brands');
 Route::get('/brands/create', 'BrandController@create')->name('brands/create');
 Route::post('/brands/create', 'BrandController@store')->name('brands/create');
+Route::get('/brands/edit/{id}', 'BrandController@edit')->name('brands/edit/{id}');
+Route::post('/brands/edit/{id}', 'BrandController@saveUpdate')->name('brands/edit');
+Route::get('/brands/show/{id}', 'BrandController@show')->name('brands/show');
+Route::get('/brands/active_deactive/{id}', 'BrandController@activeDeactive')->name('brands/active_deactive');
+
 
 // Country Routes...
 Route::get('/countries', 'CountryController@index')->name('countries');
@@ -70,14 +75,23 @@ Route::get('/countries/all', 'CountryController@allCountries')->name('/countries
 
 // Category Routes...
 Route::get('/categories', 'CategoryController@index')->name('categories');
+Route::get('/categories/all', 'CategoryController@allCategories')->name('categories/all');
 Route::get('/categories/create', 'CategoryController@create')->name('categories/create');
 Route::post('/categories/create', 'CategoryController@store')->name('categories/create');
+Route::get('/categories/edit/{id}', 'CategoryController@edit')->name('categories/edit/{id}');
+Route::post('/categories/edit/{id}', 'CategoryController@saveUpdate')->name('categories/edit');
+Route::get('/categories/show/{id}', 'CategoryController@show')->name('categories/show');
+Route::get('/categories/active_deactive/{id}', 'CategoryController@activeDeactive')->name('categories/active_deactive');
 
 // Product Routes...
 Route::get('/products', 'ProductController@index')->name('products');
 Route::get('/products/list', 'ProductController@list')->name('products/list');
 Route::get('/products/create', 'ProductController@create')->name('products/create');
 Route::post('/products/create', 'ProductController@store')->name('products/create');
+Route::get('/products/edit/{id}', 'ProductController@edit')->name('products/edit/{id}');
+Route::post('/products/edit/{id}', 'ProductController@saveUpdate')->name('products/edit');
+Route::get('/products/show/{id}', 'ProductController@show')->name('products/show');
+Route::get('/products/active_deactive/{id}', 'ProductController@activeDeactive')->name('products/active_deactive');
 
 // Evaluation Routes...
 Route::get('/evaluations', 'EvaluationController@index')->name('evaluations');
@@ -92,7 +106,7 @@ Route::post('/evaluations/{id}/questions/create', 'QuestionController@store')->n
 Route::get('modules/list', 'ModuleController@index')->name('modules');
 
 // State Routes...
-Route::get('states', 'StateController@index')->name('states');
+Route::get('/states', 'StateController@index')->name('states');
 Route::get('/states/create', 'StateController@create')->name('states/create');
 Route::post('/states/create', 'StateController@store')->name('states/create');
 Route::get('/states/show/{id}', 'StateController@show')->name('/states/show/{id}');
@@ -103,9 +117,44 @@ Route::get('/states/all/{id}', 'StateController@states')->name('/states/all/{id}
 
 
 // Cities Routes...
-Route::get('cities', 'CityController@index')->name('cities');
+Route::get('/cities', 'CityController@index')->name('cities');
 Route::get('/cities/create', 'CityController@create')->name('cities/create');
 Route::post('/cities/create', 'CityController@store')->name('cities/create');
 Route::get('/cities/show/{id}', 'CityController@show')->name('/cities/show/{id}');
+Route::get('/cities/edit/{id}', 'CityController@edit')->name('/cities/edit/{id}');
+Route::post('/cities/edit/{id}', 'CityController@saveEdit')->name('/cities/edit/{id}');
 Route::get('/cities/active_deactive/{id}', 'CityController@activeDeactive')->name('cities/active_deactive/{id}');
 
+// Contents Routes...
+Route::get('/contents/{product_id}', 'ContentController@index')->name('contents/{product_id}');
+Route::get('/contents/create/{id}', 'ContentController@create')->name('/contents/create');
+Route::post('/contents/create/{id}', 'ContentController@store')->name('/contents/create/{id}');
+Route::get('/contents/show/{id}', 'ContentController@show')->name('/contents/show/{id}');
+Route::get('/contents/edit/{id}', 'ContentController@edit')->name('/contents/edit/{id}');
+Route::post('/contents/edit/{id}', 'ContentController@saveEdit')->name('/contents/edit/{id}');
+Route::get('/contents/delete/{content_id}/{product_id}', 'ContentController@delete')->name('/contents/delete');
+Route::get('/contents/product/{id}', 'ContentController@contentByProduct')->name('/contents/product/{id}');
+Route::get('/contents/product/{id}', 'ContentController@contentByProduct')->name('/contents/product/{id}');
+Route::get('/contents/images/{id}', 'ContentController@contentImages')->name('/contents/images');
+Route::get('/contents/images/add/{id}', 'ContentController@newImage')->name('/contents/images/add');
+Route::post('/contents/images/add/{id}', 'ContentController@saveNewImage')->name('/contents/images/add/{id}');
+
+// Catalogs Routes...
+Route::get('/catalogs', 'CatalogController@index')->name('catalogs');
+Route::get('/catalogs/products', 'CatalogController@allProducts')->name('catalogs/products');
+
+// Downloads Routes...
+Route::get('/downloads', 'DownloadController@index')->name('downloads');
+Route::get('/downloads/create', 'DownloadController@create')->name('/downloads/create');
+Route::post('/downloads/create', 'DownloadController@store')->name('/downloads/create');
+Route::get('/downloads/show/{id}', 'DownloadController@show')->name('/downloads/show/{id}');
+Route::get('/downloads/delete/{id}', 'DownloadController@delete')->name('/downloads/delete/{id}');
+Route::get('/downloads/edit/{id}', 'DownloadController@edit')->name('/downloads/edit/{id}');
+Route::post('/downloads/edit/{id}', 'DownloadController@saveEdit')->name('/downloads/edit/{id}');
+
+// Sale Routes...
+Route::get('/sales', 'SaleController@index')->name('sales');
+Route::get('/sales/create', 'SaleController@create')->name('sales/create');
+Route::post('/sales/create', 'SaleController@store')->name('sales/create');
+Route::get('/sales/show/{id}', 'SaleController@show')->name('sales/show');
+Route::get('/sales/approve_disapprove/{id}/{value}', 'SaleController@approveDisapprove')->name('sales/approve_disapprove');

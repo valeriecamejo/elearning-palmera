@@ -113,7 +113,7 @@ class CountryController extends Controller {
    * Activate/Deactivate a Country.
    *
    * @param  id
-   * @return $role_name, $role_id
+   * @return view
    */
   public function activeDeactive($country_id) {
 

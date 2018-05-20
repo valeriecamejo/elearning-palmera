@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Brand;
 use App\Http\Requests\BrandRequest;
+use App\Http\Requests\EditBrandRequest;
 use Illuminate\Support\Facades\Session;
 
 class BrandController extends Controller {
@@ -54,5 +55,53 @@ class BrandController extends Controller {
       Session::flash('class', 'danger');
     }
     return redirect()->to('brands/create');
+  }
+
+  /**
+   * Show the application show.
+   *
+   * @return \Illuminate\Http\Response
+   */
+  public function show($id) {
+    $brand      = Brand::find($id);
+    return view('brand.show', compact('brand'));
+  }
+
+    /**
+   * Show the application Edit.
+   *
+   * @return \Illuminate\Http\Response
+   */
+  public function edit($id) {
+    $brand       = Brand::find($id);
+    return view('brand.edit', compact('brand'));
+  }
+
+  public function saveUpdate(EditBrandRequest $request, $id) {
+    $brand = Brand::saveUpdate($request->all(), $id);
+    if ($brand) {
+      Session::flash('message', 'Actualizado correctamente.');
+      Session::flash('class', 'success');
+    } else {
+      Session::flash('message', 'Error al guardar los datos.');
+      Session::flash('class', 'danger');
+    }
+    return redirect()->to('brands/show/'.$id);
+  }
+    /**
+   * Show the application Active Deactive.
+   *
+   * @return \Illuminate\Http\Response
+   */
+  public function activeDeactive($id) {
+    $brand = Brand::activeDeactive($id);
+    if ($brand) {
+      Session::flash('message', 'Actualizado correctamente.');
+      Session::flash('class', 'success');
+    } else {
+      Session::flash('message', 'Error al actualizar los datos.');
+      Session::flash('class', 'danger');
+    }
+    return redirect()->to('brands');
   }
 }

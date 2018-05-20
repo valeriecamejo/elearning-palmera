@@ -24,8 +24,7 @@ class Role extends Model
 
     $role_permission = [];
     $role  = new Role;
-    $name = strtolower($request['name']);
-    $role->name = ucwords($name);
+    $role->name = ucwords($request['name']);
     foreach ($modules as $module){
       $permission = ['module_id' => $module->id, 'is_active' => false, 'permissions' => ['crear' => false, 'editar' => false, 'ver' => false, 'eliminar' => false]];
       array_push($role_permission, $permission);
@@ -84,8 +83,7 @@ class Role extends Model
   public static function saveEditRole($request, $role_id) {
 
     $role        = Role::find($role_id);
-    $name = strtolower($request['name']);
-    $role->name = ucwords($name);
+    $role->name  = ucwords($request['name']);
     $role->level = $request['level'];
     $role->save();
 

@@ -23,19 +23,38 @@
           <tr>
             <th>ID</th>
             <th>Nombre</th>
-            <th>Descripción</th>
             <th>Precio</th>
             <th>Valoración/Puntaje</th>
+            <th>Activo</th>
             <th>Creado</th>
+            <th>Opciones</th>
           </tr>
           @foreach ($products as $product)
           <tr>
             <td>{{ $product->id }}</td>
             <td>{{ $product->name }}</td>
-            <td>{{ $product->description }}</td>
             <td>{{ $product->price }}</td>
             <td>{{ $product->valoration }}</td>
+            <td>{{ $product->active ? 'SI' : 'NO' }}</td>
             <td>{{ $product->created_at }}</td>
+            <td>
+              <a class="" href="{{ url('/products/show/'.$product->id) }}" title="Ver">
+                <i class="fas fa-eye"></i>
+              </a>
+              <a class="" href="{{ url('/products/edit/'.$product->id) }}" title="Editar">
+                <i class="fas fa-edit"></i>
+              </a>
+              <a class="" href="{{ url('contents/'.$product->id) }}" title="Contenidos">
+                <i class="fas fa-file-alt"></i>
+              </a>
+              <a class="" href="{{ url('/products/active_deactive/'.$product->id) }}" title="Activar / Desactivar">
+              @if ($product->active == true)
+                <i class="fas fa-minus-circle text-danger"></i>
+              @else
+                <i class="fas fa-play-circle text-success"></i>
+              @endif
+              </a>
+            </td>
           </tr>
           @endforeach
         </table>
