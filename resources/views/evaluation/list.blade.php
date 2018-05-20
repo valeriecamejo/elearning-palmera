@@ -20,7 +20,6 @@
           <tr>
             <th>ID</th>
             <th>Nombre</th>
-            <th>Description</th>
             <th>Puntaje total</th>
             <th>Creado</th>
             <th>Opciones</th>
@@ -29,15 +28,17 @@
           <tr>
             <td>{{ $evaluation->id }}</td>
             <td>{{ $evaluation->name }}</td>
-            <td>{{ $evaluation->description }}</td>
             <td>{{ $evaluation->score }} pts</td>
             <td>{{ $evaluation->created_at }}</td>
             <td>
               <a href="{{ url('/evaluations/show/'.$evaluation->id) }}" title="Ver">
-                <i class="fas fa-eye"></i>
+                <i class="fa fa-eye"></i>
               </a>
-              <a class="" href="{{ url('/evaluations/'.$evaluation->id.'/questions/create') }}" title="Agregar Preguntas">
-                <i class="fas fa-plus-circle"></i>
+              <a  href="{{ url('/evaluations/edit/'.$evaluation->id) }}" title="Editar">
+                <i class="fa fa-edit"></i>
+              </a>
+              <a href="{{ url('/evaluations/'.$evaluation->id.'/questions/create') }}" title="Gestión de Preguntas">
+                <i class="fa fa-spinner"></i>
               </a>
             </td>
           </tr>

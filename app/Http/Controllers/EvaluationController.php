@@ -8,6 +8,7 @@ use App\Evaluation;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\EvaluationRequest;
+use App\Http\Requests\EditEvaluationRequest;
 use App\Question;
 use App\Answer;
 
@@ -67,7 +68,7 @@ class EvaluationController extends Controller {
     }
     return redirect()->to('evaluations/create');
   }
-      /**
+  /**
    * Show the application show.
    *
    * @return \Illuminate\Http\Response
@@ -75,6 +76,30 @@ class EvaluationController extends Controller {
   public function show($id) {
     $evaluation = Evaluation::find($id);
     $questions  = Question::where('evaluation_id', '=', $id)->paginate(10);
-    return view('evaluation.show', compact('evaluation','questions','id'));
+    $product    = Product::find($evaluation->product_id);
+    return view('evaluation.show', compact('evaluation','questions','id', 'product'));
+  }
+
+   /**
+   * Show the application Edit.
+   *
+   * @return \Illuminate\Http\Response
+   */
+  public function edit($id) {
+    $evaluation = Evaluation::find($id);
+    $products    = Product::all();
+    return view('evaluation.edit', compact('evaluation','products'));
+  }
+
+  public function saveUpdate(EditEvaluationRequest $request, $id) {
+    $evaluation = Evaluation::saveUpdate($request->all(), $id);
+    if ($evaluation) {
+      Session::flash('message', 'Actualizado correctamente.');
+      Session::flash('class', 'success');
+    } else {
+      Session::flash('message', 'Error al guardar los datos.');
+      Session::flash('class', 'danger');
+    }
+    return redirect()->to('evaluations/show/'.$id);
   }
 }
