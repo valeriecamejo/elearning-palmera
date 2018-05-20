@@ -38,7 +38,7 @@
             </a>
           </li>
           <li>
-            <a class="nav-link">
+            <a class="nav-link"  href="{{ url('/sales') }}">
               Ventas
             </a>
           </li>

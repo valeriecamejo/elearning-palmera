@@ -151,3 +151,10 @@ Route::get('/downloads/show/{id}', 'DownloadController@show')->name('/downloads/
 Route::get('/downloads/delete/{id}', 'DownloadController@delete')->name('/downloads/delete/{id}');
 Route::get('/downloads/edit/{id}', 'DownloadController@edit')->name('/downloads/edit/{id}');
 Route::post('/downloads/edit/{id}', 'DownloadController@saveEdit')->name('/downloads/edit/{id}');
+
+// Sale Routes...
+Route::get('/sales', 'SaleController@index')->name('sales');
+Route::get('/sales/create', 'SaleController@create')->name('sales/create');
+Route::post('/sales/create', 'SaleController@store')->name('sales/create');
+Route::get('/sales/show/{id}', 'SaleController@show')->name('sales/show');
+Route::get('/sales/approve_disapprove/{id}/{value}', 'SaleController@approveDisapprove')->name('sales/approve_disapprove');
