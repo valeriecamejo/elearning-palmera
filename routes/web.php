@@ -99,9 +99,16 @@ Route::get('/evaluations/list', 'EvaluationController@list')->name('evaluations/
 Route::get('/evaluations/create', 'EvaluationController@create')->name('evaluations/create');
 Route::post('/evaluations/create', 'EvaluationController@store')->name('evaluations/create');
 Route::get('/evaluations/show/{id}', 'EvaluationController@show')->name('evaluations/show');
+Route::get('/evaluations/edit/{id}', 'EvaluationController@edit')->name('evaluations/edit');
+Route::post('/evaluations/edit/{id}', 'EvaluationController@saveUpdate')->name('evaluations/edit');
+Route::get('/evaluations/active_deactive/{id}', 'EvaluationController@activeDeactive')->name('evaluations/active_deactive');
 Route::get('/evaluations/{id}/questions/create', 'QuestionController@create')->name('questions/create');
 Route::post('/evaluations/{id}/questions/create', 'QuestionController@store')->name('questions/create');
-
+Route::get('/evaluations/{id}/questions/show/{question_id}', 'QuestionController@show')->name('questions/show');
+Route::get('/evaluations/{id}/questions/edit/{question_id}', 'QuestionController@edit')->name('questions/edit');
+Route::post('/evaluations/{id}/questions/edit/{question_id}', 'QuestionController@saveUpdate')->name('questions/edit');
+Route::get('/evaluations/{id}/questions/{question_id}/answers/edit/{answer_id}', 'QuestionController@answer_edit')->name('answers/edit');
+Route::post('/evaluations/{id}/questions/{question_id}/answers/edit/{answer_id}', 'QuestionController@answer_saveUpdate')->name('answers/edit');
 // Modules Routes...
 Route::get('modules/list', 'ModuleController@index')->name('modules');
 

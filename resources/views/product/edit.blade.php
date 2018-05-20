@@ -5,11 +5,11 @@
 	<div class="col-md-8">
 		<div class="card">
 			<div class="card-header">
-					<ul class="nav nav-tabs card-header-tabs">
-							<li class="nav-item">
-								<a class="nav-link" href="{{ url('/products') }}">Productos</a>
-							</li>
-						</ul>
+				<ul class="nav nav-tabs card-header-tabs">
+					<li class="nav-item">
+						<a class="nav-link" href="{{ url('/products') }}">Productos</a>
+					</li>
+				</ul>
 			</div>
 			<div class="card-body">
 				<h3>Editar Producto</h3>
