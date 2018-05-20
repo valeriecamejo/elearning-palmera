@@ -25,10 +25,10 @@ class SaleRequest extends FormRequest
     {
         return [
             'description'   => 'required|max:255',
-            'user_id'       => 'required|numeric',
+            'date'          => 'required',
             'product_id'    => 'required|numeric',
             'quantity'      => 'required|numeric',
-            'store'         => 'required|numeric',
+            'store'         => 'required',
             'file'          => 'required',
             'reference'     => 'required'
           ];

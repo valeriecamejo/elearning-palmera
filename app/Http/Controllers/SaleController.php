@@ -3,8 +3,11 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Http\Requests\SaleRequest;
 use App\Sale;
+use App\Product;
 use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\Auth;
 
 class SaleController extends Controller {
   /**
@@ -31,7 +34,13 @@ class SaleController extends Controller {
    * @return \Illuminate\Http\Response
    */
   public function create() {
-    return view('sale.create');
+    if(Auth::user()->role_id == 1) {
+      $products = Product::all();
+    } else {
+      $products = Product::where('brand_id','=', Auth::user()->brand_id)
+      ->get();
+    }
+    return view('sale.create', compact('products'));
   }
   /**
    * Show the application Create.
@@ -48,7 +57,8 @@ class SaleController extends Controller {
       Session::flash('message', 'Error al registrar la venta.');
       Session::flash('class', 'danger');
     }
-    return redirect()->to('sales/create');
+    return redirect()->to('sales/show/'.$sale->id);
+
   }
 
       /**
@@ -58,26 +68,17 @@ class SaleController extends Controller {
    */
   public function show($id) {
     $sale      = Sale::find($id);
-    return view('sale.show', compact('sale'));
+    $product   = Product::find($sale->product_id);
+    return view('sale.show', compact('sale','product'));
   }
 
-    /**
-   * Show the application Edit.
-   *
-   * @return \Illuminate\Http\Response
-   */
-  public function edit($id) {
-    $sale       = Sale::find($id);
-    return view('sale.edit', compact('sale'));
-  }
-
-    /**
+  /**
    * Show the application Active Deactive.
    *
    * @return \Illuminate\Http\Response
    */
-  public function approveDisapprove($id) {
-    $sale = Sale::approveDisapprove($id);
+  public function approveDisapprove($id, $value) {
+    $sale = Sale::approveDisapprove($id, $value);
     if ($sale) {
       Session::flash('message', 'Actualizado correctamente.');
       Session::flash('class', 'success');
@@ -85,6 +86,6 @@ class SaleController extends Controller {
       Session::flash('message', 'Error al actualizar.');
       Session::flash('class', 'danger');
     }
-    return redirect()->to('sales');
+    return redirect()->to('sales/show/'.$id);
   }
 }

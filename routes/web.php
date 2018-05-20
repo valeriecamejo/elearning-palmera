@@ -157,4 +157,4 @@ Route::get('/sales', 'SaleController@index')->name('sales');
 Route::get('/sales/create', 'SaleController@create')->name('sales/create');
 Route::post('/sales/create', 'SaleController@store')->name('sales/create');
 Route::get('/sales/show/{id}', 'SaleController@show')->name('sales/show');
-Route::get('/sales/approve_disapprove/{id}', 'SaleController@approveDisapprove')->name('sales/approve_disapprove');
+Route::get('/sales/approve_disapprove/{id}/{value}', 'SaleController@approveDisapprove')->name('sales/approve_disapprove');

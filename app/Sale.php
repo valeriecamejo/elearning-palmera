@@ -26,7 +26,7 @@ class Sale extends Model {
   public static function insertSale($request) {
     $sale               = new Sale;
     $sale->description  = $request['description'];
-    $sale->user_id      = $request['user_id'];
+    $sale->user_id      = Auth::user()->id;
     $sale->product_id   = $request['product_id'];
     $sale->date         = $request['date'];
     $sale->brand_id     = Auth::user()->brand_id;
@@ -38,9 +38,10 @@ class Sale extends Model {
       // obtenemos el campo file definido en el formulario
       $file = $request['file'];
       // obtenemos el nombre del archivo
-      $name = $file->getClientOriginalName();
+      $name   = $file->getClientOriginalName();
+      $folder = "sale_".$sale->brand_id;
       // indicamos que queremos guardar en la carpeta public de storage
-      $file->storeAs('public/', $sale->brand_id);
+      $file->storeAs("public/$folder", $name);
       $sale->file         = $name;
     }
     if ($sale->save()) {
@@ -49,15 +50,10 @@ class Sale extends Model {
   }
 
 
-  public static function approveDisapprove($id) {
-    $Sale           = Sale::find($id);
-    if ($sale->is_approved == true) {
-      $sale->is_approved    = false;
-      $sale->supervisor_id  = Auth::user()->brand_id;
-    } else {
-      $sale->is_approved    = true;
-      $sale->supervisor_id  = Auth::user()->brand_id;
-    }
+  public static function approveDisapprove($id, $value) {
+    $sale                 = Sale::find($id);
+    $sale->is_approved    = $value;
+    $sale->supervisor_id  = Auth::user()->brand_id;
     if ($sale->save()) {
       return $sale;
     }
