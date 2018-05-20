@@ -29,6 +29,7 @@ class Question extends Model {
         $answer->answer          = 'Libre';
         $answer->question_id     = $id;
         $answer->correct         = true;
+        $answer->save();
       } else {
         foreach ($request->input('answer') as $key => $value) {
           $answer                  = new Answer;
@@ -42,9 +43,33 @@ class Question extends Model {
               $answer->correct  = true;
             }
           }
+          $answer->save();
         }
       }
       return $question;
+    }
+  }
+
+  public static function saveUpdate($request, $id, $question_id) {
+    $question                     = Question::find($question_id);
+    $question->question           = $request['question'];
+    $question->score              = $request['score'];
+    $question->type_question_id   = $request['type_question_id'];
+    if ($question->save()) {
+      return $question;
+    }
+  }
+
+  public static function answer_saveUpdate($request, $id, $answer_id) {
+    $answer                   = Answer::find($answer_id);
+    $answer->answer           = $request['answer'];
+    if(isset($request['correct'])){
+      $answer->correct        = true;
+    } else {
+      $answer->correct        = false;
+    }
+    if ($answer->save()) {
+      return $answer;
     }
   }
 }

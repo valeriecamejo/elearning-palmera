@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class QuestionRequest extends FormRequest
+class EditEvaluationRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -23,10 +23,11 @@ class QuestionRequest extends FormRequest
      */
     public function rules() {
       return [
-        'question'          => 'required|max:255',
-        'type_question_id'  => 'required|numeric',
-        'evaluation_id'     => 'required|numeric',
-        'score'             => 'required'
+        'name'          => 'required|max:255|unique:evaluations,name,'.$this->id,
+        'description'   => 'required|max:255',
+        'product_id'    => 'required|numeric',
+        'score'         => 'required|numeric',
+        'photo'         => 'max:255',
       ];
     }
 }

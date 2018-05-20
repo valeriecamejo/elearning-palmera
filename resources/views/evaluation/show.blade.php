@@ -4,20 +4,36 @@
 <div class="row justify-content-center">
 	<div class="col-md-8">
   <div class="card">
-  
-      <img class="card-img-top" src="{{ asset('img/sinfoto2.png') }}" alt="{{ $evaluation->name }}" style="max-heigth: 180px !important">
-
+    @if ($evaluation->photo)
+    <img class="card-img-top" src="{{ asset('storage/evaluation/'.$evaluation->photo) }}" alt="{{ $evaluation->name }}" style="max-heigth: 180px !important">
+    @else
+    <img class="card-img-top" src="{{ asset('img/sinfoto2.png') }}" alt="{{ $evaluation->name }}" style="max-heigth: 180px !important">
+    @endif
 			<div class="card-header">
         Preguntas para {{ $evaluation->name }}
 			</div>
 			<div class="card-body">
-      <table class="table table-striped">
+        <div class="form-group row">
+          <div class="col-md-12">
+            <p class="col-form-label">{{ $product->name }}</p>						
+          </div>
+        </div>
+        <div class="form-group row">
+          <div class="col-md-12">
+            <p class="col-form-label">{{ $evaluation->description }}</p>						
+          </div>
+        </div>
+        <div class="form-group row">
+          <div class="col-md-6">
+            <p class="col-form-label">Puntos totales:  {{ $evaluation->score }}</p>						
+          </div>
+        </div>
+        <table class="table table-striped">
           <tr>
             <th>ID</th>
             <th>Pregunta</th>
             <th>Tipo de Pregunta</th>
             <th>Creado</th>
-            <th>Opciones</th>
           </tr>
           @foreach ($questions as $question)
           <tr>
@@ -33,11 +49,6 @@
               @endif
             </td>
             <td>{{ $question->created_at }}</td>
-            <td>
-              <a href="" title="Ver">
-                <i class="fas fa-eye"></i>
-              </a>
-            </td>
           </tr>
           @endforeach
         </table>

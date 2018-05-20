@@ -44,7 +44,7 @@
 						</div>
 					</div>
           <div class="form-group row">
-						<label for="type_question_id" class="col-md-4 col-form-label text-md-right">{{ __('Producto') }}</label>
+						<label for="type_question_id" class="col-md-4 col-form-label text-md-right">{{ __('Tipo de Pregunta') }}</label>
 						<div class="col-md-6">
 							<select v-model="type_question_id" id="type_question_id" 
                       class="form-control{{ $errors->has('type_question_id') ? ' is-invalid' : '' }}" 
@@ -112,7 +112,7 @@
         Preguntas para {{ $evaluation->name }}
 			</div>
 			<div class="card-body">
-      <table class="table table-striped">
+        <table class="table table-striped">
           <tr>
             <th>ID</th>
             <th>Pregunta</th>
@@ -135,8 +135,11 @@
             </td>
             <td>{{ $question->created_at }}</td>
             <td>
-              <a href="" title="Ver">
+              <a href="{{ url('/evaluations/'.$id.'/questions/show/'.$question->id) }}" title="Ver">
                 <i class="fas fa-eye"></i>
+              </a>
+              <a href="{{ url('/evaluations/'.$id.'/questions/edit/'.$question->id) }}" title="Editar">
+                <i class="fas fa-edit"></i>
               </a>
             </td>
           </tr>
