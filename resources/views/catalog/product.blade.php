@@ -5,7 +5,7 @@
 	<div class="col-md-10">
   <div class="card">
       @if ($product->photo)
-      <img class="card-img-top" src="{{ asset('storage/products/' .$product->photo) }}" alt="{{ $product->name }}" style="max-heigth: 180px !important">
+      <img class="card-img-top" src="{{ asset('storage/' .$product->photo) }}" alt="{{ $product->name }}" style="max-heigth: 180px !important">
       @else
       <img class="card-img-top" src="{{ asset('img/sinfoto2.png') }}" alt="{{ $product->name }}" style="max-heigth: 180px !important">
       @endif
@@ -18,6 +18,8 @@
           {!! $content->data !!}
           @endforeach
 	    </div>
+      <br><a class="btn btn-primary btn" href="{{ url('/evaluations/product/'.$content->product_id) }}">Ir a Evaluacion</a>
+
 	  </div>
 	</div>
 </div>
