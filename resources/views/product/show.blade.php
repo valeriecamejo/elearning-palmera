@@ -17,10 +17,10 @@
 			<div class="card-body">
 				<h3>{{ $product->name }}</h3>
 				<div class="form-group row">
-					<label for="photo" class="col-md-4 col-form-label text-md-right"></label>
+					<label for="photo" class="col-md-4 col-form-label text-md-right"></label> 
 					<div class="col-md-6">
 						@if ($product->photo)
-            <img class="card-img-top" src="{{ asset('storage/'.$product->photo) }}" alt="{{ $product->name }}">
+            <img class="card-img-top" src="{{ asset('storage/products/'.$product->photo) }}" alt="{{ $product->name }}">
             @else
             <img class="card-img-top" src="{{ asset('img/sinfoto.png') }}" alt="{{ $product->name }}">
             @endif

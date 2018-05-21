@@ -33,7 +33,7 @@ class Download extends Model {
         // obtenemos el nombre del archivo y le concatenamos el id al inicio
         $name = $download->id . '_' . $file->getClientOriginalName();
         //Almacenamos en folder el id de la marca que sera el nombre de la carpeta a guardar el archivo
-        $folder = Auth::user()->brand_id;
+        $folder = "marca_". Auth::user()->brand_id;
         // indicamos que queremos guardar en la carpeta public de storage seguido del id de la marca a la cual pertenece el usuario
         $file->storeAs("public/$folder", $name);
         $download_file->file      = $name;

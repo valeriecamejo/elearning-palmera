@@ -24,11 +24,12 @@ class Product extends Model {
     if(isset($request['photo'])){
       // antes de hacer esto por primera vez hay que hacer php artisan storage:link
       // obtenemos el campo file definido en el formulario
-      $file = $request['photo'];
+      $file   = $request['photo'];
       // obtenemos el nombre del archivo
-      $name = $file->getClientOriginalName();
+      $name   = $file->getClientOriginalName();
+      $folder = "products";
       // indicamos que queremos guardar en la carpeta public de storage
-      $file->storeAs('public/', $name);
+      $file->storeAs("public/$folder", $name);
       $product->photo      = $name;
     }
     $product->name         = $request['name'];
@@ -52,8 +53,9 @@ class Product extends Model {
       $file = $request['photo'];
       // obtenemos el nombre del archivo
       $name = $file->getClientOriginalName();
+      $folder = "products";
       // indicamos que queremos guardar en la carpeta public de storage
-      $file->storeAs('public/', $name);
+      $file->storeAs("public/$folder", $name);
       $product->photo        = $name;
     }
     $product->name         = $request['name'];

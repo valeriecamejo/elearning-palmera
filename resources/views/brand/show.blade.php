@@ -27,11 +27,11 @@
           </div>
 					<div class="form-group row">
 						<label for="logo" class="col-md-4 col-form-label text-md-right">{{ __('Logo') }}</label>
-            <p class="col-form-label">{{ $brand->logo }}</p>						
+            <img class="card-img-top" src="{{ asset('storage/' . $brand->logo) }}" alt="{{ $brand->logo }}">
 					</div>
 					<div class="form-group row">
 						<label for="header" class="col-md-4 col-form-label text-md-right">{{ __('Imagen Header') }}</label>
-            <p class="col-form-label">{{ $brand->header }}</p>						
+            <img class="card-img-top" src="{{ asset('storage/' . $brand->header) }}" alt="{{ $brand->header }}">
 					</div>				  
 			</div>
 		</div>
