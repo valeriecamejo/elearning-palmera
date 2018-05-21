@@ -29,7 +29,7 @@
           <div class="form-group row">
             <label for="last_name" class="col-md-4 col-form-label text-md-right">{{ __('Archivo:') }}</label>
             <div class="col-md-6">
-              <a href="{{ asset('storage/' . Auth::user()->brand_id . '/' . $download->file) }}"  target="_blank"> {{ $download->file }}
+              <a href="{{ asset('storage/marca_' . Auth::user()->brand_id . '/' . $download->file) }}"  target="_blank"> {{ $download->file }}
               </a>
             </div>
           </div>

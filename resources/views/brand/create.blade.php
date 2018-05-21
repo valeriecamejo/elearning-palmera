@@ -16,7 +16,7 @@
 			</div>
 			<div class="card-body">
 				<h5 class="card-title">Crear una nueva marca</h5>
-				<form method="POST" action="{{ route('brands/create') }}">
+				<form enctype="multipart/form-data" method="POST" action="{{ route('brands/create') }}">
 					@csrf
 					<div class="form-group row">
 						<label for="name" class="col-md-4 col-form-label text-md-right">{{ __('Nombre') }}</label>
@@ -65,7 +65,7 @@
 					<div class="form-group row">
 						<label for="logo" class="col-md-4 col-form-label text-md-right">{{ __('Logo') }}</label>
 						<div class="col-md-6">
-							<input id="logo" type="text" class="form-control{{ $errors->has('logo') ? ' is-invalid' : '' }}" name="logo" value="{{ old('logo') }}" autofocus>
+							<input id="logo" type="file" class="form-control{{ $errors->has('logo') ? ' is-invalid' : '' }}" name="logo" value="{{ old('logo') }}" autofocus>
 							@if ($errors->has('logo'))
 								<span class="invalid-feedback">
 									<strong>{{ $errors->first('logo') }}</strong>
@@ -76,7 +76,7 @@
 					<div class="form-group row">
 						<label for="header" class="col-md-4 col-form-label text-md-right">{{ __('Imagen Header') }}</label>
 						<div class="col-md-6">
-							<input id="header" type="text" class="form-control{{ $errors->has('header') ? ' is-invalid' : '' }}" name="header" value="{{ old('header') }}" autofocus>
+							<input id="header" type="file" class="form-control{{ $errors->has('header') ? ' is-invalid' : '' }}" name="header" value="{{ old('header') }}" autofocus>
 							@if ($errors->has('header'))
 								<span class="invalid-feedback">
 									<strong>{{ $errors->first('header') }}</strong>

@@ -141,7 +141,6 @@ Route::get('/contents/edit/{id}', 'ContentController@edit')->name('/contents/edi
 Route::post('/contents/edit/{id}', 'ContentController@saveEdit')->name('/contents/edit/{id}');
 Route::get('/contents/delete/{content_id}/{product_id}', 'ContentController@delete')->name('/contents/delete');
 Route::get('/contents/product/{id}', 'ContentController@contentByProduct')->name('/contents/product/{id}');
-Route::get('/contents/product/{id}', 'ContentController@contentByProduct')->name('/contents/product/{id}');
 Route::get('/contents/images/{id}', 'ContentController@contentImages')->name('/contents/images');
 Route::get('/contents/images/add/{id}', 'ContentController@newImage')->name('/contents/images/add');
 Route::post('/contents/images/add/{id}', 'ContentController@saveNewImage')->name('/contents/images/add/{id}');
