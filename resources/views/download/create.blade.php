@@ -16,7 +16,7 @@
 			</div>
 			<div class="card-body">
 				<h5 class="card-title">Cargar un Archivo</h5>
-				<form method="POST" action="{{ url('downloads/create') }}" files=”true” enctype="multipart/form-data">
+				<form enctype="multipart/form-data" method="POST" action="{{ url('downloads/create') }}" files=”true” enctype="multipart/form-data">
 					@csrf
 					<div class="form-group row">
 						<label for="name" class="col-md-4 col-form-label text-md-right">{{ __('Nombre') }}</label>
