@@ -31,7 +31,7 @@ class Evaluation extends Model {
       // obtenemos el nombre del archivo
       $name = $file->getClientOriginalName();
       // indicamos que queremos guardar en la carpeta public de storage
-      $folder = "evaluation_".$sale->brand_id;
+      $folder = "evaluation_" . Auth::user()->brand_id;
       $file->storeAs("public/$folder", $name);
       $evaluation->photo      = $name;
     }

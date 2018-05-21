@@ -57,11 +57,11 @@
                       @foreach ($images as $image)
                       <div class="col-sm-12 col-md-4">
                         <div class="card">
-                          <img class="card-img-top" src="{{ asset('storage/' . Auth::user()->brand_id . '/' . $image->file) }}" alt="{{ $image->name }}">
+                          <img class="card-img-top" src="{{ asset('storage/marca_' . Auth::user()->brand_id . '/' . $image->file) }}" alt="{{ $image->name }}">
                           <div class="card-body">
                             <h6 class="card-title">
                               <strong>url:</strong>
-                              {{ URL::to('/') }}/storage/{{ Auth::user()->brand_id }}/{{ $image->file }}
+                              {{ URL::to('/') }}/storage/marca_{{ Auth::user()->brand_id }}/{{ $image->file }}
                             </h6>
                           </div>
                         </div>
