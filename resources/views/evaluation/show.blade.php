@@ -5,7 +5,7 @@
 	<div class="col-md-8">
   <div class="card">
     @if ($evaluation->photo)
-    <img class="card-img-top" src="{{ asset('storage/evaluation/'.$evaluation->photo) }}" alt="{{ $evaluation->name }}" style="max-heigth: 180px !important">
+    <img class="card-img-top" src="{{ asset('storage/evaluation_' . Auth::user()->brand_id . '/' .$evaluation->photo) }}" alt="{{ $evaluation->name }}" style="max-heigth: 180px !important">
     @else
     <img class="card-img-top" src="{{ asset('img/sinfoto2.png') }}" alt="{{ $evaluation->name }}" style="max-heigth: 180px !important">
     @endif
@@ -15,17 +15,17 @@
 			<div class="card-body">
         <div class="form-group row">
           <div class="col-md-12">
-            <p class="col-form-label">{{ $product->name }}</p>						
+            <p class="col-form-label">{{ $product->name }}</p>
           </div>
         </div>
         <div class="form-group row">
           <div class="col-md-12">
-            <p class="col-form-label">{{ $evaluation->description }}</p>						
+            <p class="col-form-label">{{ $evaluation->description }}</p>
           </div>
         </div>
         <div class="form-group row">
           <div class="col-md-6">
-            <p class="col-form-label">Puntos totales:  {{ $evaluation->score }}</p>						
+            <p class="col-form-label">Puntos totales:  {{ $evaluation->score }}</p>
           </div>
         </div>
         <table class="table table-striped">

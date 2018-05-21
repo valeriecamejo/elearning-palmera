@@ -59,7 +59,8 @@
 					<div class="form-group row">
 						<label for="date" class="col-md-4 col-form-label text-md-right">{{ __('Fecha de la venta') }}</label>
 						<div class="col-md-6">
-							<input id="date" type="text" class="form-control{{ $errors->has('date') ? ' is-invalid' : '' }}" name="date" value="{{ old('date') }}" required autofocus>
+							<input id="date" type="text" class="form-control{{ $errors->has('date') ? ' is-invalid' : '' }}" name="date" value="{{ old('date') }}" 
+							placeholder="2018/01/13" required autofocus>
 							@if ($errors->has('date'))
 								<span class="invalid-feedback">
 									<strong>{{ $errors->first('date') }}</strong>
