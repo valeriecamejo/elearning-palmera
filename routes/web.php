@@ -109,6 +109,11 @@ Route::get('/evaluations/{id}/questions/edit/{question_id}', 'QuestionController
 Route::post('/evaluations/{id}/questions/edit/{question_id}', 'QuestionController@saveUpdate')->name('questions/edit');
 Route::get('/evaluations/{id}/questions/{question_id}/answers/edit/{answer_id}', 'QuestionController@answer_edit')->name('answers/edit');
 Route::post('/evaluations/{id}/questions/{question_id}/answers/edit/{answer_id}', 'QuestionController@answer_saveUpdate')->name('answers/edit');
+Route::get('/evaluations/product/{product_id}', 'EvaluationController@allEvaluationsByProduct')->name('evaluations/all_evaluations_product');
+Route::get('/evaluations/{id}', 'EvaluationController@EvaluationByProduct')->name('evaluation');
+Route::post('/evaluations/{id}', 'EvaluationController@saveEvaluationByProduct')->name('evaluation');
+
+
 // Modules Routes...
 Route::get('modules/list', 'ModuleController@index')->name('modules');
 

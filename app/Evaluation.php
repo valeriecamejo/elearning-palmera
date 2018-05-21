@@ -3,6 +3,9 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Auth;
+use App\UserEvaluation;
+use App\UserAnswer;
 
 class Evaluation extends Model {
   protected $fillable = [
@@ -67,6 +70,28 @@ class Evaluation extends Model {
     }
     if ($evaluation->save()) {
       return $evaluation;
+    }
+  }
+
+  public static function saveEvaluationByProduct($request, $id) {
+    $user_question                 = new UserEvaluation;
+    $user_question->evaluation_id  = $id;
+    $user_question->user_id        = Auth::user()->id;
+    $user_question->score          = 0;
+    $user_question->approved       = true;
+    if ($user_question->save()) {
+      foreach ($request->input('result') as $key => $result) {
+        foreach ($result as $answer){
+          $user_answer                  = new UserAnswer;
+          $user_answer->evaluation_id   = $id;
+          $user_answer->question_id     = $key;
+          $user_answer->answer_id       = $answer;
+          $user_answer->user_id         = Auth::user()->id;
+          $user_answer->description     = false;
+          $user_answer->save();
+        }
+      }
+      return $user_question;
     }
   }
 }
