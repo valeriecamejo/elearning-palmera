@@ -33,13 +33,17 @@
                 <div  class="card">
                   <a v-if="product.photo" :href="'/contents/product/' + product.id">
                     <img class="card-img-top" :src="'/storage/products/' + product.photo">
+                    <h5 class="card-title">@{{ product.name }}</h5>
+                    <h5 class="card-title">@{{ product.price }}$</h5>
                   </a>
                   <a v-else :href="'/contents/product/' + product.id">
                     <img class="card-img-top" :src="'img/sinfoto.png'" alt="product.name">
-                  </a>
-                  <div class="card-body">
                     <h5 class="card-title">@{{ product.name }}</h5>
                     <h5 class="card-title">@{{ product.price }}$</h5>
+                  </a>
+                  <div class="card-body">
+                    {{-- <h5 class="card-title">@{{ product.name }}</h5>
+                    <h5 class="card-title">@{{ product.price }}$</h5> --}}
                   </div>
                 </div>
               </div>
