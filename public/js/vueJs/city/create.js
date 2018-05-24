@@ -12,7 +12,7 @@ City = new Vue({
     changedValue:   '',
 },
   mounted() {
-    axios.get('/countries/all' , {
+    HTTP.get('/countries/all' , {
     }).then((response) => {
         City.countries = response.data;
         City.data_ready = true;
@@ -20,7 +20,7 @@ City = new Vue({
   },
   methods: {
     statesOfCountry: function (country_id) {
-      axios.get('/states/all/' + country_id , {
+      HTTP.get('/states/all/' + country_id, {
       }).then((response) => {
         City.states = response.data;
         }).catch(function(data){

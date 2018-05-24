@@ -14,8 +14,8 @@ class BrandsTableSeeder extends Seeder
       DB::table('brands')->insert([
         'name'          => 'Palm ERA',
         'navbar_color'  => 'navbar-dark bg-dark',
-        'logo'          => '',
-        'header'        => ''
+        'logo'          => 'logo.png',
+        'header'        => 'header.png'
       ]);
     }
 }

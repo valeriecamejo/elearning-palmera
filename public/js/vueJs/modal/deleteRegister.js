@@ -9,7 +9,7 @@ Delete = new Vue({
   methods: {
     deleteRegister: function () {
       Delete.active = false;
-      axios.get(Delete.delete_url, {}).then((response) => {
+      HTTP.get(Delete.delete_url, {}).then((response) => {
         Delete.response = response.data
         Delete.delete_url = ''
       }).catch(function (data) {

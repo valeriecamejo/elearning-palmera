@@ -81,8 +81,8 @@
                     E-learning PalmERA
                 </div>
                 <div class="links">
-                    <a href="/home">Home</a>
-                    <a href="/login">Login</a>
+                    <a href="{{ url('/home') }}">Home</a>
+                    <a href="{{ route('login') }}">Login</a>
                 </div>
             </div>
         </div>

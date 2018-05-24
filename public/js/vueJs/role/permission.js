@@ -29,11 +29,11 @@ Role = new Vue({
     permission: function (role_id) {
 
     //Consulta de todos los modulos
-      axios.get('/modules/list' , {
+      HTTP.get('/modules/list', {
       }).then(function(response){
         Role.modules = response.data;
       //Consulta de los permisos de un rol
-        axios.get('/roles/permission/create/' + role_id , {
+        HTTP.get('/roles/permission/create/' + role_id, {
         }).then(function(response){
             Role.role_permissions = eval(response.data);
             Role.activeModules();
@@ -87,7 +87,7 @@ Role = new Vue({
     },
     //Guardar permisos para un rol
     savePermission: function(role_id)  {
-      axios.post('/roles/permission/store/' + role_id , {
+      HTTP.post('/roles/permission/store/' + role_id, {
         permissions: Role.role_permissions,
       }).then(function(response){
         Role.showModal = true;
@@ -106,7 +106,7 @@ Role = new Vue({
           permissions.is_active = false;
         }
       });
-      axios.post('/roles/permission/edit/' + role_id , {
+      HTTP.post('/roles/permission/edit/' + role_id, {
         permissions: Role.role_permissions,
       }).then(function(response){
         Role.showModal = true;
