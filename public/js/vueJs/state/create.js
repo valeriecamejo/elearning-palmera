@@ -8,7 +8,7 @@ State = new Vue({
     previous_country: '',
 },
   mounted() {
-    axios.get('/countries/all' , {
+    HTTP.get('/countries/all', {
     }).then((response) => {
         State.countries = response.data;
         State.data_ready = true;

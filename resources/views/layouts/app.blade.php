@@ -21,12 +21,12 @@
     <!-- fontawesome -->
     <link href="{{ asset('fontawesome/css/fontawesome-all.css') }}" rel="stylesheet">
     <!-- Vue.js -->
-    @if(App::environment('production'))
     <script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.js"></script>
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    @if(App::environment('production'))
+    <script src="{{ asset('js/configGlobal.js') }}"></script>
     @else
-      {!! Html::script('js/vue/vue.js') !!}
-      {!! Html::script('js/vue/axios.min.js') !!}
+      <script src="{{ asset('js/configGlobalLocal.js') }}"></script>
     @endif
     <script src="{{ asset('js/configGlobal.js') }}"></script>
 </head>

@@ -31,12 +31,12 @@
             <div class="row">
               <div v-for="product in filterProduct" class="col-sm-12 col-md-4">
                 <div  class="card">
-                  <a v-if="product.photo" :href="'/contents/product/' + product.id">
+                  <a v-if="product.photo" :href="'./contents/product/' + product.id">
                     <img class="card-img-top" :src="'/storage/products/' + product.photo">
                     <h5 class="card-title">@{{ product.name }}</h5>
                     <h5 class="card-title">@{{ product.price }}$</h5>
                   </a>
-                  <a v-else :href="'/contents/product/' + product.id">
+                  <a v-else :href="'./contents/product/' + product.id">
                     <img class="card-img-top" :src="'img/sinfoto.png'" alt="product.name">
                     <h5 class="card-title">@{{ product.name }}</h5>
                     <h5 class="card-title">@{{ product.price }}$</h5>
@@ -56,5 +56,5 @@
 
 </div>
 
-{!! Html::script('/js/vueJs/catalog/filter.js') !!}
+{!! Html::script('./js/vueJs/catalog/filter.js') !!}
 @endsection

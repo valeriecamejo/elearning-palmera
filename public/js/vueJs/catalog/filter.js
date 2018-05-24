@@ -13,7 +13,7 @@ Search = new Vue({
   },
   mounted() {
     //Consulta de todos los productos
-    axios.get('/catalogs/products' , {
+    HTTP.get('/catalogs/products', {
     }).then((response) => {
       Search.allProducts = response.data.data
       Search.products = Search.allProducts
@@ -21,7 +21,7 @@ Search = new Vue({
         this.errors   = data.responseJSON
       });
       //Consulta de todos los productos
-    axios.get('/categories/all' , {
+    HTTP.get('/categories/all', {
       }).then((response) => {
         Search.categories = response.data
         Search.ready = true;
