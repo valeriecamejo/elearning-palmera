@@ -52,6 +52,7 @@ Route::get('/users/edit/{id}', 'UserController@edit')->name('users/edit/{id}');
 Route::post('/users/edit/{id}', 'UserController@saveUpdate')->name('users/edit');
 Route::get('/users/show/{id}', 'UserController@show')->name('users/show');
 Route::get('/users/active_deactive/{id}', 'UserController@activeDeactive')->name('users/active_deactive');
+Route::get('/users/{id}/evaluations', 'UserController@userEvaluations')->name('users/evaluations');
 
 // Brand Routes...
 Route::get('/brands', 'BrandController@index')->name('brands');
@@ -112,7 +113,7 @@ Route::post('/evaluations/{id}/questions/{question_id}/answers/edit/{answer_id}'
 Route::get('/evaluations/product/{product_id}', 'EvaluationController@allEvaluationsByProduct')->name('evaluations/all_evaluations_product');
 Route::get('/evaluations/{id}', 'EvaluationController@EvaluationByProduct')->name('evaluation');
 Route::post('/evaluations/{id}', 'EvaluationController@saveEvaluationByProduct')->name('evaluation');
-
+Route::get('/evaluations/user_result/{id}', 'EvaluationController@userResult')->name('user_result');
 
 // Modules Routes...
 Route::get('modules/list', 'ModuleController@index')->name('modules');

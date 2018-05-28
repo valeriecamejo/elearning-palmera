@@ -72,4 +72,21 @@ class Question extends Model {
       return $answer;
     }
   }
+
+  public static function score($id) {
+    $answers_correct  = Answer::where('question_id', '=', $id)
+    ->where('correct', '=', true)
+    ->count();
+    $question         = Question::find($id);
+    $score_correct    = $question->score / $answers_correct;
+    return $score_correct;
+  }
+
+  public static function answerCorrect($id) {
+    $answers_correct  = Answer::select('id')
+    ->where('question_id', '=', $id)
+    ->where('correct', '=', true)
+    ->get();
+    return $answers_correct;
+  }
 }

@@ -55,6 +55,9 @@
               <a class="dropdown-item" href="{{ url('/users/profile') }}">
                 Perfil
               </a>
+              <a class="dropdown-item" href="{{ url('/users/'.Auth::user()->id.'/evaluations') }}">
+                Mis Evaluaciones
+              </a>
               <a class="dropdown-item" href="{{ route('logout') }}"
                 onclick="event.preventDefault();
                 document.getElementById('logout-form').submit();">

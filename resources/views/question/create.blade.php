@@ -51,7 +51,7 @@
                       name="type_question_id" autofocus required @change="refresh">
                 <option value="1"> Simple </option>
                 <option value="2"> Multiple </option>
-                <option value="3"> Libre </option>
+                <!-- <option value="3"> Libre </option> -->s
               </select>
 							@if ($errors->has('type_question_id'))
 								<span class="invalid-feedback">

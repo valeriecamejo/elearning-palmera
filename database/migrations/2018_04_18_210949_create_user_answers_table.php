@@ -19,6 +19,7 @@ class CreateUserAnswersTable extends Migration
       $table->integer('question_id');
       $table->integer('answer_id');
       $table->integer('user_id');
+      $table->integer('user_evaluation_id');
       $table->text('description');
       $table->timestamps();
     });

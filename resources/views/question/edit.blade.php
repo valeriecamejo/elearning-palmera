@@ -51,9 +51,9 @@
                 <option value="2" @if ($question->type_question_id == 2)
                     selected
                   @endif > Multiple </option>
-                <option value="3" @if ($question->type_question_id == 3)
+                <!-- <option value="3" @if ($question->type_question_id == 3)
                     selected
-                  @endif > Libre </option>
+                  @endif > Libre </option> -->
               </select>
 							@if ($errors->has('type_question_id'))
 								<span class="invalid-feedback">

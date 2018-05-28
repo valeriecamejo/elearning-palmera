@@ -11,6 +11,7 @@ use App\Http\Requests\EvaluationRequest;
 use App\Http\Requests\EditEvaluationRequest;
 use App\Question;
 use App\Answer;
+use App\UserEvaluation;
 
 class EvaluationController extends Controller {
   /**
@@ -135,14 +136,20 @@ class EvaluationController extends Controller {
   }
 
   public function saveEvaluationByProduct(Request $request, $id) {
-    $question    = Evaluation::saveEvaluationByProduct($request, $id);
-    if ($question) {
+    $user_evaluation  = Evaluation::saveEvaluationByProduct($request, $id);
+    if ($user_evaluation) {
       Session::flash('message', 'Respuestas guardadas correctamente.');
       Session::flash('class', 'success');
     } else {
       Session::flash('message', 'Error al guardadar las Respuestas.');
       Session::flash('class', 'danger');
     }
-    return redirect()->to('/catalogs');
+    return redirect()->to('/evaluations/user_result/'.$user_evaluation->id);
+  }
+
+  public function userResult($id) {
+    $user_result  = UserEvaluation::find($id);
+    $evaluation   = Evaluation::find($user_result->evaluation_id);
+    return view('evaluation.result', compact('evaluation','user_result'));
   }
 }
