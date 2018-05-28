@@ -11,6 +11,7 @@ use Illuminate\Support\Facades\Session;
 use App\Brand;
 use App\Country;
 use App\Role;
+use App\UserEvaluation;
 use Illuminate\Support\Facades\Auth;
 
 class UserController extends Controller {
@@ -143,6 +144,22 @@ class UserController extends Controller {
       Session::flash('class', 'danger');
     }
     return redirect()->to('users');
+  }
+  /**
+   * Show the application show.
+   *
+   * @return \Illuminate\Http\Response
+   */
+  public function userEvaluations($id) {
+    $user         = User::find($id);
+    $evaluations  = UserEvaluation::join('evaluations', 'user_evaluations.evaluation_id', '=', 'evaluations.id')
+    ->where('user_id', '=', $id)
+    ->select('evaluations.*', 'user_evaluations.id as user_evaluation_id',
+    'user_evaluations.score as user_evaluation_score', 'user_evaluations.approved')
+    ->paginate(15);
+    // select('id', 'answer', 'question_id', 'correct'   )
+    return view('user.evaluations',
+    compact('user','evaluations'));
   }
 
 
