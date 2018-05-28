@@ -9,7 +9,6 @@
       </div>
       <div class="card-body">
         {!! $content->data !!}
-        <br><a class="btn btn-primary btn" href="#">Ir a Evaluacion</a>
       </div>
     </div>
   </div>

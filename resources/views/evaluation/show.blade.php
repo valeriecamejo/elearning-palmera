@@ -5,7 +5,7 @@
 	<div class="col-md-8">
   <div class="card">
     @if ($evaluation->photo)
-    <img class="card-img-top" src="{{ asset('storage/evaluation_' . Auth::user()->brand_id . '/' .$evaluation->photo) }}" alt="{{ $evaluation->name }}" style="max-heigth: 180px !important">
+    <img class="card-img-top" src="{{ asset('./storage/evaluation_' . Auth::user()->brand_id . '/' .$evaluation->photo) }}" alt="{{ $evaluation->name }}" style="max-heigth: 180px !important">
     @else
     <img class="card-img-top" src="{{ asset('img/sinfoto2.png') }}" alt="{{ $evaluation->name }}" style="max-heigth: 180px !important">
     @endif

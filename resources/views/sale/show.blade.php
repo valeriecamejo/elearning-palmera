@@ -47,7 +47,7 @@
 						<label for="description" class="col-md-4 col-form-label text-md-right">{{ __('Soporte de venta') }}</label>
 						<div class="col-md-6">
 							<a href="{{ asset('storage/sale_'.Auth::user()->brand_id.'/' . $sale->file) }}"  target="_blank">
-							<li class="fa fa-eye"></li> Ver soporte 
+							<li class="fa fa-eye"></li> Ver soporte
             	</a>
 						</div>
 					</div>
