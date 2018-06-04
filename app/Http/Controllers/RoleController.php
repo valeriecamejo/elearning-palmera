@@ -143,7 +143,7 @@ class RoleController extends Controller
        Session::flash('message', 'Error al actualizar los datos.');
        Session::flash('class', 'danger');
      }
-     return redirect()->to('roles/edit/'.$id);
+     return redirect()->to('/roles');
     }
 
     /**
