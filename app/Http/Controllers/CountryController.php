@@ -63,7 +63,7 @@ class CountryController extends Controller {
         Session::flash('message', 'Error al registrar los datos.');
         Session::flash('class', 'danger');
       }
-      return redirect()->to('countries/create');
+      return redirect()->to('/countries');
     }
 
   /**
@@ -73,7 +73,6 @@ class CountryController extends Controller {
    * @return $country
    */
     public function edit($country_id) {
-
       $country = Country::find($country_id);
         return view('country.edit', compact('country'));
     }
@@ -85,7 +84,6 @@ class CountryController extends Controller {
    * @return $id
    */
     public function saveEdit(CountryUpdateRequest $request, $id) {
-      
       $country = Country::saveEdit($request->all(), $id);
       if ($country) {
         Session::flash('message', 'Rol actualizado correctamente.');
@@ -94,7 +92,7 @@ class CountryController extends Controller {
         Session::flash('message', 'Error al actualizar los datos.');
         Session::flash('class', 'danger');
       }
-      return redirect()->to('countries/edit/'.$id);
+      return redirect()->to('/countries');
     }
 
   /**
@@ -104,7 +102,6 @@ class CountryController extends Controller {
    * @return $country, $country_id
    */
     public function show($country_id) {
-
       $country = Country::find($country_id);
       return view('country.show', compact('country', 'country_id'));
     }
@@ -116,7 +113,6 @@ class CountryController extends Controller {
    * @return view
    */
   public function activeDeactive($country_id) {
-
     $country = Country::activeDeactive($country_id);
     if ($country) {
       Session::flash('message', 'Actualizado correctamente.');

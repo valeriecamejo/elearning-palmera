@@ -47,8 +47,8 @@
 					<div class="form-group row">
 						<label for="description" class="col-md-4 col-form-label text-md-right">{{ __('Descripción') }}</label>
 						<div class="col-md-6">
-							<textarea class="form-control{{ $errors->has('description') ? ' is-invalid' : '' }}" id="description" rows="3" 
-								name="description" required autofocus>{{ old('description') }}</textarea>				
+							<textarea class="form-control{{ $errors->has('description') ? ' is-invalid' : '' }}" id="description" rows="3"
+								name="description" required autofocus>{{ old('description') }}</textarea>
 						@if ($errors->has('description'))
 								<span class="invalid-feedback">
 									<strong>{{ $errors->first('description') }}</strong>
@@ -59,8 +59,7 @@
 					<div class="form-group row">
 						<label for="date" class="col-md-4 col-form-label text-md-right">{{ __('Fecha de la venta') }}</label>
 						<div class="col-md-6">
-							<input id="date" type="text" class="form-control{{ $errors->has('date') ? ' is-invalid' : '' }}" name="date" value="{{ old('date') }}" 
-							placeholder="2018/01/13" required autofocus>
+							<div id="app"></div>
 							@if ($errors->has('date'))
 								<span class="invalid-feedback">
 									<strong>{{ $errors->first('date') }}</strong>
@@ -68,10 +67,10 @@
 							@endif
 						</div>
 					</div>
-          <div class="form-group row">
+          <div id="button" class="form-group row">
 						<label for="quantity" class="col-md-4 col-form-label text-md-right">{{ __('Cantidad') }}</label>
 						<div class="col-md-6">
-							<input id="quantity" type="text" class="form-control{{ $errors->has('quantity') ? ' is-invalid' : '' }}" name="quantity" value="{{ old('quantity') }}" required autofocus>
+							<input id="quantity" type="number" min="1" class="form-control{{ $errors->has('quantity') ? ' is-invalid' : '' }}" name="quantity" value="{{ old('quantity') }}" required autofocus>
 							@if ($errors->has('quantity'))
 								<span class="invalid-feedback">
 									<strong>{{ $errors->first('quantity') }}</strong>
@@ -113,4 +112,60 @@
 		</div>
 	</div>
 </div>
+	<script type="text/x-template" id="demo-template">
+		<div>
+			<datepicker v-model="value" required></datepicker>
+		</div>
+	</script>
+	<script type="text/x-template" id="datepicker-template">
+		<input type="text" name="date" width="400" />
+	</script>
+	<script>
+		var hoy = new Date();
+		var dd = hoy.getDate();
+		var mm = hoy.getMonth()+1; //hoy es 0!
+		var yyyy = hoy.getFullYear();
+
+		if(dd<10) {
+			dd='0'+dd
+		}
+
+		if(mm<10) {
+			mm='0'+mm
+		}
+		var startDate = mm+'/'+dd+'/'+yyyy;
+			Vue.component('datepicker', {
+				template: '#datepicker-template',
+				props: ['value'],
+
+				mounted: function () {
+					var self = this;
+					$(self.$el)
+					.datepicker({ minDate: startDate, value: startDate }) // init datepicker
+					.trigger('change')
+					.on('change', function () { // emit event on change.
+						self.$emit('input', this.value);
+					})
+				},
+
+				watch: {
+					value: function (value) {
+						$(this.$el).val(value);
+					}
+				},
+
+				destroyed: function () {
+					$(this.$el).datepicker('destroy');
+				}
+			})
+
+			var app = new Vue({
+				el: '#app',
+				template: '#demo-template',
+
+				data: {
+					value: hoy
+				}
+			})
+	</script>
 @endsection

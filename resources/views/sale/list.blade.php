@@ -27,7 +27,7 @@
           @foreach ($sales as $sale)
           <tr>
             <td>{{ $sale->id }}</td>
-            <td>{{ $sale->name }}</td>
+            <td>{{ $sale->description }}</td>
             <td>{{ $sale->is_approved ? 'SI' : 'NO' }}</td>
             <td>{{ $sale->created_at }}</td>
             <td>

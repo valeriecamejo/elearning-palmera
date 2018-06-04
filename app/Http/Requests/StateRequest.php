@@ -3,9 +3,8 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
-use Illuminate\Support\Facades\Auth;
 
-class DownloadRequest extends FormRequest
+class StateRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,14 +23,14 @@ class DownloadRequest extends FormRequest
      */
     public function rules()
     {
-      return [
-        'name'  => 'required',
-      ];
+        return [
+            'name' => 'required|max:255|unique:states,name',
+        ];
     }
-
     public function messages() {
-    return [
-      'name.unique'  => 'Ya existe un archivo con este nombre',
-    ];
-  }
+        return [
+            'name.required' => 'Debe asignar un nombre.',
+            'name.unique'   => 'Ya existe un estado/provincia con este nombre',
+        ];
+    }
 }

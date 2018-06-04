@@ -129,4 +129,15 @@ class ProductController extends Controller {
     }
     return redirect()->to('products/list');
   }
+
+   /**
+   * Content by Product.
+   *
+   * @param  product_id
+   * @return view
+   */
+  public function findProduct($product_id) {
+    $product  = Product::find($product_id);
+    return view('catalog.product', compact('product', 'product_id'));
+  }
 }

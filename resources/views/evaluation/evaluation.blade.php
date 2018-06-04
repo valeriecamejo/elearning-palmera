@@ -13,7 +13,7 @@
         {{ $evaluation->name }}
 			</div>
       <div class="card-body">
-      <form method="POST" action="{{ url('evaluations/'.$id) }}">
+      <form method="POST" action="{{ url('evaluations/'.$id . '/' . $product_id) }}">
 					@csrf
         <div class="form-group row">
           <div class="col-md-12">

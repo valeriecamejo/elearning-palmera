@@ -7,7 +7,7 @@
 			<div class="card-header">
 				<ul class="nav nav-tabs card-header-tabs">
 					<li class="nav-item">
-            <a class="nav-link" href="{{ url('/downloads') }}">Listado</a>
+            <a class="nav-link" href="{{ url('downloads/' . $product_id) }}">Listado</a>
           </li>
 					<li class="nav-item">
 						<a class="nav-link active">Nuevo</a>
@@ -16,7 +16,7 @@
 			</div>
 			<div class="card-body">
 				<h5 class="card-title">Cargar un Archivo</h5>
-				<form enctype="multipart/form-data" method="POST" action="{{ url('downloads/create') }}" files=”true” enctype="multipart/form-data">
+				<form enctype="multipart/form-data" method="POST" action="{{ url('downloads/create/' . $product_id) }}" files=”true” enctype="multipart/form-data">
 					@csrf
 					<div class="form-group row">
 						<label for="name" class="col-md-4 col-form-label text-md-right">{{ __('Nombre') }}</label>
@@ -46,6 +46,7 @@
 						<div class="col-md-6">
 							<input type="file" class="form-control{{ $errors->has('file') ? ' is-invalid' : '' }}" name="file" value="{{ old('name') }}" required>
 							<input type="hidden" class="form-control{{ $errors->has('file') ? ' is-invalid' : '' }}" name="from_content" value="0">
+						<input type="hidden" class="form-control{{ $errors->has('file') ? ' is-invalid' : '' }}" name="product_id" value="{{ $product_id }}">
 							@if ($errors->has('file'))
 								<span class="invalid-feedback">
 									<strong>{{ $errors->first('file') }}</strong>

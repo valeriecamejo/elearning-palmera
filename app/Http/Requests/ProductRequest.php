@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Support\Facades\Auth;
 
 class ProductRequest extends FormRequest {
   /**
@@ -23,7 +24,7 @@ class ProductRequest extends FormRequest {
   public function rules()
   {
     return [
-      'name'          => 'required|max:255|unique:products,name',
+      'name'          => 'required|max:255',
       'description'   => 'required|max:255',
       'model'         => 'required|max:255',
       'version'       => 'required|max:255',
@@ -32,6 +33,12 @@ class ProductRequest extends FormRequest {
       'valoration'    => 'required|numeric',
       'price'         => 'required',
       'photo'         => 'image'
+    ];
+  }
+  public function messages() {
+    return [
+      'name.required' => 'Debe asignar un nombre.',
+      'name.photo'    => 'El archivo debe ser una foto',
     ];
   }
 }

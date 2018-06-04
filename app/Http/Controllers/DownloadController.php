@@ -27,9 +27,12 @@ class DownloadController extends Controller {
    * @return downloads
    */
   //TODO: consultar todos los archivos
-    public function index() {
-      $downloads = Download::where('brand_id', Auth::user()->brand_id)->paginate(15);
-      return view('download.list', compact('downloads'));
+    public function index($product_id) {
+
+      $downloads = Download::where('brand_id', Auth::user()->brand_id)
+                           ->where('product_id', $product_id)
+                           ->paginate(15);
+      return view('download.list', compact('downloads', 'product_id'));
     }
 
   /**
@@ -37,8 +40,8 @@ class DownloadController extends Controller {
    *
    * @return view
    */
-    public function create() {
-      return view('download.create');
+    public function create($product_id) {
+      return view('download.create', compact('product_id'));
     }
 
     /**
@@ -47,8 +50,8 @@ class DownloadController extends Controller {
    * @param  Request  $request
    * @return \Illuminate\Http\Response
    */
-  public function store(DownloadRequest $request) {
-    $download = Download::insertDownload($request->all());
+  public function store(DownloadRequest $request, $product_id) {
+    $download = Download::insertDownload($request->all(), $product_id);
     if ($download) {
       Session::flash('message', 'Archivo creado correctamente.');
       Session::flash('class', 'success');
@@ -56,7 +59,7 @@ class DownloadController extends Controller {
       Session::flash('message', 'Error al guardar los datos.');
       Session::flash('class', 'danger');
     }
-    return view('download.create');
+    return view('download.create', compact('product_id'));
   }
 
   /**
@@ -77,7 +80,7 @@ class DownloadController extends Controller {
    * @param  download_id
    * @return view
    */
-  public function delete($download_id) {
+  public function delete($download_id, $product_id) {
 
     $download = Download::deleteDownload($download_id);
     if ($download) {
@@ -87,7 +90,7 @@ class DownloadController extends Controller {
       Session::flash('message', 'Error al eliminar el archivo.');
       Session::flash('class', 'danger');
     }
-    return redirect()->to('downloads');
+    return redirect()->to('downloads/' . $product_id);
   }
 
    /**
@@ -96,10 +99,10 @@ class DownloadController extends Controller {
    * @param  download_id
    * @return $download
    */
-    public function edit($download_id) {
+    public function edit($download_id, $product_id) {
 
       $download = Download::find($download_id);
-        return view('download.edit', compact('download'));
+        return view('download.edit', compact('download', 'product_id'));
     }
 
     /**
@@ -108,9 +111,9 @@ class DownloadController extends Controller {
    * @param  Request $request, id
    * @return $id
    */
-    public function saveEdit(DownloadUpdateRequest $request, $id) {
+    public function saveEdit(DownloadUpdateRequest $request, $download_id, $product_id) {
 
-      $download = Download::saveEdit($request->all(), $id);
+      $download = Download::saveEdit($request->all(), $download_id, $product_id);
       if ($download) {
         Session::flash('message', 'Archivo actualizado correctamente.');
         Session::flash('class', 'success');
@@ -118,6 +121,20 @@ class DownloadController extends Controller {
         Session::flash('message', 'Error al actualizar los datos.');
         Session::flash('class', 'danger');
       }
-      return redirect()->to('downloads/edit/'.$id);
+      return redirect()->to('downloads/edit/' . $download_id . '/' . $product_id);
+    }
+
+    /**
+   * Save country edited.
+   *
+   * @param  id
+   * @return $id
+   */
+    public function downloadByProduct($product_id) {
+
+      $downloads   = Download::where('brand_id', Auth::user()->brand_id)
+                           ->where('product_id', $product_id)
+                           ->paginate(20);
+      return response()->json($downloads);
     }
 }

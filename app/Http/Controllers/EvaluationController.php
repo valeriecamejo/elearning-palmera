@@ -112,7 +112,8 @@ class EvaluationController extends Controller {
   public function allEvaluationsByProduct($product_id) {
     $evaluations  = Evaluation::where('product_id', '=', $product_id)->paginate(10);
     $product      = Product::find($product_id);
-    return view('evaluation.evaluation_list', compact('evaluations','product_id', 'product'));
+    // return view('evaluation.evaluation_list', compact('evaluations','product_id', 'product'));
+    return response()->json($evaluations);
   }
 
   
@@ -121,7 +122,7 @@ class EvaluationController extends Controller {
    *
    * @return \Illuminate\Http\Response
    */
-  public function EvaluationByProduct($id) {
+  public function EvaluationByProduct($id, $product_id) {
     $evaluation   = Evaluation::find($id);
     $questions    = Question::where('evaluation_id', '=', $id)->get();
     $questions_answers = [];
@@ -132,10 +133,10 @@ class EvaluationController extends Controller {
       array_push($questions_answers, $construct_array);
       $construct_array = '';
     }
-    return view('evaluation.evaluation', compact('evaluation','questions_answers','id'));
+    return view('evaluation.evaluation', compact('evaluation','questions_answers','id', 'product_id'));
   }
 
-  public function saveEvaluationByProduct(Request $request, $id) {
+  public function saveEvaluationByProduct(Request $request, $id, $product_id) {
     $user_evaluation  = Evaluation::saveEvaluationByProduct($request, $id);
     if ($user_evaluation) {
       Session::flash('message', 'Respuestas guardadas correctamente.');
@@ -144,12 +145,12 @@ class EvaluationController extends Controller {
       Session::flash('message', 'Error al guardadar las Respuestas.');
       Session::flash('class', 'danger');
     }
-    return redirect()->to('/evaluations/user_result/'.$user_evaluation->id);
+    return redirect()->to('/evaluations/user_result/'.$user_evaluation->id . '/' . $product_id);
   }
 
-  public function userResult($id) {
+  public function userResult($id, $product_id) {
     $user_result  = UserEvaluation::find($id);
     $evaluation   = Evaluation::find($user_result->evaluation_id);
-    return view('evaluation.result', compact('evaluation','user_result'));
+    return view('evaluation.result', compact('evaluation','user_result', 'product_id'));
   }
 }

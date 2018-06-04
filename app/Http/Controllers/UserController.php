@@ -11,6 +11,7 @@ use Illuminate\Support\Facades\Session;
 use App\Brand;
 use App\Country;
 use App\Role;
+use App\State;
 use App\UserEvaluation;
 use Illuminate\Support\Facades\Auth;
 
@@ -102,7 +103,8 @@ class UserController extends Controller {
     $brand     = Brand::find($user->brand_id);
     $country   = Country::find($user->country_id);
     $role      = Role::find($user->role_id);
-    return view('user.show', compact('user','brand','country','role'));
+    $state     = State::find($user->state_id);
+    return view('user.show', compact('user','brand','country','role', 'state'));
   }
 
     /**
@@ -113,9 +115,10 @@ class UserController extends Controller {
   public function edit($id) {
     $user       = User::find($id);
     $brands     = Brand::all();
-    $countries  = Country::all();
+    $country    = Country::find($user->country_id);
+    $state      = State::find($user->state_id);
     $roles      = Role::all();
-    return view('user.edit', compact('user','brands','countries','roles'));
+    return view('user.edit', compact('user','brands','country','roles', 'state'));
   }
 
   public function saveUpdate(UserUpdateRequest $request, $id) {

@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="row justify-content-center">
+<div id="city" class="row justify-content-center">
 	<div class="col-md-8">
 		<div class="card">
 			<div class="card-header">
@@ -97,20 +97,27 @@
 					{{ Form::hidden('brand_id', Auth::user()->brand_id , array('id' => 'brand_id')) }}
 					@endif
 					<div class="form-group row">
-						<label for="country_id" class="col-md-4 col-form-label text-md-right">{{ __('País') }}</label>
-						<div class="col-md-6">
-              <select id="country_id" class="form-control{{ $errors->has('country_id') ? ' is-invalid' : '' }}" name="country_id" autofocus required>
-                @foreach ($countries as $country)
-                <option value="{{ $country->id }}"> {{ $country->name }} </option>
-                @endforeach
+            <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('Pais') }}</label>
+            <div class="col-md-6">
+              <select v-model="country_id" @click="statesOfCountry(country_id)" name="country_id" class="form-control" required>
+                <option disabled value="">Seleccione</option>
+                <option v-for="country in countries" :value="country.id"  >
+                  @{{ country.name }}
+                </option>
               </select>
-							@if ($errors->has('country_id'))
-								<span class="invalid-feedback">
-									<strong>{{ $errors->first('country_id') }}</strong>
-								</span>
-							@endif
-						</div>
-					</div>
+            </div>
+          </div>
+          <div class="form-group row">
+            <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('Estado/Provincia') }}</label>
+            <div class="col-md-6">
+              <select v-model="state_id" name="state_id" class="form-control" required>
+                <option disabled value="">Seleccione</option>
+                <option v-for="state in states" :value="state.id">
+                  @{{ state.name }}
+                </option>
+              </select>
+            </div>
+          </div>
 					<div class="form-group row">
 						<label for="phone" class="col-md-4 col-form-label text-md-right">{{ __('Teléfono') }}</label>
 						<div class="col-md-6">
@@ -162,4 +169,5 @@
 		</div>
 	</div>
 </div>
+{!! Html::script('/js/vueJs/city/create.js') !!}
 @endsection

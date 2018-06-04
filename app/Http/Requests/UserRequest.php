@@ -22,24 +22,27 @@ class UserRequest extends FormRequest
    */
   public function rules() {
     return [
-      'name'        => 'required|max:255',
-      'last_name'   => 'required|max:255',
+      'name'        => 'required|alpha|max:60',
+      'last_name'   => 'required|alpha|max:60',
       'username'    => 'required|max:255|unique:users,username',
       'email'       => 'required|email|max:255|unique:users,email',
       'dni'         => 'required|numeric|min:999999|unique:users,dni',
       'role_id'     => 'required|numeric',
       'brand_id'    => 'required|numeric',
       'country_id'  => 'required|numeric',
+      'state_id'    => 'required|numeric',
       'phone'       => 'required|numeric|min:000999999',
       'password'    => 'required|min:6|confirmed',
     ];
   }
   public function messages() {
     return [
-      'dni.min'       => 'La cédula no debe ser menor de 6 dígitos.',
-      'dni.numeric'   => 'La cédula solo puede contener números.',
-      'phone.min'     => 'El número de teléfono debe contener 7 dígitos.',
-      'phone.numeric' => 'El número de teléfono solo puede contener números.',
+      'name.alpha'      => 'El nombre solo debe contener letras.',
+      'last_name.alpha' => 'El apellido solo debe contener letras.',
+      'dni.min'         => 'La cédula no debe ser menor de 6 dígitos.',
+      'dni.numeric'     => 'La cédula solo puede contener números.',
+      'phone.min'       => 'El número de teléfono debe contener 7 dígitos.',
+      'phone.numeric'   => 'El número de teléfono solo puede contener números.',
     ];
   }
 }

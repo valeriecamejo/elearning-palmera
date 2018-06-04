@@ -14,6 +14,7 @@
         </div>
         <h5>Evaluación: @if($user_result->approved) Aprobada @else No Aprobada @endif
         </h5>
+        <br><a class="btn btn-primary btn" href="{{ url('product/' . $product_id) }}">Regresar</a>
       </div>
     </div>
   </div>

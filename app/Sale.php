@@ -5,6 +5,7 @@ namespace App;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Auth;
+use DateTime;
 
 class Sale extends Model {
      /**
@@ -24,11 +25,13 @@ class Sale extends Model {
   protected $hidden = [];
 
   public static function insertSale($request) {
+    $date_format        = new DateTime($request['date']);
+    $date               = $date_format->format('Y/m/d');
     $sale               = new Sale;
     $sale->description  = $request['description'];
     $sale->user_id      = Auth::user()->id;
     $sale->product_id   = $request['product_id'];
-    $sale->date         = $request['date'];
+    $sale->date         = $date;
     $sale->brand_id     = Auth::user()->brand_id;
     $sale->quantity     = $request['quantity'];
     $sale->store        = $request['store'];
@@ -48,7 +51,6 @@ class Sale extends Model {
       return $sale;
     }
   }
-
 
   public static function approveDisapprove($id, $value) {
     $sale                 = Sale::find($id);

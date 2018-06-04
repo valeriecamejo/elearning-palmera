@@ -5,14 +5,14 @@
 	<div class="col-md-8">
 		<div class="card">
 			<div class="card-header">
-      <ul class="nav nav-tabs card-header-tabs">
+        {{-- <ul class="nav nav-tabs card-header-tabs">
 					<li class="nav-item">
 						<a class="nav-link" href="{{ url('/downloads') }}">Descargables</a>
 					</li>
-				</ul>
+        </ul> --}}
+        <h5>{{ $download->name }}</h5>
 			</div>
 			<div class="card-body">
-      <h5>{{ $download->name }}</h5>
 					@csrf
           <div class="form-group row">
             <label for="last_name" class="col-md-4 col-form-label text-md-right">{{ __('Nombre:') }}</label>

@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Support\Facades\Session;
+use App\Http\Requests\StateRequest;
+use App\Http\Requests\StateUpdateRequest;
 use Illuminate\Http\Request;
 use App\State;
 use App\Country;
@@ -58,7 +60,7 @@ class StateController extends Controller
    * @param  Request  $request
    * @return void
    */
-  public function store(Request $request) {
+  public function store(StateRequest $request) {
 
     $state = State::insertState($request->all());
     if ($state) {
@@ -68,7 +70,7 @@ class StateController extends Controller
       Session::flash('message', 'Error al registrar los datos.');
       Session::flash('class', 'danger');
     }
-    return redirect()->to('/states/create');
+    return redirect()->to('/states');
   }
 
   /**
@@ -103,7 +105,7 @@ class StateController extends Controller
    * @param  state_id
    * @return void
    */
-  public function saveEdit(Request $request, $state_id) {
+  public function saveEdit(StateUpdateRequest $request, $state_id) {
 
     $state = State::saveEdit($request->all(), $state_id);
     if ($state) {
@@ -113,7 +115,7 @@ class StateController extends Controller
       Session::flash('message', 'Error al actualizar los datos.');
       Session::flash('class', 'danger');
     }
-    return redirect()->to('states/edit/'.$state_id);
+    return redirect()->to('/states');
   }
 
   /**
