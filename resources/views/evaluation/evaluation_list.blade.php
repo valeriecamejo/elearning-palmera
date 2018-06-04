@@ -17,7 +17,7 @@
           <tr>
             <td>{{ $evaluation->name }}</td>
             <td>
-              <a class="btn btn-success" href="{{ url('/evaluations/'.$evaluation->id) }}">
+              <a class="btn btn-success" href="{{ url('evaluations/'.$evaluation->id) }}">
                 Continuar <i class="fa fa-play-circle"></i>
               </a>
             </td>
