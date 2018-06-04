@@ -22,6 +22,7 @@ class CreateUsersTable extends Migration
       $table->integer('role_id');
       $table->integer('brand_id');
       $table->integer('country_id');
+      $table->integer('state_id');
       $table->string('phone')->nullable();
       $table->boolean('active');
       $table->string('password');

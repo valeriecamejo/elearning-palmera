@@ -41,11 +41,14 @@
               <a class="" href="{{ url('/products/show/'.$product->id) }}" title="Ver">
                 <i class="fas fa-eye"></i>
               </a>
-              <a class="" href="{{ url('/products/edit/'.$product->id) }}" title="Editar">
+              <a class="" href="{{ url('/products/edit/'. $product->id) }}" title="Editar">
                 <i class="fas fa-edit"></i>
               </a>
-              <a class="" href="{{ url('contents/'.$product->id) }}" title="Contenidos">
+              <a class="" href="{{ url('contents/'. $product->id) }}" title="Contenidos">
                 <i class="fas fa-file-alt"></i>
+              </a>
+              <a class="" href="{{ url('downloads/' . $product->id ) }}" title="Descargas">
+                <i class="fas fa-download"></i>
               </a>
               <a class="" href="{{ url('/products/active_deactive/'.$product->id) }}" title="Activar / Desactivar">
               @if ($product->active == true)

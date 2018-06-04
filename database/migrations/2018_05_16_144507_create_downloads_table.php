@@ -16,6 +16,7 @@ class CreateDownloadsTable extends Migration
         Schema::create('downloads', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('brand_id');
+            $table->integer('product_id')->nullable();
             $table->string('name');
             $table->text('description')->nullable();
             $table->text('file')->nullable();

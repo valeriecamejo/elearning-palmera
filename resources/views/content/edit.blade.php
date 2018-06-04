@@ -28,7 +28,7 @@
               </div>
               <div class="form-group row">
                 <label for="name" class="col-md-6 col-form-label"><h4>{{ __('Carga de contenido') }}</h4></label>
-                <a class="col-md-5 text-md-right" href="{{ url('/contents/images/'.Auth::user()->brand_id) }}" target="_blank">
+                <a class="col-md-5 text-md-right" href="{{ url('/contents/images/'. Auth::user()->brand_id) }}" target="_blank">
                   <i class="far fa-image">IMÁGENES</i>
                 </a><br>
                 <div class="col-md-12">

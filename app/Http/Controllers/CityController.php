@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\City;
 use App\State;
 use App\Country;
+use App\Http\Requests\CityRequest;
 use App\Http\Requests\CityUpdateRequest;
 use Illuminate\Support\Facades\Session;
 
@@ -45,7 +46,7 @@ class CityController extends Controller {
    * @param  Request  $request
    * @return view
    */
-  public function store(Request $request) {
+  public function store(CityRequest $request) {
     $city = City::insertCity($request->all());
     if ($city) {
       Session::flash('message', 'Ciudad creada exitosamente.');
@@ -54,7 +55,7 @@ class CityController extends Controller {
       Session::flash('message', 'Error al registrar los datos.');
       Session::flash('class', 'danger');
     }
-    return redirect()->to('cities/create');
+    return redirect()->to('/cities');
   }
 
   /**
@@ -116,7 +117,7 @@ class CityController extends Controller {
       Session::flash('message', 'Error al actualizar los datos.');
       Session::flash('class', 'danger');
     }
-    return redirect()->to('cities/edit/'.$id);
+    return redirect()->to('/cities');
   }
 
 }

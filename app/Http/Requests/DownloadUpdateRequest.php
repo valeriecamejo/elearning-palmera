@@ -22,7 +22,7 @@ class DownloadUpdateRequest extends FormRequest
   */
   public function rules() {
     return [
-      'name' => 'required|max:255|unique:downloads,name,'.$this->id . 'id',
+      'name' => 'required|max:255|unique:downloads,name,' . $this->download_id . 'id',
     ];
   }
   public function messages() {

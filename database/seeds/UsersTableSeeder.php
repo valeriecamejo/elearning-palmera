@@ -20,6 +20,7 @@ class UsersTableSeeder extends Seeder
         'role_id'     => '1',
         'brand_id'    => '1',
         'country_id'  => '1',
+        'state_id'    => '1',
         'active'      =>  1,
         'password'    => Hash::make("zxcvbnm")
       ]);

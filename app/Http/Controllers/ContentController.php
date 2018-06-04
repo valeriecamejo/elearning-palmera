@@ -127,17 +127,6 @@ class ContentController extends Controller
       'ContentController@index', ['id' => $product_id]
     );
   }
-  /**
-   * Content by Product.
-   *
-   * @param  product_id
-   * @return view
-   */
-  public function contentByProduct($product_id) {
-    $contents = Content::contentByProduct($product_id);
-    $product  = Product::find($product_id);
-    return view('catalog.product', compact('contents', 'product'));
-  }
 
   /**
    * Content by Product.
@@ -157,8 +146,8 @@ class ContentController extends Controller
    * @param  void
    * @return view
    */
-  public function newImage() {
-    return view('content.new_image');
+  public function newImage($brand_id) {
+    return view('content.new_image', compact('brand_id'));
   }
 
   /**
@@ -168,7 +157,7 @@ class ContentController extends Controller
    * @return $id
    */
   public function saveNewImage(Request $request, $brand_id) {
-    $newImage = Download::insertDownload($request->all(), $brand_id);
+    $newImage = Download::insertDownload($request->all(), $request['product_id']);
     if ($newImage) {
       Session::flash('message', 'Imagen agregada correctamente.');
       Session::flash('class', 'success');
@@ -176,6 +165,19 @@ class ContentController extends Controller
       Session::flash('message', 'Error al actualizar el contenido.');
       Session::flash('class', 'danger');
     }
-    return redirect()->to('/contents/images/'.$brand_id);
+    return redirect()->to('/contents/images/' . $brand_id);
+  }
+
+  /**
+   * All products list.
+   *
+   * @return $products
+   */
+  public function contentByProduct($product_id) {
+
+    $contents = DB::table('contents')
+                  ->where('contents.product_id', $product_id)
+                  ->paginate(15);
+    return response()->json($contents);
   }
 }

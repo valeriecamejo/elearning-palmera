@@ -48,7 +48,7 @@
                   <div class="card-header">
                     <div class="form-group row">
                       <h3 class="col-md-6">Imagenes guardadas</h3>
-                      <a class="col-md-2 offset-md-3  btn btn-primary btn" href="{{ url('/contents/images/add/'.Auth::user()->brand_id) }}">Agregar imagen</a>
+                      <a class="col-md-2 offset-md-3  btn btn-primary btn" href="{{ url('/contents/images/add/' . Auth::user()->brand_id) }}">Agregar imagen</a>
                     </div>
                   </div>
                   <div class="card-body">

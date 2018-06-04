@@ -16,7 +16,7 @@ class User extends Authenticatable {
    */
   protected $fillable = [
     'name', 'last_name', 'username', 'email', 'dni', 'role_id', 'brand_id',
-    'country_id', 'active', 'phone', 'password',
+    'country_id', 'state_id', 'active', 'phone', 'password',
   ];
 
   /**
@@ -38,6 +38,7 @@ class User extends Authenticatable {
     $user->role_id    = $request['role_id'];
     $user->brand_id   = $request['brand_id'];
     $user->country_id = $request['country_id'];
+    $user->state_id   = $request['state_id'];
     $user->phone      = $request['phone'];
     $user->password   = Hash::make($request['password']);
     $user->active     = 1;
@@ -47,9 +48,9 @@ class User extends Authenticatable {
   }
 
   public static function saveProfile($request) {
-    $user           = User::find(Auth::user()->id);
-    $user->username = $request['username'];
-    $user->phone    = $request['phone'];
+    $user             = User::find(Auth::user()->id);
+    $user->username   = $request['username'];
+    $user->phone      = $request['phone'];
     if($request['password']!= null) {
       $user->password = Hash::make($request['password']);
     }
@@ -68,6 +69,7 @@ class User extends Authenticatable {
     $user->role_id    = $request['role_id'];
     $user->brand_id   = $request['brand_id'];
     $user->country_id = $request['country_id'];
+    $user->state_id   = $request['state_id'];
     $user->phone      = $request['phone'];
     if($request['password']!= null) {
       $user->password = Hash::make($request['password']);

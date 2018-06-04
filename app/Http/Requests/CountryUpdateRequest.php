@@ -22,13 +22,14 @@ class CountryUpdateRequest extends FormRequest
   */
   public function rules() {
     return [
-      'name'      => 'required|max:255|unique:countries,name,'.$this->id . 'id',
+      'name'      => 'required|alpha|max:255|unique:countries,name,'.$this->id . 'id',
       'nickname'  => 'required|max:255|unique:countries,nickname,'.$this->id . 'id',
     ];
   }
   public function messages() {
     return [
       'name.required'     => 'Debe asignar un nombre.',
+      'name.alpha'        => 'El nombre solo debe contener letras',
       'name.unique'       => 'Ya existe un pais con este nombre',
       'nickname.required' => 'Debe asignar un nickname.',
       'nickname.unique'   => 'Ya existe un pais con este nickname',

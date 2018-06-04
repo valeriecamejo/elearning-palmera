@@ -86,6 +86,7 @@ Route::get('/categories/active_deactive/{id}', 'CategoryController@activeDeactiv
 
 // Product Routes...
 Route::get('/products', 'ProductController@index')->name('products');
+Route::get('/product/{id}', 'ProductController@findProduct')->name('product/{id}');
 Route::get('/products/list', 'ProductController@list')->name('products/list');
 Route::get('/products/create', 'ProductController@create')->name('products/create');
 Route::post('/products/create', 'ProductController@store')->name('products/create');
@@ -111,9 +112,9 @@ Route::post('/evaluations/{id}/questions/edit/{question_id}', 'QuestionControlle
 Route::get('/evaluations/{id}/questions/{question_id}/answers/edit/{answer_id}', 'QuestionController@answer_edit')->name('answers/edit');
 Route::post('/evaluations/{id}/questions/{question_id}/answers/edit/{answer_id}', 'QuestionController@answer_saveUpdate')->name('answers/edit');
 Route::get('/evaluations/product/{product_id}', 'EvaluationController@allEvaluationsByProduct')->name('evaluations/all_evaluations_product');
-Route::get('/evaluations/{id}', 'EvaluationController@EvaluationByProduct')->name('evaluation');
-Route::post('/evaluations/{id}', 'EvaluationController@saveEvaluationByProduct')->name('evaluation');
-Route::get('/evaluations/user_result/{id}', 'EvaluationController@userResult')->name('user_result');
+Route::get('/evaluations/{id}/{product_id}', 'EvaluationController@EvaluationByProduct')->name('evaluation');
+Route::post('/evaluations/{id}/{product_id}', 'EvaluationController@saveEvaluationByProduct')->name('evaluation');
+Route::get('/evaluations/user_result/{id}/{product_id}', 'EvaluationController@userResult')->name('user_result');
 
 // Modules Routes...
 Route::get('modules/list', 'ModuleController@index')->name('modules');
@@ -156,13 +157,17 @@ Route::get('/catalogs', 'CatalogController@index')->name('catalogs');
 Route::get('/catalogs/products', 'CatalogController@allProducts')->name('catalogs/products');
 
 // Downloads Routes...
-Route::get('/downloads', 'DownloadController@index')->name('downloads');
-Route::get('/downloads/create', 'DownloadController@create')->name('/downloads/create');
-Route::post('/downloads/create', 'DownloadController@store')->name('/downloads/create');
+Route::get('/downloads/{product_id}', 'DownloadController@index')->name('downloads');
+Route::get('/downloads/create/{id}', 'DownloadController@create')->name('/downloads/create');
+Route::post('/downloads/create/{id}', 'DownloadController@store')->name('/downloads/create/{id}');
 Route::get('/downloads/show/{id}', 'DownloadController@show')->name('/downloads/show/{id}');
-Route::get('/downloads/delete/{id}', 'DownloadController@delete')->name('/downloads/delete/{id}');
-Route::get('/downloads/edit/{id}', 'DownloadController@edit')->name('/downloads/edit/{id}');
-Route::post('/downloads/edit/{id}', 'DownloadController@saveEdit')->name('/downloads/edit/{id}');
+Route::get('/downloads/delete/{download_id}/{product_id}', 'DownloadController@delete')->name('/downloads/delete/{download_id}/{product_id}');
+Route::get('/downloads/edit/{download_id}/{product_id}', 'DownloadController@edit')->name('/downloads/edit');
+Route::post('/downloads/edit/{download_id}/{product_id}', 'DownloadController@saveEdit')->name('/downloads/edit/{download_id}/{product_id}');
+
+//download by product
+Route::get('/downloads/product/{id}', 'DownloadController@downloadByProduct')->name('/downloads/product/{id}');
+
 
 // Sale Routes...
 Route::get('/sales', 'SaleController@index')->name('sales');

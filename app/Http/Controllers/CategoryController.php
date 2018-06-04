@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use DB;
 use App\Category;
 use App\Http\Requests\CategoryRequest;
-use App\Http\Requests\EditCategoryRequest;
+use App\Http\Requests\CategoryUpdateRequest;
 use Illuminate\Support\Facades\Session;
 
 class CategoryController extends Controller {
@@ -51,7 +51,7 @@ class CategoryController extends Controller {
       Session::flash('message', 'Error al registrar los datos.');
       Session::flash('class', 'danger');
     }
-    return redirect()->to('categories/create');
+    return redirect()->to('categories');
   }
 
       /**
@@ -74,7 +74,7 @@ class CategoryController extends Controller {
     return view('category.edit', compact('category'));
   }
 
-  public function saveUpdate(EditCategoryRequest $request, $id) {
+  public function saveUpdate(CategoryUpdateRequest $request, $id) {
     $category = Category::saveUpdate($request->all(), $id);
     if ($category) {
       Session::flash('message', 'Actualizado correctamente.');
@@ -83,7 +83,7 @@ class CategoryController extends Controller {
       Session::flash('message', 'Error al guardar los datos.');
       Session::flash('class', 'danger');
     }
-    return redirect()->to('categories/show/'.$id);
+    return redirect()->to('/categories');
   }
     /**
    * Show the application Active Deactive.
