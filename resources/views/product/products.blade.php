@@ -24,7 +24,7 @@
           <div class="col-sm-12 col-md-4">
             <div class="card">
               @if ($product->photo)
-              <img class="card-img-top" src="{{ asset('storage/products/'.$product->photo) }}" alt="{{ $product->name }}">
+              <img class="card-img-top" src="{{ asset('./storage/products/'.$product->photo) }}" alt="{{ $product->name }}">
               @else
               <img class="card-img-top" src="{{ asset('img/sinfoto.png') }}" alt="{{ $product->name }}">
               @endif

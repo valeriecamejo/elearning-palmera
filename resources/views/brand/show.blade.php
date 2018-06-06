@@ -5,12 +5,16 @@
 	<div class="col-md-8">
 		<div class="card">
 			<div class="card-header">
-        {{ $brand->name }}
+        <ul class="nav nav-tabs card-header-tabs">
+          <li class="nav-item">
+            <a class="nav-link" href="{{ url('/brands') }}">Marcas</a>
+          </li>
+        </ul>
 			</div>
 			<div class="card-body">
 					<div class="form-group row">
 						<label for="name" class="col-md-4 col-form-label text-md-right">{{ __('Nombre') }}</label>
-            <p class="col-form-label">{{ $brand->name }}</p>						
+            <p class="col-form-label">{{ $brand->name }}</p>
 					</div>
           <div class="form-group row">
             <label for="navbar_color" class="col-md-4 col-form-label text-md-right">{{ __('Color de Menú') }}</label>
@@ -27,11 +31,11 @@
           </div>
 					<div class="form-group row">
 						<label for="logo" class="col-md-4 col-form-label text-md-right">{{ __('Logo') }}</label>
-            <img class="card-img-top" src="{{ asset('storage/marca_' . Auth::user()->brand_id . '/' . $brand->logo) }}" alt="{{ $brand->logo }}">
+            <img class="card-img-top" src="{{ asset('./storage/' . $brand->logo) }}" alt="{{ $brand->logo }}">
 					</div>
 					<div class="form-group row">
 						<label for="header" class="col-md-4 col-form-label text-md-right">{{ __('Imagen Header') }}</label>
-            <img class="card-img-top" src="{{ asset('storage/marca_' . Auth::user()->brand_id . '/' . $brand->header) }}" alt="{{ $brand->header }}">
+            <img class="card-img-top" src="{{ asset('./storage/' . $brand->header) }}" alt="{{ $brand->header }}">
 					</div>				  
 			</div>
 		</div>
