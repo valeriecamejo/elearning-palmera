@@ -12,11 +12,11 @@ class UsersTableSeeder extends Seeder
      */
     public function run() {
       DB::table('users')->insert([
-        'name'        => 'Solsiret',
-        'last_name'   => 'Vasquez',
+        'name'        => 'PalmEra',
+        'last_name'   => 'SuperAdmin',
         'username'    => 'Super Admin',
-        'email'       => 'solsiret@palmera.marketing',
-        'dni'         => '22904405',
+        'email'       => 'palmera@palmera.marketing',
+        'dni'         => '00000000',
         'role_id'     => '1',
         'brand_id'    => '1',
         'country_id'  => '1',
