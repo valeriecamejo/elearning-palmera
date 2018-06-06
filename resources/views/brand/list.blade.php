@@ -21,8 +21,6 @@
             <th>ID</th>
             <th>Nombre</th>
             <th>Color de Menú</th>
-            <th>Logo</th>
-            <th>Imagen Header</th>
             <th>Activo</th>
             <th>Creado</th>
             <th>Opciones</th>
@@ -32,8 +30,6 @@
             <td>{{ $brand->id }}</td>
             <td>{{ $brand->name }}</td>
             <td>{{ $brand->navbar_color }}</td>
-            <td>{{ $brand->logo }}</td>
-            <td>{{ $brand->header }}</td>
             <td>{{ $brand->active ? 'SI' : 'NO' }}</td>
             <td>{{ $brand->created_at }}</td>
             <td>

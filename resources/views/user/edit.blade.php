@@ -5,7 +5,11 @@
 	<div class="col-md-8">
 		<div class="card">
 			<div class="card-header">
-				Editar Usuario
+				<ul class="nav nav-tabs card-header-tabs">
+          <li class="nav-item">
+						<a class="nav-link" href="{{ url('/users') }}">Usuarios</a>
+					</li>
+        </ul>
 			</div>
 			<div class="card-body">
 				<form method="POST" action="{{ url('users/edit/'.$user->id) }}">
