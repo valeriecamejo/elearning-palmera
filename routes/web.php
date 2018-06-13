@@ -29,7 +29,7 @@ $this->post('password/reset', 'Auth\ResetPasswordController@reset');
 // Home
 Route::get('/home', 'HomeController@index')->name('home');
 
-// Roles Routes...
+// Role Routes...
 Route::get('/roles', 'RoleController@list')->name('roles');
 Route::get('/roles/create', 'RoleController@create')->name('roles/create');
 Route::post('/roles/create', 'RoleController@store')->name('roles/create');
@@ -116,7 +116,7 @@ Route::get('/evaluations/{id}/{product_id}', 'EvaluationController@EvaluationByP
 Route::post('/evaluations/{id}/{product_id}', 'EvaluationController@saveEvaluationByProduct')->name('evaluation');
 Route::get('/evaluations/user_result/{id}/{product_id}', 'EvaluationController@userResult')->name('user_result');
 
-// Modules Routes...
+// Module Routes...
 Route::get('modules/list', 'ModuleController@index')->name('modules');
 
 // State Routes...
@@ -130,7 +130,7 @@ Route::get('/states/active_deactive/{id}', 'StateController@active_deactive')->n
 Route::get('/states/all/{id}', 'StateController@states')->name('/states/all/{id}');
 
 
-// Cities Routes...
+// City Routes...
 Route::get('/cities', 'CityController@index')->name('cities');
 Route::get('/cities/create', 'CityController@create')->name('cities/create');
 Route::post('/cities/create', 'CityController@store')->name('cities/create');
@@ -139,7 +139,7 @@ Route::get('/cities/edit/{id}', 'CityController@edit')->name('/cities/edit/{id}'
 Route::post('/cities/edit/{id}', 'CityController@saveEdit')->name('/cities/edit/{id}');
 Route::get('/cities/active_deactive/{id}', 'CityController@activeDeactive')->name('cities/active_deactive/{id}');
 
-// Contents Routes...
+// Content Routes...
 Route::get('/contents/{product_id}', 'ContentController@index')->name('contents/{product_id}');
 Route::get('/contents/create/{id}', 'ContentController@create')->name('/contents/create');
 Route::post('/contents/create/{id}', 'ContentController@store')->name('/contents/create/{id}');
@@ -152,11 +152,11 @@ Route::get('/contents/images/{id}', 'ContentController@contentImages')->name('/c
 Route::get('/contents/images/add/{id}', 'ContentController@newImage')->name('/contents/images/add');
 Route::post('/contents/images/add/{id}', 'ContentController@saveNewImage')->name('/contents/images/add/{id}');
 
-// Catalogs Routes...
+// Catalog Routes...
 Route::get('/catalogs', 'CatalogController@index')->name('catalogs');
 Route::get('/catalogs/products', 'CatalogController@allProducts')->name('catalogs/products');
 
-// Downloads Routes...
+// Download Routes...
 Route::get('/downloads/{product_id}', 'DownloadController@index')->name('downloads');
 Route::get('/downloads/create/{id}', 'DownloadController@create')->name('/downloads/create');
 Route::post('/downloads/create/{id}', 'DownloadController@store')->name('/downloads/create/{id}');
@@ -165,7 +165,7 @@ Route::get('/downloads/delete/{download_id}/{product_id}', 'DownloadController@d
 Route::get('/downloads/edit/{download_id}/{product_id}', 'DownloadController@edit')->name('/downloads/edit');
 Route::post('/downloads/edit/{download_id}/{product_id}', 'DownloadController@saveEdit')->name('/downloads/edit/{download_id}/{product_id}');
 
-//download by product
+//Download by product
 Route::get('/downloads/product/{id}', 'DownloadController@downloadByProduct')->name('/downloads/product/{id}');
 
 
@@ -175,3 +175,14 @@ Route::get('/sales/create', 'SaleController@create')->name('sales/create');
 Route::post('/sales/create', 'SaleController@store')->name('sales/create');
 Route::get('/sales/show/{id}', 'SaleController@show')->name('sales/show');
 Route::get('/sales/approve_disapprove/{id}/{value}', 'SaleController@approveDisapprove')->name('sales/approve_disapprove');
+
+
+// Store Routes...
+Route::get('/stores', 'StoreController@index')->name('stores');
+Route::get('/stores/create', 'StoreController@create')->name('stores/create');
+Route::post('/stores/create', 'StoreController@store')->name('stores/create');
+Route::get('/stores/deactive_description/{id}', 'StoreController@editDeactive')->name('/stores/deactive_description');
+Route::post('/stores/deactive_description', 'StoreController@saveDeactive')->name('/stores/deactive_description');
+Route::get('/stores/show/{id}', 'StoreController@show')->name('stores/show');
+Route::get('/stores/edit/{id}', 'StoreController@edit')->name('/stores/edit/{id}');
+Route::post('/stores/edit/{id}', 'StoreController@saveEdit')->name('/stores/edit');

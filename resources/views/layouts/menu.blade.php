@@ -86,6 +86,9 @@
               <a class="dropdown-item" href="{{ url('/cities') }}">
                 Ciudades
               </a>
+              <a class="dropdown-item" href="{{ url('/stores') }}">
+                Tiendas
+              </a>
             </div>
           </li>
         @endguest

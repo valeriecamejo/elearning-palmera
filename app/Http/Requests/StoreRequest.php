@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class CityRequest extends FormRequest
+class StoreRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,13 +24,17 @@ class CityRequest extends FormRequest
     public function rules()
     {
         return [
-            'name' => 'required|max:255|unique:cities,name',
+            'name'       => 'required|max:255|unique:stores,name',
+            'state_id'    => 'required',
+            'country_id' => 'required',
         ];
     }
     public function messages() {
         return [
-            'name.required' => 'Debe asignar un nombre.',
-            'name.unique'   => 'Ya existe una ciudad con este nombre',
+            'name.required'       => 'Debe asignar un nombre.',
+            'name.unique'         => 'Ya existe una tienda con este nombre',
+            'state_id.required'    => 'Debe asignar una ciudad',
+            'country_id.required' => 'Debe asignar un pais',
         ];
     }
 }

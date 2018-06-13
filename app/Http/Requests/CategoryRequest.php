@@ -21,7 +21,7 @@ class CategoryRequest extends FormRequest {
    */
   public function rules() {
     return [
-      'name'          => 'required||alpha|max:255|unique:categories,name',
+      'name'          => 'required|max:255|unique:categories,name',
       'description'   => 'required|max:255',
     ];
   }
@@ -29,7 +29,6 @@ class CategoryRequest extends FormRequest {
         return [
             'name.required' => 'Debe asignar un nombre.',
             'name.unique'   => 'Ya existe una ciudad con este nombre',
-            'name.alpha'    => 'El nombre solo debe contener letras',
         ];
   }
 }

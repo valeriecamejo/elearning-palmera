@@ -28,7 +28,7 @@ class SaleRequest extends FormRequest
             'date'          => 'required',
             'product_id'    => 'required|numeric',
             'quantity'      => 'required|numeric',
-            'store'         => 'required',
+            'store_id'         => 'required',
             'file'          => 'required',
             'reference'     => 'required'
           ];

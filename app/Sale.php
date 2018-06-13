@@ -25,6 +25,7 @@ class Sale extends Model {
   protected $hidden = [];
 
   public static function insertSale($request) {
+    // var_dump($request);exit();
     $date_format        = new DateTime($request['date']);
     $date               = $date_format->format('Y/m/d');
     $sale               = new Sale;
@@ -34,7 +35,7 @@ class Sale extends Model {
     $sale->date         = $date;
     $sale->brand_id     = Auth::user()->brand_id;
     $sale->quantity     = $request['quantity'];
-    $sale->store        = $request['store'];
+    $sale->store        = $request['store_id'];
     $sale->reference    = $request['reference'];
     if(isset($request['file'])){
       // antes de hacer esto por primera vez hay que hacer php artisan storage:link
