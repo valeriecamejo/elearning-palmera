@@ -52,7 +52,7 @@ class StoreController extends Controller
 
     $store = Store::insertStore($request->all());
     if ($store) {
-      Session::flash('message', 'Tienda registrado correctamente.');
+      Session::flash('message', 'Tienda registrada correctamente.');
       Session::flash('class', 'success');
     } else {
       Session::flash('message', 'Error al registrar los datos.');

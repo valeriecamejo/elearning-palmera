@@ -117,7 +117,15 @@ Route::post('/evaluations/{id}/{product_id}', 'EvaluationController@saveEvaluati
 Route::get('/evaluations/user_result/{id}/{product_id}', 'EvaluationController@userResult')->name('user_result');
 
 // Module Routes...
-Route::get('modules/list', 'ModuleController@index')->name('modules');
+Route::get('/modules', 'ModuleController@index')->name('modules');
+Route::get('modules/list', 'ModuleController@list')->name('modules/list');
+Route::get('/modules/create', 'ModuleController@create')->name('/modules/create');
+Route::post('/modules/create', 'ModuleController@store')->name('/modules/create');
+Route::get('/modules/show/{id}', 'ModuleController@show')->name('/modules/show/{id}');
+Route::get('/modules/edit/{id}', 'ModuleController@edit')->name('/modules/edit/{id}');
+Route::post('/modules/edit/{id}', 'ModuleController@saveEdit')->name('/modules/edit/{id}');
+Route::get('/modules/deactive_description/{id}', 'ModuleController@editDeactive')->name('/modules/deactive_description/{id}');
+Route::post('/modules/deactive_description', 'ModuleController@saveDeactive')->name('/modules/deactive_description');
 
 // State Routes...
 Route::get('/states', 'StateController@index')->name('states');

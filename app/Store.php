@@ -7,6 +7,19 @@ use Illuminate\Support\Facades\Auth;
 
 class Store extends Model
 {
+    protected $table = 'stores';
+    protected $fillable = [
+                         'country_id',
+                         'state_id',
+                         'brand_id',
+                         'name',
+                         'address',
+                         'description',
+                         'active',
+                         'deactive_description',
+                         'user_id_deactive',
+                      ];
+
   /**
    * Save a state/province.
    *
@@ -21,11 +34,13 @@ class Store extends Model
     $store->state_id             =  $request['state_id'];
     $store->brand_id             =  Auth::user()->brand_id;
     $store->name                 =  ucwords($request['name']);
-    $store->description          =  $request['description'];
     $store->address              =  $request['address'];
     $store->active               =  true;
     $store->deactive_description =  '';
     $store->user_id_deactive     =  0;
+    if (isset($request['description'])) {
+      $store->description          =  $request['description'];
+    }
     if ($store->save()) {
       return $store;
     }

@@ -25,7 +25,6 @@ class Sale extends Model {
   protected $hidden = [];
 
   public static function insertSale($request) {
-    // var_dump($request);exit();
     $date_format        = new DateTime($request['date']);
     $date               = $date_format->format('Y/m/d');
     $sale               = new Sale;

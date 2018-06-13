@@ -20,7 +20,7 @@ class CreateStoresTable extends Migration
             $table->integer('brand_id');
             $table->string('name');
             $table->string('address');
-            $table->string('description');
+            $table->string('description')->nullable();
             $table->boolean('active')->default(true);
             $table->string('deactive_description')->nullable();
             $table->integer('user_id_deactive')->nullable();
