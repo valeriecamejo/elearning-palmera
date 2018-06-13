@@ -24,7 +24,7 @@ class CategoryUpdateRequest extends FormRequest
     public function rules()
     {
         return [
-            'name'    => 'required|alpha|max:255|unique:categories,name,' .$this->id,
+            'name'    => 'required|max:255|unique:categories,name,' .$this->id,
             'description'   => 'required|max:255',
        ];
     }
@@ -32,7 +32,6 @@ class CategoryUpdateRequest extends FormRequest
         return [
             'name.required' => 'Debe asignar un nombre.',
             'name.unique'   => 'Ya existe una ciudad con este nombre',
-            'name.alpha'    => 'El nombre solo debe contener letras',
         ];
     }
 }

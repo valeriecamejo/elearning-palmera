@@ -109,7 +109,7 @@ class StateController extends Controller
 
     $state = State::saveEdit($request->all(), $state_id);
     if ($state) {
-      Session::flash('message', 'Rol actualizado correctamente.');
+      Session::flash('message', 'Estado actualizado correctamente.');
       Session::flash('class', 'success');
     } else {
       Session::flash('message', 'Error al actualizar los datos.');

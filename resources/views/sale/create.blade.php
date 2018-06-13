@@ -36,7 +36,11 @@
           <div class="form-group row">
 						<label for="store" class="col-md-4 col-form-label text-md-right">{{ __('Tienda') }}</label>
 						<div class="col-md-6">
-							<input id="store" type="text" class="form-control{{ $errors->has('store') ? ' is-invalid' : '' }}" name="store" value="{{ old('store') }}" required autofocus>
+							<select id="store_id" class="form-control{{ $errors->has('store_id') ? ' is-invalid' : '' }}" name="store_id" autofocus required>
+                @foreach ($stores as $store)
+                <option value="{{ $store->id }}"> {{ $store->name }} </option>
+                @endforeach
+              </select>
 							@if ($errors->has('store'))
 								<span class="invalid-feedback">
 									<strong>{{ $errors->first('store') }}</strong>

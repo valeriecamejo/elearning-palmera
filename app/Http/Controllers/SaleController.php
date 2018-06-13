@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Http\Requests\SaleRequest;
 use App\Sale;
+use App\Store;
 use App\Product;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Auth;
@@ -36,11 +37,15 @@ class SaleController extends Controller {
   public function create() {
     if(Auth::user()->role_id == 1) {
       $products = Product::all();
+      $stores   = Store::where('active', '=', true)->get();
     } else {
-      $products = Product::where('brand_id','=', Auth::user()->brand_id)
-      ->get();
+      $products = Product::where('brand_id', '=', Auth::user()->brand_id)->get();
+      $stores   = Store::where('active',   '=', true)
+                       ->where('brand_id', '=', Auth::user()->brand_id)
+                       ->where('state_id', Auth::user()->state_id)
+                       ->get();
     }
-    return view('sale.create', compact('products'));
+    return view('sale.create', compact('products', 'stores'));
   }
   /**
    * Show the application Create.
@@ -48,7 +53,8 @@ class SaleController extends Controller {
    * @param  Request  $request
    * @return \Illuminate\Http\Response
    */
-  public function store(SaleRequest $request) {
+  public function store(Request $request) {
+
     $sale = Sale::insertSale($request->all());
     if ($sale) {
       Session::flash('message', 'Venta cargada correctamente.');
@@ -57,7 +63,7 @@ class SaleController extends Controller {
       Session::flash('message', 'Error al registrar la venta.');
       Session::flash('class', 'danger');
     }
-    return redirect()->to('sales/show/'.$sale->id);
+    return redirect()->to('/sales');
 
   }
 
@@ -69,7 +75,8 @@ class SaleController extends Controller {
   public function show($id) {
     $sale      = Sale::find($id);
     $product   = Product::find($sale->product_id);
-    return view('sale.show', compact('sale','product'));
+    $store     = Store::find($sale->store);
+    return view('sale.show', compact('sale','product', 'store'));
   }
 
   /**

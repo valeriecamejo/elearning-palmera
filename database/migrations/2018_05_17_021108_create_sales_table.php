@@ -22,7 +22,7 @@ class CreateSalesTable extends Migration
             $table->integer('product_id');
             $table->integer('brand_id');
             $table->integer('quantity');
-            $table->string('store');
+            $table->integer('store');
             $table->string('reference');
             $table->date('date');
             $table->boolean('is_approved')->default(false);
