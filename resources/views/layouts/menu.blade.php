@@ -77,6 +77,9 @@
               <a class="dropdown-item" href="{{ url('/brands') }}">
                 Marca
               </a>
+              <a class="dropdown-item" href="{{ url('/modules') }}">
+                Modulos
+              </a>
               <a class="dropdown-item" href="{{ url('/countries') }}">
                 Paises
               </a>

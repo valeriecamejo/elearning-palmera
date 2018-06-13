@@ -66,9 +66,6 @@ class Brand extends Model {
     $brand               = Brand::find($id);
     $brand->name         = $request['name'];
     $brand->navbar_color = $request['navbar_color'];
-    // $brand->logo         = $request['logo'];
-    // $brand->header       = $request['header'];
-    // return $brand;
     if ($brand->save()) {
       $brand_images = Brand::find($brand->id);
       if(isset($request['logo'])){
