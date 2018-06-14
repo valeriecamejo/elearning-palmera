@@ -1,4 +1,3 @@
-
 @extends('layouts.app')
 
 @section('content')
@@ -6,13 +5,15 @@
   <div class="col-md-10">
     <div class="card">
       <div class="card-header">
-        <h3> {{ $brand->name }} </h3>
+        <ul class="nav nav-tabs card-header-tabs">
+            <li class="nav-item">
+              <a class="nav-link" href="{{ url('/brand-news') }}">Noticias</a>
+            </li>
+          </ul>
       </div>
       <div class="card-body">
-        @foreach ($brand_news as $brand_new)
         <h3>{{ $brand_new->name }}</h3>
         {!! $brand_new->data !!}
-        @endforeach
       </div>
     </div>
   </div>

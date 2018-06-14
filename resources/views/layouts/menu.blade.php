@@ -42,6 +42,16 @@
               Ventas
             </a>
           </li>
+          <li>
+            <a class="nav-link" href="{{ url('/stores') }}">
+              Tiendas
+            </a>
+          </li>
+          <li>
+            <a class="nav-link" href="{{ url('/brand-news') }}">
+              Noticias
+            </a>
+          </li>
           <li class="nav-item dropdown">
             <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
             {{ Auth::user()->name }} <span class="caret"></span>
@@ -88,9 +98,6 @@
               </a>
               <a class="dropdown-item" href="{{ url('/cities') }}">
                 Ciudades
-              </a>
-              <a class="dropdown-item" href="{{ url('/stores') }}">
-                Tiendas
               </a>
             </div>
           </li>

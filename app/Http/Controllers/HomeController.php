@@ -1,6 +1,9 @@
 <?php
 
 namespace App\Http\Controllers;
+use Illuminate\Support\Facades\Auth;
+use App\BrandNew;
+use App\Brand;
 
 use Illuminate\Http\Request;
 
@@ -21,6 +24,8 @@ class HomeController extends Controller
    * @return \Illuminate\Http\Response
    */
   public function index() {
-    return view('home');
+    $brand_news = BrandNew::where('brand_id', Auth::user()->brand_id)->where('active', true)->paginate(15);
+    $brand      = Brand::find(Auth::user()->brand_id);
+    return view('home', compact('brand_news', 'brand'));
   }
 }
