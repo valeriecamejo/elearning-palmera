@@ -37,11 +37,11 @@
               <a class="" href="{{ url('/categories/edit/'.$category->id) }}" title="Editar">
                 <i class="fas fa-edit"></i>
               </a>
-              <a class="" href="{{ url('/categories/active_deactive/'.$category->id) }}" title="Activar / Desactivar">
+              <a class="" href="{{ url('/categories/active_deactive/'.$category->id) }}">
               @if ($category->active == true)
-                <i class="fas fa-minus-circle text-danger"></i>
+                <i class="fas fa-minus-circle text-danger" title="Desactivar"></i>
               @else
-                <i class="fas fa-play-circle text-success"></i>
+                <i class="fas fa-play-circle text-success" title="Activar"></i>
               @endif
               </a>
             </td>

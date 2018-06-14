@@ -35,7 +35,14 @@
               <a href="{{ url('/brand-news/edit/'.$brand_new->id) }}" title="Editar">
                 <i class="fas fa-edit"></i>
               </a>
-              <a href="{{ url('/brand-news/delete/'.$brand_new->id) }}"><i class="fas fa-trash-alt" title="Desactivar"></i></a>
+              <a class="" href="{{ url('/brand-news/active_deactive/'.$brand_new->id) }}" >
+              @if ($brand_new->active == true)
+                <i class="fas fa-minus-circle text-danger" title="Desactivar"></i>
+              @else
+                <i class="fas fa-play-circle text-success" title="Activar"></i>
+              @endif
+              </a>
+              <a href="{{ url('/brand-news/delete/'.$brand_new->id) }}"><i class="fas fa-trash-alt" title="Eliminar"></i></a>
             </td>
           </tr>
           @endforeach

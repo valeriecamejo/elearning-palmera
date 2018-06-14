@@ -101,7 +101,7 @@ class BrandNewController extends Controller
     }
     return redirect()->to('/brand-news');
   }
-  
+
    /**
    * Delete a Brand_new.
    *
@@ -116,6 +116,23 @@ class BrandNewController extends Controller
       Session::flash('class', 'success');
     } else {
       Session::flash('message', 'Error al eliminar el contenido.');
+      Session::flash('class', 'danger');
+    }
+    return redirect()->to('/brand-news');
+  }
+
+  /**
+   * Show the application Active Deactive.
+   *
+   * @return \Illuminate\Http\Response
+   */
+  public function activeDeactive($brand_new_id) {
+    $brand_new = BrandNew::activeDeactive($brand_new_id);
+    if ($brand_new) {
+      Session::flash('message', 'Actualizado correctamente.');
+      Session::flash('class', 'success');
+    } else {
+      Session::flash('message', 'Error al actualizar los datos.');
       Session::flash('class', 'danger');
     }
     return redirect()->to('/brand-news');

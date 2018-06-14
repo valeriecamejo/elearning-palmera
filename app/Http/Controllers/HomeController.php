@@ -24,7 +24,7 @@ class HomeController extends Controller
    * @return \Illuminate\Http\Response
    */
   public function index() {
-    $brand_news = BrandNew::where('brand_id', Auth::user()->brand_id)->paginate(15);
+    $brand_news = BrandNew::where('brand_id', Auth::user()->brand_id)->where('active', true)->paginate(15);
     $brand      = Brand::find(Auth::user()->brand_id);
     return view('home', compact('brand_news', 'brand'));
   }

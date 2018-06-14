@@ -204,3 +204,4 @@ Route::get('/brand-news/show/{id}', 'BrandNewController@show')->name('/brand-new
 Route::get('/brand-news/edit/{id}', 'BrandNewController@edit')->name('/brand-new/edit/{id}');
 Route::post('/brand-news/edit/{id}', 'BrandNewController@saveEdit')->name('/brand-new/edit/{id}');
 Route::get('/brand-news/delete/{id}', 'BrandNewController@delete')->name('/brand-news/delete/{id}');
+Route::get('/brand-news/active_deactive/{id}', 'BrandNewController@activeDeactive')->name('/brand-news/active_deactive/{id}');

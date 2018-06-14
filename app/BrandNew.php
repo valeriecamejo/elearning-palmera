@@ -64,4 +64,16 @@ class BrandNew extends Model {
     $brand_new = DB::table('brand_news')->where('id', '=', $brand_new_id)->delete();
     return $brand_new;
   }
+
+  public static function activeDeactive($brand_new_id) {
+    $brand_new           = BrandNew::find($brand_new_id);
+    if ($brand_new->active == true) {
+      $brand_new->active = false;
+    } else {
+      $brand_new->active = true;
+    }
+    if ($brand_new->save()) {
+      return $brand_new;
+    }
+  }
 }
