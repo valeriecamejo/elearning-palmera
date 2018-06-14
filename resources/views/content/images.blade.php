@@ -60,7 +60,7 @@
                           <img class="card-img-top" src="{{ asset('storage/marca_' . Auth::user()->brand_id . '/' . $image->file) }}" alt="{{ $image->name }}">
                           <div class="card-body">
                             <h6 class="card-title">
-                              <strong>url:</strong>
+                              <strong>Copia el siguiente link:</strong><br><br>
                               {{ URL::to('/') }}/storage/marca_{{ Auth::user()->brand_id }}/{{ $image->file }}
                             </h6>
                           </div>

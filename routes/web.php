@@ -194,3 +194,13 @@ Route::post('/stores/deactive_description', 'StoreController@saveDeactive')->nam
 Route::get('/stores/show/{id}', 'StoreController@show')->name('stores/show');
 Route::get('/stores/edit/{id}', 'StoreController@edit')->name('/stores/edit/{id}');
 Route::post('/stores/edit/{id}', 'StoreController@saveEdit')->name('/stores/edit');
+
+
+// New Routes...
+Route::get('/brand-news', 'BrandNewController@index')->name('news');
+Route::get('/brand-news/create', 'BrandNewController@create')->name('/brand-news/create');
+Route::post('/brand-news/create', 'BrandNewController@store')->name('/brand-news/create');
+Route::get('/brand-news/show/{id}', 'BrandNewController@show')->name('/brand-new/show/{id}');
+Route::get('/brand-news/edit/{id}', 'BrandNewController@edit')->name('/brand-new/edit/{id}');
+Route::post('/brand-news/edit/{id}', 'BrandNewController@saveEdit')->name('/brand-new/edit/{id}');
+Route::get('/brand-news/delete/{id}', 'BrandNewController@delete')->name('/brand-news/delete/{id}');
