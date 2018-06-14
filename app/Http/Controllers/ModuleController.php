@@ -7,6 +7,7 @@ use App\Http\Requests\ModuleUpdateRequest;
 use App\Http\Requests\ModuleRequest;
 use Illuminate\Http\Request;
 use App\Module;
+use App\User;
 
 class ModuleController extends Controller
 {
@@ -77,7 +78,8 @@ class ModuleController extends Controller
   public function show($module_id) {
 
     $module   = Module::find($module_id);
-    return view('module.show', compact('module'));
+    $user     = User::find($module->user_id_deactive);
+    return view('module.show', compact('module', 'user'));
   }
 
    /**

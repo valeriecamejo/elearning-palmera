@@ -38,6 +38,20 @@
               <p class="col-form-label">{{ $module->is_config ? 'SI' : 'NO' }}</p>
             </div>
           </div>
+          @if($module->active == false)
+          <div class="form-group row">
+            <label for="last_name" class="col-md-4 col-form-label text-md-right">{{ __('Deshabilitado por:') }}</label>
+            <div class="col-md-6">
+              <p class="col-form-label">{{ $user->name . ' ' . $user->last_name }}</p>
+            </div>
+          </div>
+          <div class="form-group row">
+              <label for="last_name" class="col-md-4 col-form-label text-md-right">{{ __('Motivo de Desactivacion:') }}</label>
+            <div class="col-md-6">
+              <p class="col-form-label">{{ $module->deactive_description }}</p>
+            </div>
+          </div>
+          @endif
 			</div>
 		</div>
 	</div>
