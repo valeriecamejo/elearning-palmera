@@ -205,3 +205,8 @@ Route::get('/brand-news/edit/{id}', 'BrandNewController@edit')->name('/brand-new
 Route::post('/brand-news/edit/{id}', 'BrandNewController@saveEdit')->name('/brand-new/edit/{id}');
 Route::get('/brand-news/delete/{id}', 'BrandNewController@delete')->name('/brand-news/delete/{id}');
 Route::get('/brand-news/active_deactive/{id}', 'BrandNewController@activeDeactive')->name('/brand-news/active_deactive/{id}');
+
+
+// Incentive-plan Routes...
+Route::get('/incentive-plans', 'IncentivePlanController@index')->name('incentive-plans');
+Route::get('/incentive-plans/create', 'IncentivePlanController@create')->name('/incentive_plans/create');
