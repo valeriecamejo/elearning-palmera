@@ -116,7 +116,6 @@ class EvaluationController extends Controller {
     return response()->json($evaluations);
   }
 
-  
     /**
    * Show the application show.
    *
@@ -152,5 +151,23 @@ class EvaluationController extends Controller {
     $user_result  = UserEvaluation::find($id);
     $evaluation   = Evaluation::find($user_result->evaluation_id);
     return view('evaluation.result', compact('evaluation','user_result', 'product_id'));
+  }
+
+  /**
+   * All evaluations by brand.
+   *
+   * @return $evaluations
+   */
+  public function allEvaluations() {
+
+    if(Auth::user()->role_id == 1) {
+      $evaluations = Evaluation::paginate(20);
+    } else {
+      $evaluations = DB::table('evaluations')
+                    ->where('evaluations.active', true)
+                    ->where('evaluations.brand_id', Auth::user()->brand_id)
+                    ->get();
+    }
+    return response()->json($evaluations);
   }
 }

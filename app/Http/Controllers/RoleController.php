@@ -3,11 +3,13 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use App\Http\Requests\RoleRequest;
 use App\Http\Requests\RoleUdpateRequest;
-use App\Role;
 use App\Module;
+use App\Role;
+use DB;
 
 class RoleController extends Controller
 {
@@ -156,6 +158,23 @@ class RoleController extends Controller
       $role      = Role::find($role_id);
       return view('role.show', compact('role', 'role_id'));
      }
+
+    /**
+     * All roles.
+     *
+     * @return $roles
+     */
+    public function allRoles() {
+
+      if(Auth::user()->role_id == 1) {
+        $roles = Role::paginate(20);
+      } else {
+        $roles = DB::table('roles')
+                      ->where('roles.id', '>=' ,3)
+                      ->paginate(20);
+      }
+      return response()->json($roles);
+    }
 }
 ?>
 

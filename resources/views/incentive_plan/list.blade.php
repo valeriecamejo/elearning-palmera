@@ -33,13 +33,13 @@
             <td>{{ $incentive_plan->score }}</td>
             <td>{{ $incentive_plan->start_date }}</td>
             <td>
-              <a href="{{ url('/incentive_plan/show/'.$incentive_plan->id) }}" title="Ver">
+              <a href="{{ url('/incentive-plans/show/'.$incentive_plan->id) }}" title="Ver">
                 <i class="fas fa-eye"></i>
               </a>
-              <a href="{{ url('/incentive_plan/edit/'.$incentive_plan->id) }}" title="Editar">
+              <a href="{{ url('/incentive-plans/edit/'.$incentive_plan->id) }}" title="Editar">
                 <i class="fas fa-edit"></i>
               </a>
-              <a href="{{ url('/incentive_plan/deactive_description/'.$incentive_plan->id) }}">
+              <a href="{{ url('/incentive-plans/deactive_description/'.$incentive_plan->id) }}">
               @if ($incentive_plan->active == true)
                 <i class="fas fa-minus-circle text-danger" title="Desactivar"></i>
               @else

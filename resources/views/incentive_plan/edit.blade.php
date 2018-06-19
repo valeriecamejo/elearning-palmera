@@ -10,19 +10,16 @@
             <li class="nav-item">
               <a class="nav-link" href="{{ url('/incentive-plans') }}">Plan de Incentivos</a>
             </li>
-            <li class="nav-item">
-              <a class="nav-link active">Nuevo</a>
-            </li>
           </ul>
         </div>
           <div class="card-body">
-          <h5 class="card-title">Crear un Plan de Incentivo</h5>
-            <form method="POST" action="{{ url('incentive-plans/create') }}">
+            <h5 class="card-title">Crear un Plan de Incentivo</h5>
+            <form method="POST" action="{{ url('incentive-plans/edit/' . $incentive_plan->id) }}">
               @csrf
               <div class="form-group row">
                 <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('Nombre:') }}</label>
                 <div class="col-md-4">
-                <input id="name" type="text" class="form-control{{ $errors->has('name') ? ' is-invalid' : '' }}" name="name" value="{{ old('name') }}" required autofocus>
+                <input id="name" type="text" class="form-control{{ $errors->has('name') ? ' is-invalid' : '' }}" name="name" value="{{ $incentive_plan->name }}" required autofocus>
                 @if ($errors->has('name'))
                   <span class="invalid-feedback">
                     <strong>{{ $errors->first('name') }}</strong>
@@ -34,7 +31,7 @@
                 <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('Plan de Incentivo por:') }}</label>
                   <div class="col-md-8">
                     <div class="form-check-inline">
-                    <input type="radio" id="sales" name="incentive" value="sales" v-model="incentive" checked>
+                    <input type="radio" id="sales" name="incentive" value="sales" v-model="incentive" >
                     <label for="sales"> Ventas</label>
                     </div>
                     <div class="form-check-inline">
@@ -102,17 +99,17 @@
                   <div class="col-md-4">
                     <div class="form-check form-check-inline">
                       <label class="form-check-label">
-                        <input type="checkbox" id="supervisor" value="supervisor" name="supervisor" v-model="roleSelected.supervisor" checked> Supervisor
+                        <input type="checkbox" id="supervisor" value="supervisor" v-model="roleSelected.supervisor" checked> Supervisor
                       </label>
                     </div>
                     <div class="form-check form-check-inline">
                       <label class="form-check-label">
-                        <input type="checkbox" id="seller" value="vendedor" name="seller" v-model="roleSelected.vendedor"> Vendedor
+                        <input type="checkbox" id="vendedor" value="vendedor" v-model="roleSelected.vendedor"> Vendedor
                       </label>
                     </div>
                     <div class="form-check form-check-inline disabled">
                       <label class="form-check-label">
-                        <input type="checkbox" id="promoter" value="promotor" name="promoter" v-model="roleSelected.promotor"> Promotor
+                        <input type="checkbox" id="promotor" value="promotor" v-model="roleSelected.promotor"> Promotor
                       </label>
                     </div>
                   </div>
@@ -151,9 +148,23 @@
               </template>
               <hr>
               <div class="form-group row">
-                <label for="date" class="col-md-4 col-form-label text-md-right">{{ __('Fecha de Inicio') }}</label>
+                <label for="date" class="col-md-4 col-form-label text-md-right">{{ __('Fecha de Inicio actual') }}</label>
                 <div class="col-md-4">
-                  <input type="date" class="form-control" name="start_date" required>
+                  <?php
+                  $fecha = $incentive_plan->start_date;
+                  $fechaBD = date("d-m-Y", strtotime($fecha));
+                  ?>
+                  <input type="text" class="form-control" value="{{ $fechaBD }}" disabled>
+                </div>
+              </div>
+              <div class="form-group row">
+                <label for="date" class="col-md-4 col-form-label text-md-right">{{ __('Actualizar Fecha a:') }}</label>
+                <div class="col-md-4">
+                  <?php
+                  $fecha = $incentive_plan->start_date;
+                  $fechaBD = date("d-m-Y", strtotime($fecha));
+                  ?>
+                  <input type="date" class="form-control" name="start_date">
                 </div>
               </div>
               <div class="form-group row">
@@ -164,14 +175,28 @@
                     <label for="one">Si</label>
                     </div>
                     <div class="form-check-inline">
-                      <input type="radio" id="two" name="is_end_date" value="no" v-model="end_date" checked>
+                      <input type="radio" id="two" name="is_end_date" value="no" v-model="end_date">
                       <label for="two">No</label>
                     </div>
                   </div>
               </div>
               <template v-if="end_date=='yes'">
                 <div class="form-group row">
-                  <label for="date" class="col-md-4 col-form-label text-md-right">{{ __('Fecha de Fin') }}</label>
+                <label for="date" class="col-md-4 col-form-label text-md-right">{{ __('Fecha final actual') }}</label>
+                <div class="col-md-4">
+                  <?php
+                  if($incentive_plan->end_date != null) {
+                    $fecha = $incentive_plan->end_date;
+                    $fecha_end = date("d-m-Y", strtotime($fecha));
+                  } else {
+                    $fecha_end = "0000-00-00";
+                  }
+                  ?>
+                  <input type="text" class="form-control" value="{{ $fecha_end }}" disabled>
+                </div>
+              </div>
+                <div class="form-group row">
+                  <label for="date" class="col-md-4 col-form-label text-md-right">{{ __('Actualizar Fecha a:') }}</label>
                   <div class="col-md-4">
                     <input type="date" class="form-control" name="end_date"/>
                   </div>
@@ -182,7 +207,7 @@
                 <label for="score" class="col-md-4 col-form-label text-md-right">{{ __('Puntaje') }}</label>
                 <div class="col-md-4">
                   <input id="score" type="number" class="form-control{{ $errors->has('score') ? ' is-invalid' : '' }}"
-                  name="score" value="{{ old('score') }}" min="0" required>
+                  name="score" value="{{ $incentive_plan->score }}" min="0" required>
                   @if ($errors->has('score'))
                   <span class="invalid-feedback">
                     <strong>{{ $errors->first('score') }}</strong>
@@ -197,13 +222,14 @@
                 </a><br>
                 <div class="col-md-12">
                 <textarea class="ckeditor" name="editor1" value="{{ old('editor1') }}" id="editor1" rows="10" cols="80" required>
+                  {!! $incentive_plan->data !!}
                 </textarea>
                 </div>
               </div>
               <div class="form-group row mb-0">
                 <div class="col-md-6 offset-md-4">
                   <button type="submit" class="btn btn-primary">
-                    {{ __('Crear') }}
+                    {{ __('Guardar') }}
                   </button>
                 </div>
               </div>
@@ -213,5 +239,6 @@
     </div>
   </div>
 </div>
-{!! Html::script('/js/vueJs/incentive_plan/validation.js') !!}
+{!! Html::script('/js/vueJs/incentive_plan/validation_edit.js') !!}
+<script> Validate.typeIncenvite( {{ $incentive_plan_id }} )</script>
 @endsection

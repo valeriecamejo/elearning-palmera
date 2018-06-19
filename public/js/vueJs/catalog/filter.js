@@ -20,7 +20,7 @@ Search = new Vue({
       }).catch(function(data){
         this.errors   = data.responseJSON
       });
-      //Consulta de todos los productos
+      //Consulta de todas las categorias
     HTTP.get('/categories/all', {
       }).then((response) => {
         Search.categories = response.data

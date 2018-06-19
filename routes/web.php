@@ -41,6 +41,7 @@ Route::post('/roles/permission/edit/{id}', 'RoleController@storeEditedPermission
 Route::get('/roles/edit/{id}', 'RoleController@editRole')->name('roles/edit/{id}');
 Route::post('/roles/edit/{id}', 'RoleController@saveEditRole')->name('roles/edit');
 Route::get('/roles/show/{id}', 'RoleController@showRole')->name('roles/show/{id}');
+Route::get('/roles/all', 'RoleController@allRoles')->name('evaluations/all_evaluations_product');
 
 // User Routes...
 Route::get('/users', 'UserController@index')->name('users');
@@ -112,6 +113,7 @@ Route::post('/evaluations/{id}/questions/edit/{question_id}', 'QuestionControlle
 Route::get('/evaluations/{id}/questions/{question_id}/answers/edit/{answer_id}', 'QuestionController@answer_edit')->name('answers/edit');
 Route::post('/evaluations/{id}/questions/{question_id}/answers/edit/{answer_id}', 'QuestionController@answer_saveUpdate')->name('answers/edit');
 Route::get('/evaluations/product/{product_id}', 'EvaluationController@allEvaluationsByProduct')->name('evaluations/all_evaluations_product');
+Route::get('/evaluations/all', 'EvaluationController@allEvaluations')->name('evaluations/all_evaluations_product');
 Route::get('/evaluations/{id}/{product_id}', 'EvaluationController@EvaluationByProduct')->name('evaluation');
 Route::post('/evaluations/{id}/{product_id}', 'EvaluationController@saveEvaluationByProduct')->name('evaluation');
 Route::get('/evaluations/user_result/{id}/{product_id}', 'EvaluationController@userResult')->name('user_result');
@@ -210,3 +212,8 @@ Route::get('/brand-news/active_deactive/{id}', 'BrandNewController@activeDeactiv
 // Incentive-plan Routes...
 Route::get('/incentive-plans', 'IncentivePlanController@index')->name('incentive-plans');
 Route::get('/incentive-plans/create', 'IncentivePlanController@create')->name('/incentive_plans/create');
+Route::post('/incentive-plans/create', 'IncentivePlanController@store')->name('/incentive_plans/create');
+Route::get('/incentive-plans/edit/{id}', 'IncentivePlanController@edit')->name('/incentive_plan/edit/{id}');
+Route::post('/incentive-plans/edit/{id}', 'IncentivePlanController@saveEdit')->name('/incentive_plan/edit/{id}');
+Route::get('/incentive-plans/show/{id}', 'IncentivePlanController@show')->name('/incentive_plan/edit/{id}');
+Route::get('/incentive-plans/dataEdit/{id}', 'IncentivePlanController@dataEdit')->name('/incentive_plans/create');

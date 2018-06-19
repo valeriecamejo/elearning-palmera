@@ -24,7 +24,7 @@ class CreateIncentivePlansTable extends Migration
             $table->boolean('is_active')->default(false);
             $table->string('who_upload');
             $table->string('who_close');
-            $table->dateTimeTz('when_close');
+            $table->dateTimeTz('when_close')->nullable();
             $table->longText('terms_conditions')->nullable();
             $table->text('roles');
             $table->text('products');
