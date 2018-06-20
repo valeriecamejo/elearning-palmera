@@ -38,6 +38,19 @@ class EvaluationController extends Controller {
     }
     return view('evaluation.list', compact('evaluations'));
   }
+  /**
+   * Show the application List.
+   *
+   * @return \Illuminate\Http\Response
+   */
+  public function list() {
+    if(Auth::user()->role_id == 1) {
+      $evaluations = Evaluation::paginate(15);
+    } else {
+      $evaluations = Evaluation::where('brand_id', '=', Auth::user()->brand_id)->get();
+    }
+    return response()->json($evaluations);
+  }
     /**
    * Show the application Create.
    *

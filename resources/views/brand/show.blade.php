@@ -36,7 +36,7 @@
 					<div class="form-group row">
 						<label for="header" class="col-md-4 col-form-label text-md-right">{{ __('Imagen Header') }}</label>
             <img class="card-img-top" src="{{ asset('./storage/' . $brand->header) }}" alt="{{ $brand->header }}">
-					</div>				  
+					</div>
 			</div>
 		</div>
 	</div>
