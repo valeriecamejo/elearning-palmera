@@ -8,6 +8,7 @@ use App\Http\Requests\IncentivePlanRequest;
 use App\Http\Requests\IncentivePlanUpdateRequest;
 use App\IncentivePlan;
 use App\Product;
+use App\Evaluation;
 Use DB;
 
 class IncentivePlanController extends Controller
@@ -112,20 +113,77 @@ class IncentivePlanController extends Controller
    */
   public function show($incentive_plan_id) {
     $incentive_plan   = IncentivePlan::find($incentive_plan_id);
-    $product_name = [];
-    $products     = [];
-    $products     = json_decode($incentive_plan->products);
+    $product_names    = [];
+    $products         = [];
+    $products         = json_decode($incentive_plan->products);
+    $evaluation_names = [];
+    $evaluations      = [];
+    $evaluations      = json_decode($incentive_plan->evaluations);
 
     if (($incentive_plan->products != "") && ($incentive_plan->products != "all")) {
       foreach($products as $product){
         $find_product = Product::find($product->id);
         $name = $find_product->name;
-        array_push($product_name, $name);
+        array_push($product_names, $name);
         $find_product = '';
         $name = '';
       }
-      $incentive_plan->products == $product_name;
     }
-    return view('incentive_plan.show', compact('incentive_plan'));
+    if (($incentive_plan->evaluations != "") && ($incentive_plan->evaluations != "all")) {
+      foreach($evaluations as $evaluation){
+        $find_evaluation = Evaluation::find($evaluation->id);
+        $name = $find_evaluation->name;
+        array_push($evaluation_names, $name);
+        $find_evaluation = '';
+        $name = '';
+      }
+    }
+    return view('incentive_plan.show', compact('incentive_plan', 'incentive_plan_id', 'product_names', 'evaluation_names'));
+  }
+  /**
+   * Show the application Active Deactive.
+   *
+   * @return \Illuminate\Http\Response
+   */
+  public function activeDeactive($incentive_plan_id) {
+    $incentive_plan = IncentivePlan::activeDeactive($incentive_plan_id);
+    if ($incentive_plan) {
+      Session::flash('message', 'Actualizado correctamente.');
+      Session::flash('class', 'success');
+    } else {
+      Session::flash('message', 'Error al actualizar los datos.');
+      Session::flash('class', 'danger');
+    }
+    return redirect()->to('/incentive-plans');
+  }
+
+   /**
+   * Show view for create a content.
+   *
+   * @return view
+   */
+  public function createContent($incentive_plan_id) {
+    $incentive_plan = IncentivePlan::find($incentive_plan_id);
+    return view('incentive_plan.create_content', compact('incentive_plan', 'incentive_plan_id'));
+  }
+
+  /**
+   * View for edit Incentive plans.
+   *
+   * @param  incentive_plan_id
+   * @return void
+   */
+  public function storeContent(Request $request, $incentive_plan_id) {
+// var_dump($request['editor1']);exit();
+    $incentive_plan = IncentivePlan::storeContent($request->all(), $incentive_plan_id);
+
+    if ($incentive_plan) {
+      Session::flash('message', 'Términos y Condiciones actualizado correctamente.');
+      Session::flash('class', 'success');
+    } else {
+      Session::flash('message', 'Error al actualizar los datos.');
+      Session::flash('class', 'danger');
+    }
+    return redirect()->to('/incentive-plans');
   }
 }

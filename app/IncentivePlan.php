@@ -43,7 +43,7 @@ class IncentivePlan extends Model
 			$incentive_plan->who_upload           =  Auth::user()->id;
 			$incentive_plan->who_close            =  '';
 			$incentive_plan->when_close           =  null;
-			$incentive_plan->terms_conditions     =  '';
+			$incentive_plan->terms_conditions     =  null;
 			$incentive_plan->products             =  '';
 			$incentive_plan->evaluations          =  '';
 			if ($request['incentive'] == "sales") {
@@ -209,4 +209,39 @@ class IncentivePlan extends Model
 			}
 		}
 
+		/**
+		 * Active deactive a Incentive plan.
+		 *
+		 * @param  Request  $request
+		 * @return incentive_plan
+		 */
+
+		public static function activeDeactive($incentive_plan_id) {
+
+			$incentive_plan           = IncentivePlan::find($incentive_plan_id);
+			if ($incentive_plan->is_active == true) {
+				$incentive_plan->is_active = false;
+			} else {
+				$incentive_plan->is_active = true;
+			}
+			// var_dump($incentive_plan->is_active);exit();
+			if ($incentive_plan->save()) {
+				return $incentive_plan;
+			}
+		}
+
+		/**
+  * Save content edited.
+  *
+  * @return content
+  */
+  public static function storeContent($request, $incentive_plan_id) {
+// var_dump($request['editor1']);exit();
+    $incentive_plan                    = IncentivePlan::find($incentive_plan_id);
+    $incentive_plan->terms_conditions  = $request['editor1'];
+
+    if ($incentive_plan->save()) {
+      return $incentive_plan;
+    }
+  }
 }

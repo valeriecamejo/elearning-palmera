@@ -217,3 +217,9 @@ Route::get('/incentive-plans/edit/{id}', 'IncentivePlanController@edit')->name('
 Route::post('/incentive-plans/edit/{id}', 'IncentivePlanController@saveEdit')->name('/incentive_plan/edit/{id}');
 Route::get('/incentive-plans/show/{id}', 'IncentivePlanController@show')->name('/incentive_plan/edit/{id}');
 Route::get('/incentive-plans/dataEdit/{id}', 'IncentivePlanController@dataEdit')->name('/incentive_plans/create');
+Route::get('/incentive-plans/deactive_description/{id}', 'IncentivePlanController@activeDeactive')->name('/incentive-plans/deactive_description/{id}');
+Route::get('/incentive-plans/content/create/{id}', 'IncentivePlanController@createContent')->name('/incentive-plans/content');
+Route::post('/incentive-plans/content/store/{id}', 'IncentivePlanController@storeContent')->name('/incentive-plans/content/{id}');
+
+// E-learning Routes...
+Route::get('/e-learnings', 'ElearningController@index')->name('/e-learnings');

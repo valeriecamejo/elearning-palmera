@@ -19,23 +19,20 @@
               <div class="form-group row">
                 <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('Nombre:') }}</label>
                 <div class="col-md-4">
-                <input id="name" type="text" class="form-control{{ $errors->has('name') ? ' is-invalid' : '' }}" name="name" value="{{ $incentive_plan->name }}" required autofocus>
-                @if ($errors->has('name'))
-                  <span class="invalid-feedback">
-                    <strong>{{ $errors->first('name') }}</strong>
-                  </span>
-                @endif
+                  <div class="col-md-6">
+                    <p class="col-form-label">{{ $incentive_plan->name }}</p>
+                  </div>
                 </div>
               </div>
               <div class="form-group row">
                 <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('Plan de Incentivo por:') }}</label>
                   <div class="col-md-8">
                     <div class="form-check-inline">
-                    <input type="radio" id="sales" name="incentive" value="sales" v-model="incentive" >
+                    <input type="radio" id="sales" name="incentive" value="sales" v-model="incentive" disabled>
                     <label for="sales"> Ventas</label>
                     </div>
                     <div class="form-check-inline">
-                      <input type="radio" id="elearning" name="incentive" value="elearning" v-model="incentive">
+                      <input type="radio" id="elearning" name="incentive" value="elearning" v-model="incentive" disabled>
                       <label for="elearning"> Entrenamiento</label>
                     </div>
                   </div>
@@ -46,49 +43,40 @@
                   <div class="col-md-4">
                     <div class="form-check form-check-inline">
                       <label class="form-check-label">
-                        <input type="checkbox" id="supervisor" value="supervisor" name="supervisor" v-model="roleSelected.supervisor" checked> Supervisor
+                        <input type="checkbox" id="supervisor" value="supervisor" name="supervisor" v-model="roleSelected.supervisor" disabled> Supervisor
                       </label>
                     </div>
                     <div class="form-check form-check-inline">
                       <label class="form-check-label">
-                        <input type="checkbox" id="seller" value="vendedor" name="seller" v-model="roleSelected.vendedor"> Vendedor
+                        <input type="checkbox" id="seller" value="vendedor" name="seller" v-model="roleSelected.vendedor" disabled> Vendedor
                       </label>
                     </div>
                     <div class="form-check form-check-inline disabled">
                       <label class="form-check-label">
-                        <input type="checkbox" id="promoter" value="promotor" name="promoter" v-model="roleSelected.promotor"> Promotor
+                        <input type="checkbox" id="promoter" value="promotor" name="promoter" v-model="roleSelected.promotor" disabled> Promotor
                       </label>
                     </div>
                   </div>
                 </div>
-                <div class="form-group row">
-                  <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('Producto(s):') }}</label>
-                  <div class="col-md-4">
-                    <div class="form-check">
-                      <input type="checkbox" class="form-check-input" name="all_products" value="all_products" v-model="all_products" id="exampleCheck1">
-                      <label class="form-check-label" for="exampleCheck1">Todos los Productos</label>
-                    </div>
-                    @if ($errors->has('name'))
-                      <span class="invalid-feedback">
-                        <strong>{{ $errors->first('name') }}</strong>
-                      </span>
-                    @endif
+                <template v-if="all_products==true">
+                  <div class="form-group row">
+                    <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('Producto(s):') }}</label>
+                      <div class="col-md-4">
+                        "Todos los productos"
+                      </div>
                   </div>
-                </div>
+                </template>
                 <template v-if="all_products!=true">
                   <div class="form-group row">
-                    <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('') }}</label>
+                    <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('Producto(s)') }}</label>
                     <div class="col-md-4">
-                      <select multiple  v-model="product" name="product[]" class="form-control" required>
-                        <option v-for="(allProduct in allProducts" :value="allProduct.id">
-                            @{{ allProduct.name }}
-                        </option>
-                      </select>
-                    </div>
-                    <div class="col-md-4">
-                      <div class="alert alert-info" role="alert">
-                        <h6>Seleccionar varios items pulsando la tecla <b>ctrl</b> y <b>clic</b> sobre el valor deseado</h6>
-                      </div>
+                      @foreach ($product_names as $product_name)
+                        <ul>
+                          <li>
+                            {{ $product_name }}<br>
+                          </li>
+                       </ul>
+                      @endforeach
                     </div>
                   </div>
                 </template>
@@ -99,49 +87,41 @@
                   <div class="col-md-4">
                     <div class="form-check form-check-inline">
                       <label class="form-check-label">
-                        <input type="checkbox" id="supervisor" value="supervisor" v-model="roleSelected.supervisor" checked> Supervisor
+                        <input type="checkbox" id="supervisor" value="supervisor" v-model="roleSelected.supervisor" disabled> Supervisor
                       </label>
                     </div>
                     <div class="form-check form-check-inline">
                       <label class="form-check-label">
-                        <input type="checkbox" id="vendedor" value="vendedor" v-model="roleSelected.vendedor"> Vendedor
+                        <input type="checkbox" id="vendedor" value="vendedor" v-model="roleSelected.vendedor" disabled> Vendedor
                       </label>
                     </div>
                     <div class="form-check form-check-inline disabled">
                       <label class="form-check-label">
-                        <input type="checkbox" id="promotor" value="promotor" v-model="roleSelected.promotor"> Promotor
+                        <input type="checkbox" id="promotor" value="promotor" v-model="roleSelected.promotor" disabled> Promotor
                       </label>
                     </div>
                   </div>
                 </div>
+
+                <template v-if="all_evaluations==true">
                 <div class="form-group row">
                   <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('Evaluacion(es):') }}</label>
                   <div class="col-md-4">
-                    <div class="form-check">
-                      <input type="checkbox" class="form-check-input" name="all_evaluations" value="all_evaluations" v-model="all_evaluations" id="exampleCheck1">
-                      <label class="form-check-label" for="exampleCheck1">Todas las Evaluaciones</label>
-                    </div>
-                    @if ($errors->has('name'))
-                      <span class="invalid-feedback">
-                        <strong>{{ $errors->first('name') }}</strong>
-                      </span>
-                    @endif
+                        "Todas las Evaluaciones"
+                      </div>
                   </div>
-                </div>
+                </template>
                 <template v-if="all_evaluations!=true">
                   <div class="form-group row">
-                    <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('') }}</label>
+                    <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('Evaluacion(es)') }}</label>
                     <div class="col-md-4">
-                      <select multiple v-model="evaluation" name="evaluation[]" class="form-control" required>
-                        <option v-for="allEvaluation in allEvaluations" :value="allEvaluation.id">
-                            @{{ allEvaluation.name }}
-                        </option>
-                      </select>
-                    </div>
-                    <div class="col-md-4">
-                      <div class="alert alert-info" role="alert">
-                        <h6>Seleccionar varios items pulsando la tecla <b>ctrl</b> y <b>clic</b> sobre el valor deseado</h6>
-                      </div>
+                      @foreach ($evaluation_names as $evaluation_name)
+                        <ul>
+                          <li>
+                            {{ $evaluation_name }}<br>
+                          </li>
+                       </ul>
+                      @endforeach
                     </div>
                   </div>
                 </template>
@@ -154,18 +134,20 @@
                   $fecha = $incentive_plan->start_date;
                   $fechaBD = date("d-m-Y", strtotime($fecha));
                   ?>
-                  <input type="text" class="form-control" value="{{ $fechaBD }}" disabled>
+                  <div class="col-md-6">
+                    <p class="col-form-label">{{ $fechaBD }}</p>
+                  </div>
                 </div>
               </div>
               <div class="form-group row">
                 <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('¿Posee fecha Final?') }}</label>
                   <div class="col-md-4">
                     <div class="form-check-inline">
-                    <input type="radio" id="one" name="is_end_date" value="yes" v-model="end_date">
+                    <input type="radio" id="one" name="is_end_date" value="yes" v-model="end_date" disabled>
                     <label for="one">Si</label>
                     </div>
                     <div class="form-check-inline">
-                      <input type="radio" id="two" name="is_end_date" value="no" v-model="end_date">
+                      <input type="radio" id="two" name="is_end_date" value="no" v-model="end_date" disabled>
                       <label for="two">No</label>
                     </div>
                   </div>
@@ -182,27 +164,31 @@
                     $fecha_end = "0000-00-00";
                   }
                   ?>
-                  <input type="text" class="form-control" value="{{ $fecha_end }}" disabled>
+                  <div class="col-md-6">
+                    <p class="col-form-label">{{ $fecha_end }}</p>
+                  </div>
                 </div>
               </div>
               </template>
               <div class="form-group row">
-                <label for="score" class="col-md-4 col-form-label text-md-right">{{ __('Puntaje') }}</label>
+                <label for="score" class="col-md-4 col-form-label text-md-right">{{ __('Puntaje:') }}</label>
                 <div class="col-md-4">
-                  <input id="score" type="number" class="form-control{{ $errors->has('score') ? ' is-invalid' : '' }}"
-                  name="score" value="{{ $incentive_plan->score }}" min="0" required>
-                  @if ($errors->has('score'))
-                  <span class="invalid-feedback">
-                    <strong>{{ $errors->first('score') }}</strong>
-                  </span>
-                  @endif
+                  <div class="col-md-6">
+                    <p class="col-form-label">{{ $incentive_plan->score }}</p>
+                  </div>
                 </div>
               </div>
               <hr>
               <div class="form-group row">
-                <label for="name" class="col-md-6 col-form-label">{{ __('Contenido') }}</label>
+                <label for="name" class="col-md-6 col-form-label"><h4>{{ __('Contenido') }}</h4></label>
                 <div class="col-md-12">
                   {!! $incentive_plan->data !!}
+                </div>
+              </div>
+              <div class="form-group row">
+                <label for="name" class="col-md-6 col-form-label"><h4>{{ __('Terminos y Condiciones') }}</h4></label>
+                <div class="col-md-12">
+                  {!! $incentive_plan->terms_conditions !!}
                 </div>
               </div>
             </form>
@@ -212,4 +198,5 @@
   </div>
 </div>
 {!! Html::script('/js/vueJs/incentive_plan/validation_edit.js') !!}
+<script> Validate.typeIncenvite( {{ $incentive_plan_id }} )</script>
 @endsection

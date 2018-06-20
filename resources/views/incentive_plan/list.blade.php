@@ -39,8 +39,11 @@
               <a href="{{ url('/incentive-plans/edit/'.$incentive_plan->id) }}" title="Editar">
                 <i class="fas fa-edit"></i>
               </a>
+              <a href="{{ url('/incentive-plans/content/create/'.$incentive_plan->id) }}" title="Términos y Condiciones">
+                <i class="fas fa-file-alt"></i>
+              </a>
               <a href="{{ url('/incentive-plans/deactive_description/'.$incentive_plan->id) }}">
-              @if ($incentive_plan->active == true)
+              @if ($incentive_plan->is_active == true)
                 <i class="fas fa-minus-circle text-danger" title="Desactivar"></i>
               @else
                 <i class="fas fa-play-circle text-success" title="Activar"></i>
