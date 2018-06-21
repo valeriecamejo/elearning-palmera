@@ -63,7 +63,7 @@
 					<div class="form-group row">
 						<label for="date" class="col-md-4 col-form-label text-md-right">{{ __('Fecha de la venta') }}</label>
 						<div class="col-md-6">
-							<div id="app"></div>
+							<input type="date" class="form-control" name="date" required>
 							@if ($errors->has('date'))
 								<span class="invalid-feedback">
 									<strong>{{ $errors->first('date') }}</strong>
@@ -116,13 +116,5 @@
 		</div>
 	</div>
 </div>
-	<script type="text/x-template" id="demo-template">
-		<div>
-			<datepicker v-model="value" required></datepicker>
-		</div>
-	</script>
-	<script type="text/x-template" id="datepicker-template">
-		<input type="text" name="date" width="400" />
-	</script>
 	{!! Html::script('/js/vueJs/sale/datepicker.js') !!}
 @endsection

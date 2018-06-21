@@ -99,17 +99,17 @@
                   <div class="col-md-4">
                     <div class="form-check form-check-inline">
                       <label class="form-check-label">
-                        <input type="checkbox" id="supervisor" value="supervisor" v-model="roleSelected.supervisor" checked> Supervisor
+                        <input type="checkbox" id="supervisor" value="supervisor" name="supervisor" v-model="roleSelected.supervisor" checked> Supervisor
                       </label>
                     </div>
                     <div class="form-check form-check-inline">
                       <label class="form-check-label">
-                        <input type="checkbox" id="vendedor" value="vendedor" v-model="roleSelected.vendedor"> Vendedor
+                        <input type="checkbox" id="seller" value="vendedor" name="seller" v-model="roleSelected.vendedor"> Vendedor
                       </label>
                     </div>
                     <div class="form-check form-check-inline disabled">
                       <label class="form-check-label">
-                        <input type="checkbox" id="promotor" value="promotor" v-model="roleSelected.promotor"> Promotor
+                        <input type="checkbox" id="promoter" value="promotor" name="promoter" v-model="roleSelected.promotor"> Promotor
                       </label>
                     </div>
                   </div>

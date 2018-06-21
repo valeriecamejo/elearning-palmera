@@ -45,17 +45,24 @@ Validate = new Vue({
         } else if (Validate.incentive_plan['type'] == "E-learning") {
           Validate.incentive = "elearning"
         }
-        //Asignacion de fecha final (si existe)
-        if (Validate.incentive_plan['end_date'] == null) {
-          Validate.end_date = "no"
-        } else {
-          Validate.end_date = "yes"
-        }
+
         //Roles de los participantes
         Validate.roles = eval(Validate.incentive_plan['roles'])
         Validate.roleSelected['supervisor'] = Validate.roles[0]['status']
+        console.log('ROLE 1:', Validate.roles[0]['status'])
         Validate.roleSelected['vendedor']   = Validate.roles[1]['status']
+        console.log('ROLE 2:', Validate.roles[1]['status'])
         Validate.roleSelected['promotor']   = Validate.roles[2]['status']
+        console.log('ROLE 3:', Validate.roles[2]['status'])
+
+         //Asignacion de fecha final (si existe)
+         if (Validate.incentive_plan['end_date'] == null) {
+           console.log('llego')
+           Validate.end_date = "no"
+         } else {
+           Validate.end_date = "yes"
+         }
+
         //Todos los productos
         if (Validate.incentive_plan['products'] == "all") {
           Validate.all_products = true
