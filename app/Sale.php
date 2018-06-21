@@ -25,13 +25,11 @@ class Sale extends Model {
   protected $hidden = [];
 
   public static function insertSale($request) {
-    $date_format        = new DateTime($request['date']);
-    $date               = $date_format->format('Y/m/d');
     $sale               = new Sale;
     $sale->description  = $request['description'];
     $sale->user_id      = Auth::user()->id;
     $sale->product_id   = $request['product_id'];
-    $sale->date         = $date;
+    $sale->date         = $request['date'];
     $sale->brand_id     = Auth::user()->brand_id;
     $sale->quantity     = $request['quantity'];
     $sale->store        = $request['store_id'];
