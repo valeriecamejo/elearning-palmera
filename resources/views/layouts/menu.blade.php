@@ -1,12 +1,12 @@
 <nav class="navbar navbar-expand-md {{\App\PalmLib\SettingVariables::getSettings('navbar_color') ? \App\PalmLib\SettingVariables::getSettings('navbar_color') : 'navbar-dark bg-dark'}}">
-  <div class="container">
-    <a class="navbar-brand" href="{{ url('/home') }}">
-      {{ config('app.name') }}
-    </a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <div class="container">
+      <a class="navbar-brand" href="{{ url('/home') }}">
+        {{ config('app.name') }}
+      </a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+    <div id="menu" class="collapse navbar-collapse" id="navbarSupportedContent">
       <!-- Left Side Of Navbar -->
       <ul class="navbar-nav mr-auto">
       <!-- Menu hacia la IZQ -->
@@ -116,3 +116,5 @@
     </div>
   </div>
 </nav>
+
+{!! Html::script('/js/vueJs/menu/menu.js') !!}
