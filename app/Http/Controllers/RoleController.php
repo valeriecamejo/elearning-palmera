@@ -175,6 +175,24 @@ class RoleController extends Controller
       }
       return response()->json($roles);
     }
+
+    /**
+     * All user's permissions.
+     *
+     * @return $data
+     */
+    public function usersPermission() {
+
+      $permissions = DB::table('roles')
+                      ->where('roles.id', Auth::user()->role_id)
+                      ->get();
+      $modules     = Module::all();
+      $data        = [];
+      array_push($data, $permissions);
+      array_push($data, $modules);
+      return response()->json($data);
+    }
+
 }
 ?>
 

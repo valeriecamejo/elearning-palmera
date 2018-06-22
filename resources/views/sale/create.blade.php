@@ -116,5 +116,4 @@
 		</div>
 	</div>
 </div>
-	{!! Html::script('/js/vueJs/sale/datepicker.js') !!}
 @endsection

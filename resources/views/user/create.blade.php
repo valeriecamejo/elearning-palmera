@@ -66,8 +66,10 @@
 						<label for="role_id" class="col-md-4 col-form-label text-md-right">{{ __('Rol') }}</label>
 						<div class="col-md-6">
 							<select id="role_id" class="form-control{{ $errors->has('role_id') ? ' is-invalid' : '' }}" name="role_id" autofocus required>
-                @foreach ($roles as $rol)
-                <option value="{{ $rol->id }}"> {{ $rol->name }} </option>
+								@foreach ($roles as $rol)
+									@if($rol->id !== 1)
+										<option value="{{ $rol->id }}"> {{ $rol->name }} </option>
+									@endif
                 @endforeach
               </select>
 							@if ($errors->has('role_id'))
