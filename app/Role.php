@@ -2,8 +2,9 @@
 
 namespace App;
 
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Auth;
 
 class Role extends Model
 {
@@ -90,5 +91,22 @@ class Role extends Model
     if($role->save()) {
       return $role;
     }
+  }
+
+   /**
+   * Function to obtain the permissions of each module.
+   *
+   * @return view(role/create)
+   */
+  public static function userPermissions($path, $module_id) {
+    $permissions = [];
+    $role = Role::find(Auth::user()->role_id);
+    $role_permissions = json_decode($role->permission);
+    foreach ($role_permissions as $role_permission){
+      if ($role_permission->module_id == $module_id) {
+        $permissions = $role_permission;
+      }
+    };
+    return $permissions;
   }
 }

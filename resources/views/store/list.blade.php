@@ -9,9 +9,11 @@
           <li class="nav-item">
             <a class="nav-link active">Tiendas</a>
           </li>
-          <li class="nav-item">
-            <a class="nav-link" href="{{ url('/stores/create') }}">Nueva</a>
-          </li>
+          @if($permissions->permissions->crear == true)
+            <li class="nav-item">
+              <a class="nav-link" href="{{ url('/stores/create') }}">Nueva</a>
+            </li>
+          @endif
         </ul>
       </div>
       <div class="card-body">
@@ -29,19 +31,25 @@
             <td>{{ $store->name }}</td>
             <td>{{ $store->description }}</td>
             <td>
-              <a href="{{ url('/stores/show/'.$store->id) }}" title="Ver">
-                <i class="fas fa-eye"></i>
-              </a>
-              <a href="{{ url('/stores/edit/'.$store->id) }}" title="Editar">
-                <i class="fas fa-edit"></i>
-              </a>
-              <a href="{{ url('/stores/deactive_description/'.$store->id) }}">
-              @if ($store->active == true)
-                <i class="fas fa-minus-circle text-danger" title="Desactivar"></i>
-              @else
-                <i class="fas fa-play-circle text-success" title="Activar"></i>
+              @if($permissions->permissions->ver == true)
+                <a href="{{ url('/stores/show/'.$store->id) }}" title="Ver">
+                  <i class="fas fa-eye"></i>
+                </a>
               @endif
-              </a>
+              @if($permissions->permissions->editar == true)
+                <a href="{{ url('/stores/edit/'.$store->id) }}" title="Editar">
+                  <i class="fas fa-edit"></i>
+                </a>
+              @endif
+              @if($permissions->permissions->eliminar == true)
+                <a href="{{ url('/stores/deactive_description/'.$store->id) }}">
+                @if ($store->active == true)
+                  <i class="fas fa-minus-circle text-danger" title="Desactivar"></i>
+                @else
+                  <i class="fas fa-play-circle text-success" title="Activar"></i>
+                @endif
+                </a>
+              @endif
             </td>
           </tr>
           @endforeach

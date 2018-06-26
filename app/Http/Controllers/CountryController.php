@@ -2,12 +2,13 @@
 
 namespace App\Http\Controllers;
 
-Use DB;
-use Illuminate\Http\Request;
-use App\Country;
-use App\Http\Requests\CountryRequest;
 use App\Http\Requests\CountryUpdateRequest;
 use Illuminate\Support\Facades\Session;
+use App\Http\Requests\CountryRequest;
+use Illuminate\Http\Request;
+use App\Country;
+use App\Role;
+Use DB;
 
 class CountryController extends Controller {
   /**
@@ -26,7 +27,8 @@ class CountryController extends Controller {
    */
     public function index() {
       $countries = Country::paginate(15);
-      return view('country.list', compact('countries'));
+      $permissions = Role::userPermissions('/countries', 13);
+      return view('country.list', compact('countries', 'permissions'));
     }
 
     /**

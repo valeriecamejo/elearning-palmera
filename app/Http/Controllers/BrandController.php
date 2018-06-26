@@ -2,11 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-use App\Brand;
-use App\Http\Requests\BrandRequest;
 use App\Http\Requests\EditBrandRequest;
 use Illuminate\Support\Facades\Session;
+use App\Http\Requests\BrandRequest;
+use Illuminate\Http\Request;
+use App\Brand;
+use App\Role;
 
 class BrandController extends Controller {
   /**
@@ -27,7 +28,8 @@ class BrandController extends Controller {
   public function index()
   {
     $brands = Brand::paginate(15);
-    return view('brand.list', compact('brands'));
+    $permissions = Role::userPermissions('/brands', 5);
+    return view('brand.list', compact('brands', 'permissions'));
   }
   /**
    * Show the application Create brand.

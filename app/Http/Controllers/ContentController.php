@@ -7,9 +7,9 @@ use Illuminate\Support\Facades\Session;
 use App\Http\Requests\ContentRequest;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
+use App\Download;
 use App\Content;
 use App\Product;
-use App\Download;
 use DB;
 
 class ContentController extends Controller

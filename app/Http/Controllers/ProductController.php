@@ -2,15 +2,16 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-use App\Product;
-use App\Http\Requests\ProductRequest;
 use App\Http\Requests\EditProductRequest;
-use Illuminate\Support\Facades\Session;
-use App\Category;
-use App\Brand;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Session;
+use App\Http\Requests\ProductRequest;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Http\Request;
+use App\Category;
+use App\Product;
+use App\Brand;
+use App\Role;
 
 class ProductController extends Controller {
       /**
@@ -34,7 +35,8 @@ class ProductController extends Controller {
       $products = Product::where('brand_id','=', Auth::user()->brand_id)
       ->paginate(15);
     }
-    return view('product.products', compact('products'));
+    $permissions = Role::userPermissions('/products', 4);
+    return view('product.products', compact('products', 'permissions'));
   }
   /**
    * Show the application List.
@@ -48,7 +50,8 @@ class ProductController extends Controller {
       $products = Product::where('brand_id','=', Auth::user()->brand_id)
       ->paginate(15);
     }
-    return view('product.list', compact('products'));
+    $permissions = Role::userPermissions('/products', 4);
+    return view('product.list', compact('products', 'permissions'));
   }
   /**
    * Show the application Create.

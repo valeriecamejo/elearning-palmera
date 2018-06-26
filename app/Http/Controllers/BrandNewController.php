@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use App\BrandNew;
 use App\Brand;
+use App\Role;
 use DB;
 
 class BrandNewController extends Controller
@@ -28,8 +29,9 @@ class BrandNewController extends Controller
    * @return void
    */
   public function index() {
-    $brand_news = BrandNew::where('brand_id', Auth::user()->brand_id)->paginate(15);
-    return view('brand_new.list', compact('brand_news'));
+    $brand_news  = BrandNew::where('brand_id', Auth::user()->brand_id)->paginate(15);
+    $permissions = Role::userPermissions('/brand-new', 2);
+    return view('brand_new.list', compact('brand_news', 'permissions'));
   }
 
    /**

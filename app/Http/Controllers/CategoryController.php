@@ -2,12 +2,13 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-use DB;
-use App\Category;
-use App\Http\Requests\CategoryRequest;
 use App\Http\Requests\CategoryUpdateRequest;
 use Illuminate\Support\Facades\Session;
+use App\Http\Requests\CategoryRequest;
+use Illuminate\Http\Request;
+use App\Category;
+use App\Role;
+use DB;
 
 class CategoryController extends Controller {
     /**
@@ -26,7 +27,8 @@ class CategoryController extends Controller {
    */
   public function index() {
     $categories = Category::paginate(15);
-    return view('category.list', compact('categories'));
+    $permissions = Role::userPermissions('/categories', 10);
+    return view('category.list', compact('categories', 'permissions'));
   }
   /**
    * Show the application Create.

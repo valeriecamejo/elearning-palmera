@@ -4,6 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Auth;
+use App\Role;
 
 class Module extends Model
 {
@@ -34,6 +35,18 @@ class Module extends Model
 			$module->description =  $request['description'];
 		}
     if ($module->save()) {
+      $roles =  Role::all();
+      $module_saved = Module::find($module->id);
+      foreach ($roles as $role){
+        $existing_permissions = json_decode($role->permission);
+      $permission = ['module_id' => $module->id, 'is_active' => false, 'permissions' => ['crear' => false, 'editar' => false, 'ver' => false, 'eliminar' => false]];
+      array_push($existing_permissions, $permission);
+      $permissions = json_encode($existing_permissions);
+      $role_permissions  =  Role::find($role->id);
+      $role_permissions->permission = $permissions;
+      $role_permissions->save();
+      $permission = '';
+    };
       return $module;
     }
   }

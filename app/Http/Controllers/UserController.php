@@ -2,18 +2,18 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-use App\User;
-use App\Http\Requests\UserRequest;
 use App\Http\Requests\UserProfileRequest;
 use App\Http\Requests\UserUpdateRequest;
 use Illuminate\Support\Facades\Session;
-use App\Brand;
-use App\Country;
-use App\Role;
-use App\State;
-use App\UserEvaluation;
 use Illuminate\Support\Facades\Auth;
+use App\Http\Requests\UserRequest;
+use Illuminate\Http\Request;
+use App\UserEvaluation;
+use App\Country;
+use App\Brand;
+use App\State;
+use App\User;
+use App\Role;
 
 class UserController extends Controller {
   /**
@@ -32,7 +32,8 @@ class UserController extends Controller {
    */
   public function index() {
     $users = User::paginate(15);
-    return view('user.list', compact('users'));
+    $permissions = Role::userPermissions('/users', 1);
+    return view('user.list', compact('users', 'permissions'));
   }
   /**
    * Show the application Create Users.

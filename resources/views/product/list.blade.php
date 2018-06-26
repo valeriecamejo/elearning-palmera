@@ -12,9 +12,11 @@
           <li class="nav-item">
             <a class="nav-link active">Listado</a>
           </li>
-          <li class="nav-item">
-            <a class="nav-link" href="{{ url('/products/create') }}">Nuevo</a>
-          </li>
+          @if($permissions->permissions->crear == true)
+            <li class="nav-item">
+              <a class="nav-link" href="{{ url('/products/create') }}">Nuevo</a>
+            </li>
+          @endif
         </ul>
       </div>
       <div class="card-body">
@@ -38,25 +40,31 @@
             <td>{{ $product->active ? 'SI' : 'NO' }}</td>
             <td>{{ $product->created_at }}</td>
             <td>
-              <a class="" href="{{ url('/products/show/'.$product->id) }}" title="Ver">
-                <i class="fas fa-eye"></i>
-              </a>
-              <a class="" href="{{ url('/products/edit/'. $product->id) }}" title="Editar">
-                <i class="fas fa-edit"></i>
-              </a>
-              <a class="" href="{{ url('contents/'. $product->id) }}" title="Contenidos">
-                <i class="fas fa-file-alt"></i>
-              </a>
+              @if($permissions->permissions->ver == true)
+                <a class="" href="{{ url('/products/show/'.$product->id) }}" title="Ver">
+                  <i class="fas fa-eye"></i>
+                </a>
+              @endif
+              @if($permissions->permissions->editar == true)
+                <a class="" href="{{ url('/products/edit/'. $product->id) }}" title="Editar">
+                  <i class="fas fa-edit"></i>
+                </a>
+              @endif
+                <a class="" href="{{ url('contents/'. $product->id) }}" title="Contenidos">
+                  <i class="fas fa-file-alt"></i>
+                </a>
               <a class="" href="{{ url('downloads/' . $product->id ) }}" title="Descargas">
                 <i class="fas fa-download"></i>
               </a>
-              <a class="" href="{{ url('/products/active_deactive/'.$product->id) }}" title="Activar / Desactivar">
-              @if ($product->active == true)
-                <i class="fas fa-minus-circle text-danger"></i>
-              @else
-                <i class="fas fa-play-circle text-success"></i>
+              @if($permissions->permissions->eliminar == true)
+                <a class="" href="{{ url('/products/active_deactive/'.$product->id) }}" title="Activar / Desactivar">
+                @if ($product->active == true)
+                  <i class="fas fa-minus-circle text-danger"></i>
+                @else
+                  <i class="fas fa-play-circle text-success"></i>
+                @endif
+                </a>
               @endif
-              </a>
             </td>
           </tr>
           @endforeach

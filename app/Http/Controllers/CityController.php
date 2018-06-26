@@ -2,14 +2,15 @@
 
 namespace App\Http\Controllers;
 
-Use DB;
-use Illuminate\Http\Request;
-use App\City;
-use App\State;
-use App\Country;
-use App\Http\Requests\CityRequest;
 use App\Http\Requests\CityUpdateRequest;
 use Illuminate\Support\Facades\Session;
+use App\Http\Requests\CityRequest;
+use Illuminate\Http\Request;
+use App\Country;
+use App\State;
+use App\City;
+use App\Role;
+Use DB;
 
 class CityController extends Controller {
   /**
@@ -28,7 +29,8 @@ class CityController extends Controller {
    */
   public function index() {
     $cities = City::paginate(15);
-    return view('city.list', compact('cities'));
+    $permissions = Role::userPermissions('/cities', 15);
+    return view('city.list', compact('cities', 'permissions'));
   }
 
   /**

@@ -2,13 +2,14 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-use App\Http\Requests\SaleRequest;
-use App\Sale;
-use App\Store;
-use App\Product;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Auth;
+use App\Http\Requests\SaleRequest;
+use Illuminate\Http\Request;
+use App\Product;
+use App\Store;
+use App\Sale;
+use App\Role;
 
 class SaleController extends Controller {
   /**
@@ -27,7 +28,8 @@ class SaleController extends Controller {
    */
   public function index() {
     $sales = Sale::paginate(15);
-    return view('sale.list', compact('sales'));
+    $permissions = Role::userPermissions('/sales', 7);
+    return view('sale.list', compact('sales', 'permissions'));
   }
   /**
    * Show the application Create.

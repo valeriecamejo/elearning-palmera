@@ -9,9 +9,11 @@
           <li class="nav-item">
             <a class="nav-link active">Ventas</a>
           </li>
-          <li class="nav-item">
-            <a class="nav-link" href="{{ url('/sales/create') }}">Cargar venta</a>
-          </li>
+          @if($permissions->permissions->crear == true)
+            <li class="nav-item">
+              <a class="nav-link" href="{{ url('/sales/create') }}">Cargar venta</a>
+            </li>
+          @endif
         </ul>
       </div>
       <div class="card-body">
@@ -31,9 +33,11 @@
             <td>{{ $sale->is_approved ? 'SI' : 'NO' }}</td>
             <td>{{ $sale->created_at }}</td>
             <td>
-              <a class="" href="{{ url('/sales/show/'.$sale->id) }}" title="Ver">
-                <i class="fas fa-eye"></i>
-              </a>
+              @if($permissions->permissions->ver == true)
+                <a class="" href="{{ url('/sales/show/'.$sale->id) }}" title="Ver">
+                  <i class="fas fa-eye"></i>
+                </a>
+              @endif
             </td>
           </tr>
           @endforeach
