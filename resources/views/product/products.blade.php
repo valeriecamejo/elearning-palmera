@@ -12,9 +12,11 @@
           <li class="nav-item">
             <a class="nav-link" href="{{ url('/products/list') }}">Listado</a>
           </li>
-          <li class="nav-item">
-            <a class="nav-link" href="{{ url('/products/create') }}">Nuevo</a>
-          </li>
+          @if($permissions->permissions->crear == true)
+            <li class="nav-item">
+              <a class="nav-link" href="{{ url('/products/create') }}">Nuevo</a>
+            </li>
+          @endif
         </ul>
       </div>
       <div class="card-body">

@@ -2,14 +2,15 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Support\Facades\Session;
-use Illuminate\Http\Request;
-use App\Http\Requests\StoreRequest;
 use App\Http\Requests\StoreUpdateRequest;
-use App\Store;
+use Illuminate\Support\Facades\Session;
+use App\Http\Requests\StoreRequest;
+use Illuminate\Http\Request;
 use App\Country;
+use App\Store;
 use App\State;
 use App\User;
+use App\Role;
 Use DB;
 
 class StoreController extends Controller
@@ -29,8 +30,9 @@ class StoreController extends Controller
    * @return stores
    */
   public function index() {
-    $stores = Store::paginate(15);
-    return view('store.list', compact('stores'));
+    $stores      = Store::paginate(15);
+    $permissions = Role::userPermissions('/stores', 9);
+    return view('store.list', compact('stores', 'permissions'));
   }
   /**
    * Create new store.

@@ -2,18 +2,18 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\RoleUdpateRequest;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Http\Request;
 use App\Http\Requests\RoleRequest;
-use App\Http\Requests\RoleUdpateRequest;
+use Illuminate\Http\Request;
 use App\Module;
 use App\Role;
 use DB;
 
 class RoleController extends Controller
 {
-/**
+  /**
    * Create a new controller instance.
    *
    * @return void
@@ -21,6 +21,7 @@ class RoleController extends Controller
   public function __construct() {
     $this->middleware('auth');
   }
+
   /**
   * Show the application List for Roles.
      *
@@ -30,7 +31,8 @@ class RoleController extends Controller
     {
       $roles   = Role::paginate(8);
       $modules = Module::all();
-      return view('role/list', compact('roles', 'modules'));
+      $permissions = Role::userPermissions('/roles', 12);
+      return view('role/list', compact('roles', 'modules', 'permissions'));
     }
 
     /**

@@ -9,9 +9,11 @@
           <li class="nav-item">
             <a class="nav-link active">Evaluaciones</a>
           </li>
-          <li class="nav-item">
-            <a class="nav-link" href="{{ url('/evaluations/create') }}">Nueva</a>
-          </li>
+          @if($permissions->permissions->crear == true)
+            <li class="nav-item">
+              <a class="nav-link" href="{{ url('/evaluations/create') }}">Nueva</a>
+            </li>
+          @endif
         </ul>
       </div>
       <div class="card-body">
@@ -31,15 +33,21 @@
             <td>{{ $evaluation->score }} pts</td>
             <td>{{ $evaluation->created_at }}</td>
             <td>
-              <a href="{{ url('/evaluations/show/'.$evaluation->id) }}" title="Ver">
-                <i class="fa fa-eye"></i>
-              </a>
-              <a  href="{{ url('/evaluations/edit/'.$evaluation->id) }}" title="Editar">
-                <i class="fa fa-edit"></i>
-              </a>
-              <a href="{{ url('/evaluations/'.$evaluation->id.'/questions/create') }}" title="Gestión de Preguntas">
-                <i class="fa fa-spinner"></i>
-              </a>
+              @if($permissions->permissions->ver == true)
+                <a href="{{ url('/evaluations/show/'.$evaluation->id) }}" title="Ver">
+                  <i class="fa fa-eye"></i>
+                </a>
+              @endif
+              @if($permissions->permissions->editar == true)
+                <a  href="{{ url('/evaluations/edit/'.$evaluation->id) }}" title="Editar">
+                  <i class="fa fa-edit"></i>
+                </a>
+              @endif
+              @if($permissions->permissions->crear == true)
+                <a href="{{ url('/evaluations/'.$evaluation->id.'/questions/create') }}" title="Gestión de Preguntas">
+                  <i class="fa fa-spinner"></i>
+                </a>
+              @endif
             </td>
           </tr>
           @endforeach

@@ -2,11 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Support\Facades\Session;
 use App\Http\Requests\ModuleUpdateRequest;
+use Illuminate\Support\Facades\Session;
 use App\Http\Requests\ModuleRequest;
 use Illuminate\Http\Request;
 use App\Module;
+use App\Role;
 use App\User;
 
 class ModuleController extends Controller
@@ -27,7 +28,8 @@ class ModuleController extends Controller
     public function index()
     {
       $modules = Module::paginate(10);
-      return view('module.list', compact('modules'));
+      $permissions = Role::userPermissions('/modules', 16);
+      return view('module.list', compact('modules', 'permissions'));
     }
     /**
     * Show the application List for Modules.

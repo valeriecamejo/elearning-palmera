@@ -2,16 +2,17 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-use App\Product;
-use App\Evaluation;
+use App\Http\Requests\EditEvaluationRequest;
+use App\Http\Requests\EvaluationRequest;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Auth;
-use App\Http\Requests\EvaluationRequest;
-use App\Http\Requests\EditEvaluationRequest;
-use App\Question;
-use App\Answer;
+use Illuminate\Http\Request;
 use App\UserEvaluation;
+use App\Evaluation;
+use App\Question;
+use App\Product;
+use App\Answer;
+use App\Role;
 
 class EvaluationController extends Controller {
   /**
@@ -36,7 +37,8 @@ class EvaluationController extends Controller {
       ->where('products.brand_id','=', Auth::user()->brand_id)
       ->paginate(15);
     }
-    return view('evaluation.list', compact('evaluations'));
+    $permissions = Role::userPermissions('/evaluations', 11);
+    return view('evaluation.list', compact('evaluations', 'permissions'));
   }
   /**
    * Show the application List.

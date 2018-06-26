@@ -2,13 +2,13 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-use App\Evaluation;
-use Illuminate\Support\Facades\Session;
-use Illuminate\Support\Facades\Auth;
-use App\Http\Requests\QuestionRequest;
 use App\Http\Requests\EditQuestionRequest;
 use App\Http\Requests\EditAnswerRequest;
+use Illuminate\Support\Facades\Session;
+use App\Http\Requests\QuestionRequest;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Http\Request;
+use App\Evaluation;
 use App\Question;
 use App\Answer;
 

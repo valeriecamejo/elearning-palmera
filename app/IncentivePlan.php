@@ -224,7 +224,6 @@ class IncentivePlan extends Model
 			} else {
 				$incentive_plan->is_active = true;
 			}
-			// var_dump($incentive_plan->is_active);exit();
 			if ($incentive_plan->save()) {
 				return $incentive_plan;
 			}
@@ -236,7 +235,6 @@ class IncentivePlan extends Model
   * @return content
   */
   public static function storeContent($request, $incentive_plan_id) {
-// var_dump($request['editor1']);exit();
     $incentive_plan                    = IncentivePlan::find($incentive_plan_id);
     $incentive_plan->terms_conditions  = $request['editor1'];
 

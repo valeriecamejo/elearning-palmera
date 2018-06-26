@@ -2,13 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\IncentivePlanUpdateRequest;
+use App\Http\Requests\IncentivePlanRequest;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Http\Request;
-use App\Http\Requests\IncentivePlanRequest;
-use App\Http\Requests\IncentivePlanUpdateRequest;
 use App\IncentivePlan;
-use App\Product;
 use App\Evaluation;
+use App\Product;
+use App\Role;
 Use DB;
 
 class IncentivePlanController extends Controller
@@ -29,7 +30,8 @@ class IncentivePlanController extends Controller
    */
   public function index() {
     $incentive_plans = IncentivePlan::paginate(15);
-    return view('incentive_plan.list', compact('incentive_plans'));
+    $permissions = Role::userPermissions('/incentive-plans', 6);
+    return view('incentive_plan.list', compact('incentive_plans', 'permissions'));
   }
 
    /**
@@ -174,7 +176,6 @@ class IncentivePlanController extends Controller
    * @return void
    */
   public function storeContent(Request $request, $incentive_plan_id) {
-// var_dump($request['editor1']);exit();
     $incentive_plan = IncentivePlan::storeContent($request->all(), $incentive_plan_id);
 
     if ($incentive_plan) {

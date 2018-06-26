@@ -1,11 +1,12 @@
 <?php
 
 namespace App;
-use DB;
-use App\Download;
+
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Auth;
+use App\Download;
+use DB;
 
 class Download extends Model {
   protected $fillable = [

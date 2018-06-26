@@ -11,9 +11,8 @@
     <!-- Fonts -->
     <link rel="dns-prefetch" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css?family=Raleway:300,400,600" rel="stylesheet" type="text/css">
-    <!-- Vue.js -->
     {{-- <script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.js"></script> --}}
-    <!-- Axios -->
+    <!-- Axios and VueJs -->
     @if(App::environment('production'))
       <script src="https://unpkg.com/vue"></script>
       <script src="https://unpkg.com/axios/dist/axios.min.js"></script>

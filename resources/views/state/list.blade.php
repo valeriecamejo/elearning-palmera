@@ -9,9 +9,11 @@
           <li class="nav-item">
             <a class="nav-link active">Estados/Provincias</a>
           </li>
+          @if($permissions->permissions->crear == true)
           <li class="nav-item">
             <a class="nav-link" href="{{ url('/states/create') }}">Nuevo</a>
           </li>
+          @endif
         </ul>
       </div>
       <div class="card-body">
@@ -29,12 +31,17 @@
             <td>{{ $state->name }}</td>
             <td>{{ $state->created_at }}</td>
             <td>
+              @if($permissions->permissions->ver == true)
               <a href="{{ url('/states/show/'.$state->id) }}" title="Ver">
                 <i class="fas fa-eye"></i>
               </a>
+              @endif
+              @if($permissions->permissions->editar == true)
               <a href="{{ url('/states/edit/'.$state->id) }}" title="Editar">
                 <i class="fas fa-edit"></i>
               </a>
+              @endif
+              @if($permissions->permissions->eliminar == true)
               <a href="{{ url('/states/active_deactive/'.$state->id) }}">
               @if ($state->active == true)
                 <i class="fas fa-minus-circle text-danger" title="Desactivar"></i>
@@ -42,6 +49,7 @@
                 <i class="fas fa-play-circle text-success" title="Activar"></i>
               @endif
               </a>
+              @endif
             </td>
           </tr>
           @endforeach

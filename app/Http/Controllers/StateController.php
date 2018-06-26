@@ -2,12 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\StateUpdateRequest;
 use Illuminate\Support\Facades\Session;
 use App\Http\Requests\StateRequest;
-use App\Http\Requests\StateUpdateRequest;
 use Illuminate\Http\Request;
-use App\State;
 use App\Country;
+use App\State;
+use App\Role;
 Use DB;
 
 class StateController extends Controller
@@ -28,7 +29,8 @@ class StateController extends Controller
    */
   public function index() {
     $states = State::paginate(15);
-    return view('state.list', compact('states'));
+    $permissions = Role::userPermissions('/states', 14);
+    return view('state.list', compact('states', 'permissions'));
   }
 
    /**

@@ -9,9 +9,11 @@
           <li class="nav-item">
             <a class="nav-link active">Plan de Incentivos</a>
           </li>
-          <li class="nav-item">
-            <a class="nav-link" href="{{ url('/incentive-plans/create') }}">Nuevo</a>
-          </li>
+          @if($permissions->permissions->ver == true)
+            <li class="nav-item">
+              <a class="nav-link" href="{{ url('/incentive-plans/create') }}">Nuevo</a>
+            </li>
+          @endif
         </ul>
       </div>
       <div class="card-body">
@@ -33,22 +35,28 @@
             <td>{{ $incentive_plan->score }}</td>
             <td>{{ $incentive_plan->start_date }}</td>
             <td>
-              <a href="{{ url('/incentive-plans/show/'.$incentive_plan->id) }}" title="Ver">
-                <i class="fas fa-eye"></i>
-              </a>
-              <a href="{{ url('/incentive-plans/edit/'.$incentive_plan->id) }}" title="Editar">
-                <i class="fas fa-edit"></i>
-              </a>
+              @if($permissions->permissions->ver == true)
+                <a href="{{ url('/incentive-plans/show/'.$incentive_plan->id) }}" title="Ver">
+                  <i class="fas fa-eye"></i>
+                </a>
+              @endif
+              @if($permissions->permissions->editar == true)
+                <a href="{{ url('/incentive-plans/edit/'.$incentive_plan->id) }}" title="Editar">
+                  <i class="fas fa-edit"></i>
+                </a>
+              @endif
               <a href="{{ url('/incentive-plans/content/create/'.$incentive_plan->id) }}" title="Términos y Condiciones">
                 <i class="fas fa-file-alt"></i>
               </a>
-              <a href="{{ url('/incentive-plans/deactive_description/'.$incentive_plan->id) }}">
-              @if ($incentive_plan->is_active == true)
-                <i class="fas fa-minus-circle text-danger" title="Desactivar"></i>
-              @else
-                <i class="fas fa-play-circle text-success" title="Activar"></i>
+              @if($permissions->permissions->eliminar == true)
+                <a href="{{ url('/incentive-plans/deactive_description/'.$incentive_plan->id) }}">
+                @if ($incentive_plan->is_active == true)
+                  <i class="fas fa-minus-circle text-danger" title="Desactivar"></i>
+                @else
+                  <i class="fas fa-play-circle text-success" title="Activar"></i>
+                @endif
+                </a>
               @endif
-              </a>
             </td>
           </tr>
           @endforeach

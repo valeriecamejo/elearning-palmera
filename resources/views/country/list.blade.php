@@ -9,9 +9,11 @@
           <li class="nav-item">
             <a class="nav-link active">Paises</a>
           </li>
-          <li class="nav-item">
-            <a class="nav-link" href="{{ url('/countries/create') }}">Nuevo</a>
-          </li>
+          @if($permissions->permissions->crear == true)
+            <li class="nav-item">
+              <a class="nav-link" href="{{ url('/countries/create') }}">Nuevo</a>
+            </li>
+          @endif
         </ul>
       </div>
       <div class="card-body">
@@ -31,19 +33,25 @@
             <td>{{ $country->nickname }}</td>
             <td>{{ $country->created_at }}</td>
             <td>
-              <a href="{{ url('/countries/show/'.$country->id) }}" title="Ver">
-                <i class="fas fa-eye"></i>
-              </a>
-              <a href="{{ url('/countries/edit/'.$country->id) }}" title="Editar">
-                <i class="fas fa-edit"></i>
-              </a>
-              <a class="" href="{{ url('/countries/active_deactive/'.$country->id) }}">
-              @if ($country->active == true)
-                <i class="fas fa-minus-circle text-danger" title="Desactivar"></i>
-              @else
-                <i class="fas fa-play-circle text-success" title="Activar"></i>
+              @if($permissions->permissions->ver == true)
+                <a href="{{ url('/countries/show/'.$country->id) }}" title="Ver">
+                  <i class="fas fa-eye"></i>
+                </a>
               @endif
-              </a>
+              @if($permissions->permissions->editar == true)
+                <a href="{{ url('/countries/edit/'.$country->id) }}" title="Editar">
+                  <i class="fas fa-edit"></i>
+                </a>
+              @endif
+              @if($permissions->permissions->eliminar == true)
+                <a class="" href="{{ url('/countries/active_deactive/'.$country->id) }}">
+                @if ($country->active == true)
+                  <i class="fas fa-minus-circle text-danger" title="Desactivar"></i>
+                @else
+                  <i class="fas fa-play-circle text-success" title="Activar"></i>
+                @endif
+                </a>
+              @endif
             </td>
           </tr>
           @endforeach
