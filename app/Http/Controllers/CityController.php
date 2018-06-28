@@ -28,9 +28,11 @@ class CityController extends Controller {
    * @return cities
    */
   public function index() {
-    $cities = City::paginate(15);
+    $cities      = City::paginate(15);
+    $countries   = Country::paginate(15);
+    $states      = State::paginate(15);
     $permissions = Role::userPermissions('/cities', 15);
-    return view('city.list', compact('cities', 'permissions'));
+    return view('city.list', compact('cities', 'permissions', 'countries', 'states'));
   }
 
   /**
@@ -40,6 +42,27 @@ class CityController extends Controller {
    */
     public function create() {
       return view('city.create');
+    }
+
+  /**
+   * All states.
+   *
+   * @return states
+   */
+  public function allCities() {
+    $cities = City::all();
+    return $cities;
+  }
+
+  /**
+   * View for Create new city.
+   *
+   * @return view
+   */
+    public function createByState($state_id) {
+      $state = State::find($state_id);
+      $country  = Country::find($state->country_id);
+      return view('city.createByState', compact('state', 'country'));
     }
 
   /**

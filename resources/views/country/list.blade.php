@@ -17,13 +17,16 @@
         </ul>
       </div>
       <div class="card-body">
-        <h5 class="card-title">Listado</h5>
+        <div class="form-group row">
+          <div class="col-md-6">
+            <h5 class="card-title">Listado</h5>
+          </div>
+        </div>
         <table class="table table-striped">
           <tr>
             <th>ID</th>
             <th>Nombre</th>
             <th>Nickname</th>
-            <th>Creado</th>
             <th>Acciones</th>
           </tr>
           @foreach ($countries as $country)
@@ -31,7 +34,6 @@
             <td>{{ $country->id }}</td>
             <td>{{ $country->name }}</td>
             <td>{{ $country->nickname }}</td>
-            <td>{{ $country->created_at }}</td>
             <td>
               @if($permissions->permissions->ver == true)
                 <a href="{{ url('/countries/show/'.$country->id) }}" title="Ver">
@@ -50,6 +52,11 @@
                 @else
                   <i class="fas fa-play-circle text-success" title="Activar"></i>
                 @endif
+                </a>
+              @endif
+              @if($permissions->permissions->crear == true)
+                <a href="{{ url('/states/create/'.$country->id) }}" title="Crear Estado">
+                  <i class="fas fa-plus-circle"></i>
                 </a>
               @endif
             </td>

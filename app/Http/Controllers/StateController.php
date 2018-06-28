@@ -28,9 +28,10 @@ class StateController extends Controller
    * @return states
    */
   public function index() {
-    $states = State::paginate(15);
+    $states      = State::paginate(15);
+    $countries   = Country::paginate(15);
     $permissions = Role::userPermissions('/states', 14);
-    return view('state.list', compact('states', 'permissions'));
+    return view('state.list', compact('states', 'permissions', 'countries'));
   }
 
    /**
@@ -46,6 +47,16 @@ class StateController extends Controller
     return $states;
   }
 
+   /**
+   * All states.
+   *
+   * @return states
+   */
+  public function allStates() {
+    $states = State::all();
+    return $states;
+  }
+
   /**
    * View for states.
    *
@@ -57,13 +68,23 @@ class StateController extends Controller
   }
 
   /**
+   * View for states.
+   *
+   * @param  void
+   * @return void
+   */
+  public function createByCountry($country_id) {
+    $country = Country::find($country_id);
+    return view('state.createByCountry', compact('country'));
+  }
+
+  /**
    * Save a state.
    *
    * @param  Request  $request
    * @return void
    */
   public function store(StateRequest $request) {
-
     $state = State::insertState($request->all());
     if ($state) {
       Session::flash('message', 'Estado registrado correctamente.');

@@ -9,21 +9,17 @@
           <div class="card-header">
             <nav class="navbar navbar-expand-lg navbar-expand-md navbar-light bg-light">
               <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <ul class="navbar-nav mr-auto">
-                  <li class="nav-item active dropdown">
-                    <div class="col-md-6">
-                        <select v-model="category_id" @change="filterCategory(category.id)" class="custom-select-md" required>
-                          <option desabled value=''>Todas</option>
-                          <option v-for="category in categories" :value="category.id"  >
-                              @{{ category.name }}
-                          </option>
-                        </select>
-                      </div>
-                  </li>
-                </ul>
-                <form class="form-inline my-2 my-lg-0">
-                  <input v-model="search" class="form-control mr-sm-2" placeholder="Buscar" type="search" aria-label="Search">
-                </form>
+                    <div class="col-md-2">
+                      <select v-model="category_id" @change="filterCategory(category.id)" class="form-control" required>
+                        <option desabled value=''>Todas</option>
+                        <option v-for="category in categories" :value="category.id"  >
+                           @{{ category.name }}
+                        </option>
+                      </select>
+                    </div>
+                  <div class="col-md-4 offset-md-6">
+                    <input v-model="search" class="form-control mr-sm-2" placeholder="Buscar" type="search" aria-label="Search">
+                  </div>
               </div>
             </nav>
           </div>

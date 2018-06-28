@@ -31,6 +31,7 @@
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <link href="{{ asset('css/modal.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/styles.css') }}" rel="stylesheet">
     <!-- fontawesome -->
     <link href="{{ asset('fontawesome/css/fontawesome-all.css') }}" rel="stylesheet">
     @if(App::environment('production'))
@@ -54,7 +55,7 @@
               </div>
             </div>
             <div>
-              <a class="text-dark" onclick="goBack()">
+              <a id="back" class="text-dark" onclick="goBack()">
                 <i class="fas fa-arrow-left"></i>
               </a>
             </div>

@@ -5,6 +5,7 @@ Menu = new Vue({
     permissions:        [],
     modules:            [],
     user_permissions:   [],
+    all_data:           [],
   },
    mounted() {
      //Consulta los permisos del rol actual
