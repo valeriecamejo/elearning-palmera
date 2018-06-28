@@ -19,6 +19,7 @@ Filter = new Vue({
     city_id:           '',
     country_id:        '',
     state_id:          '',
+    state_id:          '',
   },
   mounted() {
     //Consulta de todos los paises
