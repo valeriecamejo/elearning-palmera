@@ -57,7 +57,7 @@
                 <i class="fas fa-edit"></i>
               </a>
               <a v-if="city_permissions.eliminar==true" :href="'/cities/active_deactive/' + city.id">
-                <i v-if="state.active==true" class="fas fa-minus-circle text-danger" title="Desactivar"></i>
+                <i v-if="city.active==true" class="fas fa-minus-circle text-danger" title="Desactivar"></i>
                 <i v-else class="fas fa-play-circle text-success" title="Activar"></i>
               </a>
             </td>

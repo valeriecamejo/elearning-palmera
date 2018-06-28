@@ -38,8 +38,9 @@ Filter = new Vue({
     //Filtra por pais
     filterCountry: function () {
       if (Filter.country_id == '') {
-        Filter.states     = Filter.allStates
-        country = 'all'
+        Filter.states       = Filter.allStates
+        Filter.countries    = Filter.allCountries
+        country             = 'all'
       } else {
         Filter.states = Filter.allStates.filter(function (state) {
           return state.country_id == Filter.country_id;
