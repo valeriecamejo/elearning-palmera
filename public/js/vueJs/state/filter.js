@@ -2,6 +2,7 @@ Filter = new Vue({
   el: '#filter',
   data: {
     state_permissions: [],
+    allCountries:      [],
     permissions:       [],
     countries:         [],
     allStates:         [],
@@ -14,7 +15,8 @@ Filter = new Vue({
   mounted() {
     //Consulta de todos los paises
     HTTP.get('/countries/all', {}).then((response) => {
-      Filter.countries = response.data;
+      Filter.allCountries = response.data;
+      Filter.countries    = Filter.allCountries;
     });
     HTTP.get('/states/all', {}).then((response) => {
       Filter.allStates = response.data;
@@ -35,9 +37,14 @@ Filter = new Vue({
   methods: {
     //Filtra por pais
     filterCountry: function () {
-      Filter.states = Filter.allStates.filter(function (state) {
-        return state.country_id == Filter.country_id;
-      });
+      if (Filter.country_id == '') {
+        Filter.states     = Filter.allStates
+        country = 'all'
+      } else {
+        Filter.states = Filter.allStates.filter(function (state) {
+          return state.country_id == Filter.country_id;
+        });
+      }
     }
   },
 })
