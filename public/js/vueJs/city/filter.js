@@ -19,7 +19,6 @@ Filter = new Vue({
     city_id:           '',
     country_id:        '',
     state_id:          '',
-    state_id:          '',
   },
   mounted() {
     //Consulta de todos los paises
@@ -50,12 +49,17 @@ Filter = new Vue({
   methods: {
     //Filtra por pais
     filterCountry: function () {
-      if (Filter.country_id == '') {
-        Filter.countries = Filter.allCountries
-        Filter.states    = Filter.allStates
-        Filter.cities    = Filter.allCities
-        Filter.state_id = ''
+      if (Filter.country_id == '' ) {
+        Filter.countries  =  Filter.allCountries
+        Filter.states     =  Filter.allStates
+        Filter.cities     =  Filter.allCities
+        Filter.state_id   =  ''
+        Filter.country_id =  ''
+        state             =  'all'
+        city              =  'all'
+        country           =  'all'
       } else {
+      Filter.countries = Filter.allCountries
       Filter.states    = Filter.allStates
       Filter.cities    = Filter.allCities
       Filter.state_id  = ''
