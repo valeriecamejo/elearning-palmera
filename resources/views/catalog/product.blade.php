@@ -12,9 +12,9 @@
 			<div class="card-header">
        <h3>{{ $product->name }} </h3>
        <hr>
-       <ul class="nav nav-tabs card-header-tabs">
-          <li class="nav-item">
-            <a class="nav-link" @click="content( {{ $product_id }} )">Contenidos</a>
+       <ul class="nav nav-tabs card-header-tabs" id="tabs-catalog">
+          <li class="nav nav-tabs">
+            <a class="nav-link active" @click="content( {{ $product_id }} )">Contenidos</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" @click="download( {{ $product_id }} )">Descargables</a>
@@ -26,7 +26,7 @@
             <a class="nav-link" >Foro</a>
           </li>
         </ul>
-			</div>
+      </div>
 			<div class="card-body">
         <template v-if="tabContent==true">
             <div v-for="content in contents">

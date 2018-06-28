@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="row justify-content-center">
+<div id="filter" class="row justify-content-center">
   <div class="col-md-8">
     <div class="card">
       <div class="card-header">
@@ -17,46 +17,56 @@
         </ul>
       </div>
       <div class="card-body">
-        <h5 class="card-title">Listado</h5>
+        <div class="form-group row">
+          <div class="col-md-4">
+            <h5 class="card-title">Listado</h5>
+          </div>
+          <div class="col-md-4">
+            <select v-model="country_id" @change="filterCountry(country.id)" class="form-control" required>
+              <option desabled value=''>Países</option>
+              <option v-for="country in countries" :value="country.id">
+                @{{ country.name }}
+              </option>
+            </select>
+          </div>
+          <div class="col-md-4">
+            <select v-model="state_id" @change="filterState(state.id)" class="form-control" required>
+              <option desabled value=''>Estados/Provincias</option>
+              <option v-for="state in states" :value="state.id"  >
+                @{{ state.name }}
+              </option>
+            </select>
+          </div>
+        </div>
         <table class="table table-striped">
           <tr>
             <th>ID</th>
             <th>Nombre</th>
-            <th>Creado</th>
+            <th>Estado</th>
             <th>Acciones</th>
           </tr>
-          @foreach ($cities as $city)
-          <tr>
-            <td>{{ $city->id }}</td>
-            <td>{{ $city->name }}</td>
-            <td>{{ $city->created_at }}</td>
+          <tr v-for="city in cities">
+            <td>@{{ city.id }}</td>
+            <td>@{{ city.name }}</td>
+            <td v-for="state in states" v-if="city.state_id==state.id">@{{ state.name }}</td>
             <td>
-              @if($permissions->permissions->ver == true)
-                <a href="{{ url('/cities/show/'.$city->id) }}" title="Ver">
-                  <i class="fas fa-eye"></i>
-                </a>
-              @endif
-              @if($permissions->permissions->editar == true)
-                <a href="{{ url('/cities/edit/'.$city->id) }}" title="Editar">
-                  <i class="fas fa-edit"></i>
-                </a>
-              @endif
-              @if($permissions->permissions->eliminar == true)
-                <a class="" href="{{ url('/cities/active_deactive/'.$city->id) }}">
-                @if ($city->active == true)
-                  <i class="fas fa-minus-circle text-danger" title="Desactivar"></i>
-                @else
-                  <i class="fas fa-play-circle text-success" title="Activar"></i>
-                @endif
-                </a>
-              @endif
+              <a v-if="city_permissions.ver==true" :href="'/cities/show/' + city.id" title="Ver">
+                <i class="fas fa-eye"></i>
+              </a>
+              <a v-if="city_permissions.editar==true" :href="'/cities/edit/' + city.id" title="Editar">
+                <i class="fas fa-edit"></i>
+              </a>
+              <a v-if="city_permissions.eliminar==true" :href="'/cities/active_deactive/' + city.id">
+                <i v-if="state.active==true" class="fas fa-minus-circle text-danger" title="Desactivar"></i>
+                <i v-else class="fas fa-play-circle text-success" title="Activar"></i>
+              </a>
             </td>
           </tr>
-          @endforeach
         </table>
         {{ $cities->links() }}
       </div>
     </div>
   </div>
 </div>
+{!! Html::script('/js/vueJs/city/filter.js') !!}
 @endsection

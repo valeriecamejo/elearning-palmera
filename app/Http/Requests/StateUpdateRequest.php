@@ -24,13 +24,12 @@ class StateUpdateRequest extends FormRequest
     public function rules()
     {
         return [
-            'name' => 'required|max:255|unique:states,name,'.$this->state_id . 'id',
+            'name' => 'required|max:255',
         ];
     }
     public function messages() {
         return [
         'name.required'     => 'Debe asignar un nombre.',
-        'name.unique'       => 'Ya existe un estado/provincia con este nombre',
         ];
     }
 }

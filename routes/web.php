@@ -134,17 +134,21 @@ Route::post('/modules/deactive_description', 'ModuleController@saveDeactive')->n
 Route::get('/states', 'StateController@index')->name('states');
 Route::get('/states/create', 'StateController@create')->name('states/create');
 Route::post('/states/create', 'StateController@store')->name('states/create');
+Route::get('/states/create/{id}', 'StateController@createByCountry')->name('/states/create/{id}');
 Route::get('/states/show/{id}', 'StateController@show')->name('/states/show/{id}');
 Route::get('/states/edit/{id}', 'StateController@edit')->name('/states/edit/{id}');
 Route::post('/states/edit/{id}', 'StateController@saveEdit')->name('/states/edit/{id}');
 Route::get('/states/active_deactive/{id}', 'StateController@active_deactive')->name('/states/active_deactive/{id}');
 Route::get('/states/all/{id}', 'StateController@states')->name('/states/all/{id}');
+Route::get('/states/all', 'StateController@allStates')->name('/states/all');
 
 
 // City Routes...
 Route::get('/cities', 'CityController@index')->name('cities');
+Route::get('/cities/all', 'CityController@allCities')->name('/cities/all');
 Route::get('/cities/create', 'CityController@create')->name('cities/create');
 Route::post('/cities/create', 'CityController@store')->name('cities/create');
+Route::get('/cities/create/{id}', 'CityController@createByState')->name('/cities/create/{id}');
 Route::get('/cities/show/{id}', 'CityController@show')->name('/cities/show/{id}');
 Route::get('/cities/edit/{id}', 'CityController@edit')->name('/cities/edit/{id}');
 Route::post('/cities/edit/{id}', 'CityController@saveEdit')->name('/cities/edit/{id}');

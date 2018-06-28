@@ -2,19 +2,19 @@
 City = new Vue({
   el: '#city',
   data: {
-    states:         '',
-    countries:      '',
-    data_ready:     false,
-    state_id:       '',
+    data_ready:       false,
+    states:           '',
+    countries:        '',
+    state_id:         '',
     country_id:       '',
     previous_country: '',
-    previous_state: '',
-    changedValue:   '',
+    previous_state:   '',
+    changedValue:     '',
 },
   mounted() {
     HTTP.get('/countries/all' , {
     }).then((response) => {
-        City.countries = response.data;
+        City.countries  = response.data;
         City.data_ready = true;
       });
   },
