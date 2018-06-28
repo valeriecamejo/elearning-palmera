@@ -15,9 +15,14 @@
             <td>{{ $evaluation->user_evaluation_score }} / {{ $evaluation->score }} pts</td>
             <td>@if($evaluation->approved) Aprobada @else No Aprobada @endif</td>
             <td>
-              <a class="btn btn-primary" href="{{ url('/evaluations/user_result/'.$evaluation->user_evaluation_id . '/' . $evaluation->product_id) }}">
-                Ver <i class="fa fa-eye"></i>
+              <a href="{{ url('/evaluations/user_result/'.$evaluation->user_evaluation_id . '/' . $evaluation->product_id) }}">
+               <i class="fa fa-eye" title="Ver"></i>
               </a>
+              @if($evaluation->approved)
+                <a  href="{{ url('/export/' .$evaluation->user_evaluation_id) }}">
+                <i class="fas fa-download" title="Descargar Certificado"></i>
+                </a>
+              @endif
             </td>
           </tr>
           @endforeach
