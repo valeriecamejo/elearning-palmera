@@ -37,7 +37,7 @@ class IncentivePlan extends Model
 			$incentive_plan_products              = [];
 			$incentive_plan_evaluations           = [];
 			$incentive_plan                       =  new IncentivePlan;
-			$incentive_plan->name                 =  ucwords($request['name']);
+			$incentive_plan->name                 =  $request['name'];
 			$incentive_plan->data                 =  $request['editor1'];
 			$incentive_plan->is_active            =  false;
 			$incentive_plan->who_upload           =  Auth::user()->id;

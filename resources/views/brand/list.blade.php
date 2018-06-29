@@ -2,7 +2,7 @@
 
 @section('content')
 <div class="row justify-content-center">
-  <div class="col-md-10">
+  <div class="col-md-8">
     <div class="card">
       <div class="card-header">
         <ul class="nav nav-tabs card-header-tabs">
@@ -24,7 +24,6 @@
             <th>Nombre</th>
             <th>Color de Menú</th>
             <th>Activo</th>
-            <th>Creado</th>
             <th>Opciones</th>
           </tr>
           @foreach ($brands as $brand)
@@ -33,7 +32,6 @@
             <td>{{ $brand->name }}</td>
             <td>{{ $brand->navbar_color }}</td>
             <td>{{ $brand->active ? 'SI' : 'NO' }}</td>
-            <td>{{ $brand->created_at }}</td>
             <td>
               @if($permissions->permissions->ver == true)
                 <a class="" href="{{ url('/brands/show/'.$brand->id) }}" title="Ver">

@@ -27,9 +27,14 @@ class SaleController extends Controller {
    * @return \Illuminate\Http\Response
    */
   public function index() {
-    $sales = Sale::paginate(15);
-    $permissions = Role::userPermissions('/sales', 7);
-    return view('sale.list', compact('sales', 'permissions'));
+    if(Auth::user()->role_id == 1) {
+      $sales = Sale::paginate(15);
+    } else {
+      $sales = Sale::where('user_id', Auth::user()->brand_id)
+                       ->get();
+      $permissions = Role::userPermissions('/sales', 7);
+    }
+      return view('sale.list', compact('sales', 'permissions'));
   }
   /**
    * Show the application Create.

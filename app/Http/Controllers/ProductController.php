@@ -78,7 +78,7 @@ class ProductController extends Controller {
       Session::flash('message', 'Error al registrar los datos.');
       Session::flash('class', 'danger');
     }
-    return redirect()->to('products/create');
+    return redirect()->to('products');
   }
 
    /**

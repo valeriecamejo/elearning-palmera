@@ -37,7 +37,11 @@
             <td>{{ $user->last_name }}</td>
             <td>{{ $user->email }}</td>
             <td>{{ $user->active ? 'SI' : 'NO' }}</td>
-            <td>{{ $user->created_at }}</td>
+            <?php
+              $originalDate = $user->created_at;
+              $newDate = date("d/m/Y", strtotime($originalDate));
+            ?>
+            <td>{{ $newDate }}</td>
             <td>
               @if($permissions->permissions->ver == true)
                 <a class="" href="{{ url('/users/show/'.$user->id) }}" title="Ver">

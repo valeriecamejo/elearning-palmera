@@ -33,7 +33,11 @@
             <td>{{ $incentive_plan->name }}</td>
             <td>{{ $incentive_plan->type }}</td>
             <td>{{ $incentive_plan->score }}</td>
-            <td>{{ $incentive_plan->start_date }}</td>
+            <?php
+            $originalDate = $incentive_plan->start_date;
+            $newDate = date("d/m/Y", strtotime($originalDate));
+            ?>
+            <td>{{ $newDate }}</td>
             <td>
               @if($permissions->permissions->ver == true)
                 <a href="{{ url('/incentive-plans/show/'.$incentive_plan->id) }}" title="Ver">

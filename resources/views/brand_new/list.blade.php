@@ -29,7 +29,11 @@
           <tr>
             <td>{{ $brand_new->id }}</td>
             <td>{{ $brand_new->name }}</td>
-            <td>{{ $brand_new->created_at }}</td>
+            <?php
+              $originalDate = $brand_new->created_at;
+              $newDate = date("d/m/Y", strtotime($originalDate));
+            ?>
+            <td>{{ $newDate }}</td>
             <td>
               @if($permissions->permissions->ver == true)
                 <a href="{{ url('/brand-news/show/'.$brand_new->id) }}" title="Ver">

@@ -56,7 +56,7 @@ class BrandController extends Controller {
       Session::flash('message', 'Error al registrar los datos.');
       Session::flash('class', 'danger');
     }
-    return redirect()->to('brands/create');
+    return redirect()->to('brands');
   }
 
   /**

@@ -31,7 +31,11 @@
             <td>{{ $sale->id }}</td>
             <td>{{ $sale->description }}</td>
             <td>{{ $sale->is_approved ? 'SI' : 'NO' }}</td>
-            <td>{{ $sale->created_at }}</td>
+            <?php
+              $originalDate = $sale->created_at;
+              $newDate = date("d/m/Y", strtotime($originalDate));
+            ?>
+            <td>{{ $newDate }}</td>
             <td>
               @if($permissions->permissions->ver == true)
                 <a class="" href="{{ url('/sales/show/'.$sale->id) }}" title="Ver">
