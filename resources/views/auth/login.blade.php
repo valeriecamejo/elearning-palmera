@@ -55,15 +55,15 @@
                     {{ __('Login') }}
                   </button>
 
-                  <a class="btn btn-link" href="{{ route('password.request') }}">
+                  {{-- <a class="btn btn-link" href="{{ route('password.request') }}">
                     {{ __('Olvidaste tu contraseña?') }}
-                  </a>
-                            </div>
-                        </div>
-                    </form>
-                </div>
-            </div>
+                  </a> --}}
+              </div>
+            </form>
+          </div>
         </div>
+      </div>
     </div>
+  </div>
 </div>
 @endsection

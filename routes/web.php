@@ -230,4 +230,4 @@ Route::post('/incentive-plans/content/store/{id}', 'IncentivePlanController@stor
 Route::get('/e-learnings', 'ElearningController@index')->name('/e-learnings');
 
 //Export Certificate
-Route::get('/export/{id}', 'PDFController@exportCertificate')->name('/export');
+Route::get('/export/{id}', 'PdfController@exportCertificate')->name('/export');
