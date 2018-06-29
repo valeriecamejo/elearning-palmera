@@ -57,16 +57,18 @@
 							{{ $sale->is_approved ? 'APROBADO' : 'NO APROBADO' }}
 						</div>
 					</div>
-				  <div class="form-group row mb-0">
-						<div class="col-md-6 offset-md-4">
-							<a class="btn btn-success text-light" href="{{ url('/sales/approve_disapprove/'.$sale->id.'/1') }}">
-								{{ __('Aprobar Venta') }}
-							</a>
-							<a class="btn btn-danger text-light" href="{{ url('/sales/approve_disapprove/'.$sale->id.'/0') }}">
-								{{ __('No Aprobar Venta') }}
-							</a>
+					@if(Auth::user()->role_id <= 2)
+						<div class="form-group row mb-0">
+							<div class="col-md-6 offset-md-4">
+								<a class="btn btn-success text-light" href="{{ url('/sales/approve_disapprove/'.$sale->id.'/1') }}">
+									{{ __('Aprobar Venta') }}
+								</a>
+								<a class="btn btn-danger text-light" href="{{ url('/sales/approve_disapprove/'.$sale->id.'/0') }}">
+									{{ __('No Aprobar Venta') }}
+								</a>
+							</div>
 						</div>
-					</div>
+					@endif
 				</form>
 			</div>
 		</div>

@@ -29,7 +29,11 @@ class BrandNewController extends Controller
    * @return void
    */
   public function index() {
-    $brand_news  = BrandNew::where('brand_id', Auth::user()->brand_id)->paginate(15);
+    if(Auth::user()->role_id == 1) {
+      $brand_news = BrandNew::paginate(5);
+    } else {
+      $brand_news  = BrandNew::where('brand_id', Auth::user()->brand_id)->paginate(15);
+    }
     $permissions = Role::userPermissions('/brand-new', 2);
     return view('brand_new.list', compact('brand_news', 'permissions'));
   }

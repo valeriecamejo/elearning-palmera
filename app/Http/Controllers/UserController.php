@@ -14,6 +14,7 @@ use App\Brand;
 use App\State;
 use App\User;
 use App\Role;
+use DB;
 
 class UserController extends Controller {
   /**
@@ -31,7 +32,14 @@ class UserController extends Controller {
    * @return \Illuminate\Http\Response
    */
   public function index() {
-    $users = User::paginate(15);
+
+    if(Auth::user()->role_id == 1) {
+      $users = User::paginate(15);
+    } else {
+      $users = DB::table('users')
+                    ->where('users.brand_id', Auth::user()->brand_id)
+                    ->paginate(15);
+    }
     $permissions = Role::userPermissions('/users', 1);
     return view('user.list', compact('users', 'permissions'));
   }
@@ -61,7 +69,7 @@ class UserController extends Controller {
       Session::flash('message', 'Error al registrar los datos.');
       Session::flash('class', 'danger');
     }
-    return redirect()->to('users/create');
+    return redirect()->to('users');
   }
 
     /**

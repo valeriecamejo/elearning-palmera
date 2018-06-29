@@ -31,7 +31,11 @@
             <td>{{ $evaluation->id }}</td>
             <td>{{ $evaluation->name }}</td>
             <td>{{ $evaluation->score }} pts</td>
-            <td>{{ $evaluation->created_at }}</td>
+            <?php
+              $originalDate = $evaluation->created_at;
+              $newDate = date("d/m/Y", strtotime($originalDate));
+            ?>
+            <td>{{ $newDate }}</td>
             <td>
               @if($permissions->permissions->ver == true)
                 <a href="{{ url('/evaluations/show/'.$evaluation->id) }}" title="Ver">
