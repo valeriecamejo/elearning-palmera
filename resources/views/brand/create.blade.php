@@ -37,19 +37,19 @@
                 <label class="form-check-label" for="navbar_color">
                   <span class="badge badge-light">navbar-light</span>
                 </label>
-              </div> 
+              </div>
               <div class="form-check">
                 <input class="form-check-input" type="radio" name="navbar_color" id="navbar_color" value="navbar-dark bg-primary">
                 <label class="form-check-label" for="navbar_color">
                   <span class="badge badge-primary">navbar-primary</span>
                 </label>
-              </div> 
+              </div>
               <div class="form-check">
                 <input class="form-check-input" type="radio" name="navbar_color" id="navbar_color" value="navbar-dark bg-dark">
                 <label class="form-check-label" for="navbar_color">
                   <span class="badge badge-dark">navbar-dark</span>
                 </label>
-              </div>  
+              </div>
             </div>
             <div class="col-md-4 col-sm-10">
               <nav class="navbar navbar-light bg-light">

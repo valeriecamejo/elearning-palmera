@@ -11,11 +11,9 @@
 
             <div class="modal-body">
               <slot name="body">
-                
               </slot>
             </div>
             <div class="form-group row">
-              
             </div>
           </div>
             <div class="modal-footer">
