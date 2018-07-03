@@ -15,7 +15,7 @@
         <h5 class="card-title">{{ $question->question }}</h5>
         <div class="form-group row">
           <div class="col-md-12">
-            <p class="col-form-label"> Valor: {{ $question->score }}</p>						
+            <p class="col-form-label"> Valor: {{ $question->score }}</p>
           </div>
         </div>
         <div class="form-group row">
@@ -28,7 +28,7 @@
               @elseif ($question->type_question_id == 3)
                 Libre
               @endif
-            </p>						
+            </p>
           </div>
         </div>
         <table class="table table-striped">
