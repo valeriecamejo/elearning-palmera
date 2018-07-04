@@ -19,9 +19,9 @@ class CatalogController extends Controller {
   }
 
   /**
-   * Show the application List.
-   *
-   * @return view
+   * Show the view to list all the catalogs.
+   * @param  void
+   * @return void
    */
   public function index() {
 
@@ -29,8 +29,8 @@ class CatalogController extends Controller {
   }
 
   /**
-   * All products list.
-   *
+   * List of all products.
+   * @param  void
    * @return $products
    */
   public function allProducts() {

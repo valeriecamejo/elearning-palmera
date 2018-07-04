@@ -18,16 +18,16 @@ class BrandNewController extends Controller
    * Create a new controller instance.
    *
    * @return void
-   */
+  **/
   public function __construct() {
     $this->middleware('auth');
   }
 
   /**
-   * Show the application List.
-   *
-   * @return void
-   */
+   * Show the view to list all the brand's new.
+   * @param  void
+   * @return $brand_news, $permissions
+  **/
   public function index() {
     if(Auth::user()->role_id == 1) {
       $brand_news = BrandNew::paginate(5);
@@ -38,21 +38,20 @@ class BrandNewController extends Controller
     return view('brand_new.list', compact('brand_news', 'permissions'));
   }
 
-   /**
-   * Show view for create a brand_new.
-   *
-   * @return view
-   */
+  /**
+   * view to create news of a brand.
+   * @param  void
+   * @return void
+  **/
   public function create() {
     return view('brand_new.create');
   }
 
   /**
-   * Show the application Create.
-   *
+   * Method to save the news of a brand.
    * @param  Request  $request
-   * @return view
-   */
+   * @return void
+  **/
   public function store(BrandNewRequest $request) {
     $brand_new = BrandNew::insertBrandNew($request->all());
     if ($brand_new) {
@@ -66,37 +65,31 @@ class BrandNewController extends Controller
   }
 
   /**
-   * Show a brand_new.
-   *
-   * @param  brand_new_id
-   * @return $country, $country_id
-   */
+   * Show the news of a brand.
+   * @param  $brand_new_id
+   * @return $brand_new
+  **/
   public function show($brand_new_id) {
-
     $brand_new = BrandNew::find($brand_new_id);
     return view('brand_new.show', compact('brand_new'));
   }
 
   /**
-   * Edit a brand_new.
-   *
+   * Edit the news of a brand.
    * @param  brand_new_id
-   * @return $content
+   * @return $brand_new
    */
   public function edit($brand_new_id) {
-
     $brand_new = BrandNew::find($brand_new_id);
       return view('brand_new.edit', compact('brand_new'));
   }
 
   /**
-   * Save brand_new edited.
-   *
+   * Save the new of an edited brand.
    * @param  Request $request, brand_new_id
-   * @return $id
+   * @return void
    */
   public function saveEdit(BrandNewUpdateRequest $request, $brand_new_id) {
-
     $brand_new = BrandNew::saveEdit($request->all(), $brand_new_id);
     if ($brand_new) {
       Session::flash('message', 'Contenido actualizado correctamente.');
@@ -109,13 +102,11 @@ class BrandNewController extends Controller
   }
 
    /**
-   * Delete a Brand_new.
-   *
+   * Delete the news of a brand.
    * @param  brand_new_id
    * @return brand_new
    */
   public function delete($brand_new_id) {
-
     $brand_new  = BrandNew::deleteBrandNew($brand_new_id);
     if ($brand_new) {
       Session::flash('message', 'Actualizado correctamente.');
@@ -128,9 +119,9 @@ class BrandNewController extends Controller
   }
 
   /**
-   * Show the application Active Deactive.
-   *
-   * @return \Illuminate\Http\Response
+   * Active/Deactive the news of a brand.
+   * @param  $brand_new_id
+   * @return void
    */
   public function activeDeactive($brand_new_id) {
     $brand_new = BrandNew::activeDeactive($brand_new_id);

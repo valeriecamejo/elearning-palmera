@@ -17,18 +17,17 @@ use App\Role;
 class EvaluationController extends Controller {
   /**
    * Create a new controller instance.
-   *
    * @return void
-   */
+   **/
   public function __construct() {
     $this->middleware('auth');
   }
 
   /**
-   * Show the application List.
-   *
-   * @return \Illuminate\Http\Response
-   */
+   * Show the view to list all the evaluations.
+   * @param  void
+   * @return $evaluations, $permissions
+   **/
   public function index() {
     if(Auth::user()->role_id == 1) {
       $evaluations = Evaluation::paginate(15);
@@ -40,9 +39,10 @@ class EvaluationController extends Controller {
     $permissions = Role::userPermissions('/evaluations', 11);
     return view('evaluation.list', compact('evaluations', 'permissions'));
   }
+
   /**
    * Show the application List.
-   *
+   * @param  void
    * @return \Illuminate\Http\Response
    */
   public function list() {
@@ -53,6 +53,7 @@ class EvaluationController extends Controller {
     }
     return response()->json($evaluations);
   }
+
     /**
    * Show the application Create.
    *
@@ -67,6 +68,7 @@ class EvaluationController extends Controller {
     }
     return view('evaluation.create', compact('products'));
   }
+
   /**
    * Show the application Create.
    *
@@ -84,6 +86,7 @@ class EvaluationController extends Controller {
     }
     return redirect()->to('evaluations/create');
   }
+
   /**
    * Show the application show.
    *

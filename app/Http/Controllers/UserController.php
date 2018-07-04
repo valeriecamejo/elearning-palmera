@@ -27,69 +27,66 @@ class UserController extends Controller {
   }
 
   /**
-   * Show the application List Users.
-   *
-   * @return \Illuminate\Http\Response
-   */
-  public function index() {
-
-    if(Auth::user()->role_id == 1) {
-      $users = User::paginate(15);
-    } else {
-      $users = DB::table('users')
-                    ->where('users.brand_id', Auth::user()->brand_id)
-                    ->paginate(15);
+   * Show the view to list all the users.
+   * @param  void
+   * @return $users, $permissions
+   **/
+    public function index() {
+      if(Auth::user()->role_id == 1) {
+        $users = User::paginate(15);
+      } else {
+        $users = DB::table('users')
+                      ->where('users.brand_id', Auth::user()->brand_id)
+                      ->paginate(15);
+      }
+      $permissions = Role::userPermissions('/users', 1);
+      return view('user.list', compact('users', 'permissions'));
     }
-    $permissions = Role::userPermissions('/users', 1);
-    return view('user.list', compact('users', 'permissions'));
-  }
   /**
-   * Show the application Create Users.
-   *
-   * @return \Illuminate\Http\Response
-   */
-  public function create() {
-    $brands    = Brand::all();
-    $countries = Country::all();
-    $roles     = Role::all();
-    return view('user.create', compact('brands','countries','roles'));
-  }
+   * Show view to create a user.
+   * @param  void
+   * @return $brands, $countries, $roles
+   **/
+    public function create() {
+      $brands    = Brand::all();
+      $countries = Country::all();
+      $roles     = Role::all();
+      return view('user.create', compact('brands','countries','roles'));
+    }
   /**
-   * Show the application Create Users.
-   *
+   * Save a user.
    * @param  Request  $request
    * @return \Illuminate\Http\Response
-   */
-  public function store(UserRequest $request) {
-    $user = User::insertUser($request->all());
-    if ($user) {
-      Session::flash('message', 'Usuario registrado correctamente.');
-      Session::flash('class', 'success');
-    } else {
-      Session::flash('message', 'Error al registrar los datos.');
-      Session::flash('class', 'danger');
+   **/
+    public function store(UserRequest $request) {
+      $user = User::insertUser($request->all());
+      if ($user) {
+        Session::flash('message', 'Usuario registrado correctamente.');
+        Session::flash('class', 'success');
+      } else {
+        Session::flash('message', 'Error al registrar los datos.');
+        Session::flash('class', 'danger');
+      }
+      return redirect()->to('users');
     }
-    return redirect()->to('users');
-  }
 
-    /**
+  /**
    * Show the application Profile.
-   *
-   * @return \Illuminate\Http\Response
-   */
-  public function profile() {
-    $user      = User::find(Auth::user()->id);
-    $brands    = Brand::all();
-    $countries = Country::all();
-    return view('user.profile', compact('user','brands','countries'));
-  }
+   * @param  void
+   * @return $user, $brands, $countries
+   **/
+    public function profile() {
+      $user      = User::find(Auth::user()->id);
+      $brands    = Brand::all();
+      $countries = Country::all();
+      return view('user.profile', compact('user','brands','countries'));
+    }
 
-    /**
+  /**
    * Show the application Profile.
-   *
    * @param  Request  $request
-   * @return \Illuminate\Http\Response
-   */
+   * @return void
+   **/
   public function saveProfile(UserProfileRequest $request) {
     $user = User::saveProfile($request->all());
     if ($user) {
@@ -102,66 +99,73 @@ class UserController extends Controller {
     return redirect()->to('users/profile');
   }
 
-    /**
-   * Show the application show.
-   *
-   * @return \Illuminate\Http\Response
-   */
-  public function show($id) {
-    $user      = User::find($id);
-    $brand     = Brand::find($user->brand_id);
-    $country   = Country::find($user->country_id);
-    $role      = Role::find($user->role_id);
-    $state     = State::find($user->state_id);
-    return view('user.show', compact('user','brand','country','role', 'state'));
-  }
-
-    /**
-   * Show the application Edit.
-   *
-   * @return \Illuminate\Http\Response
-   */
-  public function edit($id) {
-    $user       = User::find($id);
-    $brands     = Brand::all();
-    $country    = Country::find($user->country_id);
-    $state      = State::find($user->state_id);
-    $roles      = Role::all();
-    return view('user.edit', compact('user','brands','country','roles', 'state'));
-  }
-
-  public function saveUpdate(UserUpdateRequest $request, $id) {
-    $user = User::saveUpdate($request->all(), $id);
-    if ($user) {
-      Session::flash('message', 'Actualizado correctamente.');
-      Session::flash('class', 'success');
-    } else {
-      Session::flash('message', 'Error al guardar los datos.');
-      Session::flash('class', 'danger');
+  /**
+   * Show a user.
+   * @param  $id
+   * @return $user, $brand, $country, $role, $state
+   **/
+    public function show($id) {
+      $user      = User::find($id);
+      $brand     = Brand::find($user->brand_id);
+      $country   = Country::find($user->country_id);
+      $role      = Role::find($user->role_id);
+      $state     = State::find($user->state_id);
+      return view('user.show', compact('user','brand','country','role', 'state'));
     }
-    return redirect()->to('users/edit/'.$id);
-  }
-    /**
+
+  /**
+   * Edit a user.
+   * @param  $id
+   * @return $user, $brand, $country, $role, $state
+   **/
+    public function edit($id) {
+      $user       = User::find($id);
+      $brands     = Brand::all();
+      $country    = Country::find($user->country_id);
+      $state      = State::find($user->state_id);
+      $roles      = Role::all();
+      return view('user.edit', compact('user','brands','country','roles', 'state'));
+    }
+
+  /**
+   * Save edited user.
+   * @param  Request $request, $id
+   * @return void
+   **/
+    public function saveUpdate(UserUpdateRequest $request, $id) {
+      $user = User::saveUpdate($request->all(), $id);
+      if ($user) {
+        Session::flash('message', 'Actualizado correctamente.');
+        Session::flash('class', 'success');
+      } else {
+        Session::flash('message', 'Error al guardar los datos.');
+        Session::flash('class', 'danger');
+      }
+      return redirect()->to('users/edit/'.$id);
+    }
+
+  /**
    * Show the application Active Deactive.
-   *
-   * @return \Illuminate\Http\Response
-   */
-  public function activeDeactive($id) {
-    $user = User::activeDeactive($id);
-    if ($user) {
-      Session::flash('message', 'Actualizado correctamente.');
-      Session::flash('class', 'success');
-    } else {
-      Session::flash('message', 'Error al actualizar los datos.');
-      Session::flash('class', 'danger');
+   * @param  $id
+   * @return void
+   **/
+    public function activeDeactive($id) {
+      $user = User::activeDeactive($id);
+      if ($user) {
+        Session::flash('message', 'Actualizado correctamente.');
+        Session::flash('class', 'success');
+      } else {
+        Session::flash('message', 'Error al actualizar los datos.');
+        Session::flash('class', 'danger');
+      }
+      return redirect()->to('users');
     }
-    return redirect()->to('users');
-  }
+
   /**
    * Show the application show.
-   *
-   * @return \Illuminate\Http\Response
-   */
+   * @param  $id
+   * @return $user, $evaluations
+   **/
   public function userEvaluations($id) {
     $user         = User::find($id);
     $evaluations  = UserEvaluation::join('evaluations', 'user_evaluations.evaluation_id', '=', 'evaluations.id')
@@ -169,7 +173,7 @@ class UserController extends Controller {
     ->select('evaluations.*', 'user_evaluations.id as user_evaluation_id',
     'user_evaluations.score as user_evaluation_score', 'user_evaluations.approved')
     ->paginate(15);
-    // select('id', 'answer', 'question_id', 'correct'   )
+
     return view('user.evaluations',
     compact('user','evaluations'));
   }

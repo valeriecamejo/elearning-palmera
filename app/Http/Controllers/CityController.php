@@ -17,16 +17,16 @@ class CityController extends Controller {
    * Create a new controller instance.
    *
    * @return void
-   */
+   **/
     public function __construct() {
       $this->middleware('auth');
     }
 
   /**
-   * Show the application List.
-   *
-   * @return cities
-   */
+   * Shows the view of the list of cities.
+   * @param  $id
+   * @return $cities, $permissions, $country, $states
+   **/
   public function index() {
     $cities      = City::paginate(15);
     $countries   = Country::paginate(15);
@@ -37,28 +37,28 @@ class CityController extends Controller {
 
   /**
    * View for Create new city.
-   *
-   * @return view
-   */
+   * @param  void
+   * @return void
+   **/
     public function create() {
       return view('city.create');
     }
 
   /**
-   * All states.
-   *
-   * @return states
-   */
-  public function allCities() {
-    $cities = City::all();
-    return $cities;
-  }
+   * Show all cities.
+   * @param  void
+   * @return $cities
+   **/
+    public function allCities() {
+      $cities = City::all();
+      return $cities;
+    }
 
   /**
    * View for Create new city.
-   *
-   * @return view
-   */
+   * @param  $state_id
+   * @return $state, $country
+   **/
     public function createByState($state_id) {
       $state = State::find($state_id);
       $country  = Country::find($state->country_id);
@@ -67,10 +67,9 @@ class CityController extends Controller {
 
   /**
    * Save a new city.
-   *
    * @param  Request  $request
-   * @return view
-   */
+   * @return void
+   **/
   public function store(CityRequest $request) {
     $city = City::insertCity($request->all());
     if ($city) {
@@ -85,10 +84,9 @@ class CityController extends Controller {
 
   /**
    * Show a city.
-   *
-   * @param  city_id
-   * @return city, state, country
-   */
+   * @param  $city_id
+   * @return $city, $state, $country
+   **/
   public function show($city_id) {
     $city     = City::find($city_id);
     $state    = State::find($city->state_id);
@@ -98,10 +96,9 @@ class CityController extends Controller {
 
   /**
    * Edit a city.
-   *
-   * @param  country_id
-   * @return $country
-   */
+   * @param  $city_id
+   * @return $city, $state, $country
+   **/
   public function edit($city_id) {
 
     $city    = City::find($city_id);
@@ -111,10 +108,10 @@ class CityController extends Controller {
   }
 
   /**
-   * Activate/Deactivate a Country.
-   *
-   * @return \Illuminate\Http\Response
-   */
+   * Activate/Deactivate a City.
+   * @param  $city_id
+   * @return void
+   **/
   public function activeDeactive($city_id) {
     $city = City::activeDeactive($city_id);
     if ($city) {
@@ -128,11 +125,10 @@ class CityController extends Controller {
   }
 
   /**
-   * Save city edited.
-   *
+   * Save an edited city.
    * @param  Request $request, id
-   * @return $id
-   */
+   * @return void
+   **/
   public function saveEdit(CityUpdateRequest $request, $id) {
     $city = City::saveEdit($request->all(), $id);
     if ($city) {
