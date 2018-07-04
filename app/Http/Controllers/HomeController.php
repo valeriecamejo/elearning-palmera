@@ -12,7 +12,6 @@ class HomeController extends Controller
 {
   /**
    * Create a new controller instance.
-   *
    * @return void
    */
   public function __construct() {
@@ -20,10 +19,10 @@ class HomeController extends Controller
   }
 
   /**
-   * Show the application dashboard.
-   *
-   * @return \Illuminate\Http\Response
-   */
+   * Show the view to list all the brand's new.
+   * @param  void
+   * @return $brand_news, $brand
+   **/
   public function index() {
     $brand_news = BrandNew::where('brand_id', Auth::user()->brand_id)->where('active', true)->paginate(15);
     $brand      = Brand::find(Auth::user()->brand_id);

@@ -21,41 +21,40 @@ class CountryController extends Controller {
     }
 
   /**
-   * Show the application List.
-   *
-   * @return countries
-   */
+   * Show the view to list all the countries.
+   * @param  void
+   * @return $countries, $permissions
+   **/
     public function index() {
       $countries = Country::paginate(15);
       $permissions = Role::userPermissions('/countries', 13);
       return view('country.list', compact('countries', 'permissions'));
     }
 
-    /**
+  /**
    * All countries.
-   *
-   * @return countries
-   */
+   * @param  void
+   * @return $countries
+   **/
     public function allCountries() {
       $countries = DB::table('countries')->where('active', true)->get();
       return $countries;
     }
 
   /**
-   * Show the application Create.
-   *
-   * @return view
-   */
+   * Show view to create a country.
+   * @param  void
+   * @return void
+   **/
     public function create() {
       return view('country.create');
     }
 
   /**
-   * Show the application Create.
-   *
+   * Save a new country.
    * @param  Request  $request
-   * @return view
-   */
+   * @return void
+   **/
     public function store(CountryRequest $request) {
       $country = Country::insertCountry($request->all());
       if ($country) {
@@ -70,21 +69,19 @@ class CountryController extends Controller {
 
   /**
    * Edit a country.
-   *
-   * @param  country_id
+   * @param  $country_id
    * @return $country
-   */
+   **/
     public function edit($country_id) {
       $country = Country::find($country_id);
         return view('country.edit', compact('country'));
     }
 
   /**
-   * Save country edited.
-   *
+   * Save edited country.
    * @param  Request $request, id
-   * @return $id
-   */
+   * @return void
+   **/
     public function saveEdit(CountryUpdateRequest $request, $id) {
       $country = Country::saveEdit($request->all(), $id);
       if ($country) {
@@ -99,10 +96,9 @@ class CountryController extends Controller {
 
   /**
    * Show a country.
-   *
-   * @param  country_id
+   * @param  $country_id
    * @return $country, $country_id
-   */
+   **/
     public function show($country_id) {
       $country = Country::find($country_id);
       return view('country.show', compact('country', 'country_id'));
@@ -110,9 +106,8 @@ class CountryController extends Controller {
 
    /**
    * Activate/Deactivate a Country.
-   *
-   * @param  id
-   * @return view
+   * @param  country_id
+   * @return void
    */
   public function activeDeactive($country_id) {
     $country = Country::activeDeactive($country_id);

@@ -14,38 +14,39 @@ class BrandController extends Controller {
    * Create a new controller instance.
    *
    * @return void
-   */
+  **/
   public function __construct()
   {
     $this->middleware('auth');
   }
 
   /**
-   * Show the application List brands.
-   *
-   * @return \Illuminate\Http\Response
-   */
-  public function index()
-  {
+   * Show the view to list all the brands.
+   * @param  void
+   * @return $brands, $permissions
+  **/
+  public function index() {
     $brands = Brand::paginate(15);
     $permissions = Role::userPermissions('/brands', 5);
     return view('brand.list', compact('brands', 'permissions'));
   }
+
   /**
-   * Show the application Create brand.
-   *
-   * @return \Illuminate\Http\Response
-   */
+   * View to create a brand.
+   * @param  void
+   * @return void
+  **/
   public function create()
   {
     return view('brand.create');
   }
+
   /**
-   * Show the application Create brand.
+   * Method to save a brand.
    *
-   * @param  Request  $request
-   * @return \Illuminate\Http\Response
-   */
+   * @param  Request  $requests
+   * @return void
+  **/
   public function store(BrandRequest $request)
   {
     $brands = Brand::insertBrand($request->all());
@@ -60,25 +61,30 @@ class BrandController extends Controller {
   }
 
   /**
-   * Show the application show.
-   *
-   * @return \Illuminate\Http\Response
+   * View to show a brand.
+   * @param  $id
+   * @return $brand
    */
   public function show($id) {
     $brand      = Brand::find($id);
     return view('brand.show', compact('brand'));
   }
 
-    /**
-   * Show the application Edit.
-   *
-   * @return \Illuminate\Http\Response
-   */
+  /**
+   * View to edit a brand.
+   * @param  $id
+   * @return $brand
+  **/
   public function edit($id) {
     $brand       = Brand::find($id);
     return view('brand.edit', compact('brand'));
   }
 
+  /**
+   * Method to save an edited brand.
+   * @param  $requests, $id
+   * @return void
+  **/
   public function saveUpdate(EditBrandRequest $request, $id) {
     $brand = Brand::saveUpdate($request->all(), $id);
     if ($brand) {
@@ -90,11 +96,11 @@ class BrandController extends Controller {
     }
     return redirect()->to('brands/show/'.$id);
   }
-    /**
-   * Show the application Active Deactive.
-   *
-   * @return \Illuminate\Http\Response
-   */
+  /**
+   * Active/Deactive a brand.
+   * @param  $id
+   * @return void
+   **/
   public function activeDeactive($id) {
     $brand = Brand::activeDeactive($id);
     if ($brand) {

@@ -11,39 +11,38 @@ use App\Role;
 use DB;
 
 class CategoryController extends Controller {
-    /**
+  /**
    * Create a new controller instance.
    *
    * @return void
-   */
+   **/
   public function __construct() {
     $this->middleware('auth');
   }
 
   /**
-   * Show the application List.
-   *
-   * @return \Illuminate\Http\Response
-   */
+   * Show the view to list all the categories.
+   * @param  void
+   * @return $categories, $permissions
+   **/
   public function index() {
     $categories = Category::paginate(15);
     $permissions = Role::userPermissions('/categories', 10);
     return view('category.list', compact('categories', 'permissions'));
   }
   /**
-   * Show the application Create.
-   *
-   * @return \Illuminate\Http\Response
-   */
+   * Show the view to create a category.
+   * @param  void
+   * @return void
+   **/
   public function create() {
     return view('category.create');
   }
   /**
-   * Show the application Create.
-   *
+   * Save a new category.
    * @param  Request  $request
-   * @return \Illuminate\Http\Response
-   */
+   * @return void
+   **/
   public function store(CategoryRequest $request) {
     $category = Category::insertCategory($request->all());
     if ($category) {
@@ -56,26 +55,31 @@ class CategoryController extends Controller {
     return redirect()->to('categories');
   }
 
-      /**
-   * Show the application show.
-   *
-   * @return \Illuminate\Http\Response
-   */
+  /**
+   * Show the view to show a category.
+   * @param  $id
+   * @return $category
+   **/
   public function show($id) {
     $category      = Category::find($id);
     return view('category.show', compact('category'));
   }
 
-    /**
+  /**
    * Show the application Edit.
-   *
-   * @return \Illuminate\Http\Response
-   */
+   * @param  $id
+   * @return $category
+   **/
   public function edit($id) {
     $category       = Category::find($id);
     return view('category.edit', compact('category'));
   }
 
+   /**
+   * Save an edited category.
+   * @param  $id, $request
+   * @return void
+   **/
   public function saveUpdate(CategoryUpdateRequest $request, $id) {
     $category = Category::saveUpdate($request->all(), $id);
     if ($category) {
@@ -87,11 +91,11 @@ class CategoryController extends Controller {
     }
     return redirect()->to('/categories');
   }
-    /**
-   * Show the application Active Deactive.
-   *
-   * @return \Illuminate\Http\Response
-   */
+  /**
+   * Active/Deactive a category.
+   * @param  $id
+   * @return void
+   **/
   public function activeDeactive($id) {
     $category = Category::activeDeactive($id);
     if ($category) {
@@ -106,9 +110,9 @@ class CategoryController extends Controller {
 
   /**
    * All active categories for the catalog view.
-   *
+   * @param  void
    * @return \Illuminate\Http\Response
-   */
+   **/
   public function allCategories() {
     $categories = DB::table('categories')
                     ->where('categories.active', true)

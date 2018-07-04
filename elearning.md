@@ -2,27 +2,27 @@
 
 ## - Tecnologías, librerías
 
-`PHP v.7.1`: Lenguaje base utilizado del lado del servidor.
-`JavaScript`: Lenguaje utilizado para las interaciones en el front-end.
-`VueJs`: Framework progresivo con el cual se construyeron interfaces de usuario y validaciones front-end.
-`Axios`: Libreria de JavaScript para realizar las peticiones al servidor de forma asincrona.
-`Framework`: Laravel v.5.6.
-`Base de Datos`: MySQL.
+* PHP v.7.1: Lenguaje base utilizado del lado del servidor.
+* JavaScript: Lenguaje utilizado para las interaciones en el front-end.
+* VueJs: Framework progresivo con el cual se construyeron interfaces de usuario y validaciones front-end.
+* Axios: Libreria de JavaScript para realizar las peticiones al servidor de forma asincrona.
+* Framework: Laravel v.5.6.
+* Base de Datos: MySQL.
 
 
 ## - Estilos
 
-`Blade`: Motor de Platilla de laravel para las vistas.
-`Font Awesome`: Framework utilizado para los iconos vectoriales y estilos css.
-`Bootstrap 4`: Framework para el diseño web de todas las vistas.
-`CSS`: Lenguaje utilizado para los estilos.
+* Blade: Motor de Platilla de laravel para las vistas.
+* Font Awesome: Framework utilizado para los iconos vectoriales y estilos css.
+* Bootstrap 4: Framework para el diseño web de todas las vistas.
+* CSS: Lenguaje utilizado para los estilos.
 
 
 ## - Otras herramientas utilizadas
 
-`Git`: Gestor de Versiones.
-`CKEditor`: Editor wiziwig para crear los contenidos en todos los modulos.
-`Laravel-dompdf`: Paquete para convertir archivo HTML a PDF/`https://github.com/barryvdh/laravel-dompdf`
+* Git: Gestor de Versiones.
+* CKEditor: Editor wiziwig para crear los contenidos en todos los modulos.
+* Laravel-dompdf: Paquete para convertir archivo HTML a PDF/`https://github.com/barryvdh/laravel-dompdf`
 
 
 ## - Base de Datos
@@ -35,28 +35,28 @@
 
 ##### Tablas en local y servidor
 
-  `answers`: Almacena las respuestas correctas de cada una de las preguntas por evaluacion creada.
-  `brands`: Guarda todas las marcas creadas de un cliente
-  `brand_news`: Se almacenan las noticias creadas por marca.
-  `categories`: Guarda todas las categorias.
-  `cities`: Almacena todas las ciudades por estado/provincia
-  `contents`: Guarda los contenidos creados para mostrarse en la informacion de los productos.
-  `countries`: Almacena todos los paises.
-  `downloads`: En esta tabla se guardan todos los archivos que pertenecen al modulo de descargables.
-  `evaluations`: posee toda la informacion relacionada a una evaluacion.
-  `incentive_plans`: guarda toda la informacion creada referente en el modulo Plan de Incentivos
-  `migrations`: esta tabla almacena las migraciones que se realizan con laravel.
-  `modules`: se guardan todos los modulos que debe poseer el sistema
-  `password_resets`: no se esta haciendo uso de esta tabla.
-  `products`: Guarda toda la informacion referente a un producto.
-  `questions`: esta tabla almacena las preguntas por evaluacion.
-  `roles`: guarda la informacion referente a roles junto con los permisos correspondientes
-  `sales`: se guardan las ventas de cada usuario
-  `states`: almacena los estados/provincias ascociados a un pais
-  `stores`: guarda las tiendas por estados
-  `users`: posee toda la informacion referente a un usuario
-  `user_answers`: almacena las respuestas de los usuarios por cadas evaluaciones
-  `user_evaluations`: se guarda la informacion de las evaluaciones de los usuarios
+  * answers: Almacena las respuestas correctas de cada una de las preguntas por evaluacion creada.
+  * brands: Guarda todas las marcas creadas de un cliente
+  * brand_news: Se almacenan las noticias creadas por marca.
+  * categories: Guarda todas las categorias.
+  * cities: Almacena todas las ciudades por estado/provincia
+  * contents: Guarda los contenidos creados para mostrarse en la informacion de los productos.
+  * countries: Almacena todos los paises.
+  * downloads: En esta tabla se guardan todos los archivos que pertenecen al modulo de descargables.
+  * evaluations: posee toda la informacion relacionada a una evaluacion.
+  * incentive_plans: guarda toda la informacion creada referente en el modulo Plan de Incentivos
+  * migrations: esta tabla almacena las migraciones que se realizan con laravel.
+  * modules: se guardan todos los modulos que debe poseer el sistema
+  * password_resets: no se esta haciendo uso de esta tabla.
+  * products: Guarda toda la informacion referente a un producto.
+  * questions: esta tabla almacena las preguntas por evaluacion.
+  * roles: guarda la informacion referente a roles junto con los permisos correspondientes
+  * sales: se guardan las ventas de cada usuario
+  * states: almacena los estados/provincias ascociados a un pais
+  * stores: guarda las tiendas por estados
+  * users: posee toda la informacion referente a un usuario
+  * user_answers: almacena las respuestas de los usuarios por cadas evaluaciones
+  * user_evaluations: se guarda la informacion de las evaluaciones de los usuarios
 
 ## - Pasos para la instalacion del proyecto de modo local
 
@@ -78,7 +78,7 @@ DB_USERNAME=root
 DB_PASSWORD=
 ```
 
-El campo APP_KEY ubicada en la segunda linea del codigo anterior, se autogenera con el siuiente comando por consola: 
+El campo APP_KEY ubicada en la segunda linea del codigo anterior, se autogenera con el siuiente comando por consola:
 
   `php artisan key:generate`
 
@@ -160,6 +160,10 @@ Nota: el resto de los modulos no dependen de otros.
 ##### User (usuario):
   `/js/vueJs/city/create.js`
 
+
+#### Todos los archivos vue estan en la siguiente rut: 
+
+`public/js/vueJs`
 
 ## - Directorio del proyecto en el servidor
 

@@ -18,38 +18,37 @@ class ContentController extends Controller
    * Create a new controller instance.
    *
    * @return void
-   */
+   **/
   public function __construct() {
     $this->middleware('auth');
   }
 
   /**
-   * Show the application List.
-   *
-   * @return void
-   */
+   * Show the view to list all the contents.
+   * @param  $product_id
+   * @return $contents, $product, $product_id
+   **/
   public function index($product_id) {
     $contents = Content::where('product_id', $product_id)->paginate(15);
     $product  = Product::find($product_id);
     return view('content.list', compact('contents', 'product', 'product_id'));
   }
 
-/**
+  /**
    * Show view for create a content.
-   *
-   * @return view
-   */
+   * @param  $product_id
+   * @return $product
+   **/
   public function create($product_id) {
     $product = Product::find($product_id);
     return view('content.create', compact('product'));
   }
 
   /**
-   * Show the application Create.
-   *
-   * @param  Request  $request, product_id
-   * @return view
-   */
+   * Save a new content.
+   * @param  Request $request, $id
+   * @return void
+   **/
   public function store(ContentRequest $request, $id) {
     $content = Content::insertContent($request->all(), $id);
     if ($content) {
@@ -64,36 +63,30 @@ class ContentController extends Controller
 
   /**
    * Show a content.
-   *
-   * @param  country_id
-   * @return $country, $country_id
-   */
+   * @param  content_id
+   * @return $content
+   **/
   public function show($content_id) {
-
     $content = Content::find($content_id);
     return view('content.show', compact('content'));
   }
 
   /**
    * Edit a content.
-   *
    * @param  content_id
    * @return $content
-   */
+   **/
   public function edit($content_id) {
-
     $content = Content::find($content_id);
       return view('content.edit', compact('content'));
   }
 
   /**
-   * Save content edited.
-   *
-   * @param  Request $request, id
-   * @return $id
-   */
+   * Save edited content.
+   * @param  Request $request, $content_id
+   * @return void
+   **/
   public function saveEdit(ContentUpdateRequest $request, $content_id) {
-
     $content = Content::saveEdit($request->all(), $content_id);
     if ($content) {
       Session::flash('message', 'Contenido actualizado correctamente.');
@@ -107,12 +100,10 @@ class ContentController extends Controller
 
   /**
    * Delete a Content.
-   *
-   * @param  content_id
-   * @return contents
-   */
+   * @param  $content_id, $product_id
+   * @return void
+   **/
   public function delete($content_id, $product_id) {
-
     $content  = Content::deleteContent($content_id);
     $contents = Content::where('product_id', $product_id)->paginate(15);
     $product  = Product::find($product_id);
@@ -129,10 +120,9 @@ class ContentController extends Controller
   }
 
   /**
-   * Content by Product.
-   *
-   * @param  void
-   * @return view
+   * Show saved images of a brand.
+   * @param  $brand_id
+   * @return images
    */
   public function contentImages($brand_id) {
     $images = Download::where('brand_id', $brand_id)
@@ -140,22 +130,21 @@ class ContentController extends Controller
                       ->paginate(15);
     return view('content.images', compact('images'));
   }
+
   /**
-   * Content by Product.
-   *
-   * @param  void
-   * @return view
-   */
+   * Show view to save new image.
+   * @param  $brand_id
+   * @return $brand_id
+   **/
   public function newImage($brand_id) {
     return view('content.new_image', compact('brand_id'));
   }
 
   /**
-   * Save content edited.
-   *
-   * @param  Request $request, id
-   * @return $id
-   */
+   * Save edited image.
+   * @param  Request $request, $brand_id
+   * @return void
+   **/
   public function saveNewImage(Request $request, $brand_id) {
     $newImage = Download::insertDownload($request->all(), $request['product_id']);
     if ($newImage) {
@@ -169,12 +158,11 @@ class ContentController extends Controller
   }
 
   /**
-   * All products list.
-   *
-   * @return $products
-   */
+   * Shows contents by products.
+   * @param  $product_id
+   * @return json->contents
+   **/
   public function contentByProduct($product_id) {
-
     $contents = DB::table('contents')
                   ->where('contents.product_id', $product_id)
                   ->paginate(15);

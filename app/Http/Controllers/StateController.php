@@ -15,7 +15,6 @@ class StateController extends Controller
 {
   /**
    * Create a new controller instance.
-   *
    * @return void
    */
   public function __construct() {
@@ -23,87 +22,82 @@ class StateController extends Controller
   }
 
   /**
-   * Show the application dashboard.
-   *
-   * @return states
-   */
-  public function index() {
-    $states      = State::paginate(15);
-    $countries   = Country::paginate(15);
-    $permissions = Role::userPermissions('/states', 14);
-    return view('state.list', compact('states', 'permissions', 'countries'));
-  }
+   * Show the view to list all the states.
+   * @return void
+   * @return $states, $permissions, $countries
+   **/
+    public function index() {
+      $states      = State::paginate(15);
+      $countries   = Country::paginate(15);
+      $permissions = Role::userPermissions('/states', 14);
+      return view('state.list', compact('states', 'permissions', 'countries'));
+    }
 
    /**
    * All states.
-   *
-   * @return states
-   */
-  public function states($country_id) {
-    $states = DB::table('states')
-                ->where('active', true)
-                ->where('country_id' , $country_id)
-                ->get();
-    return $states;
-  }
+   * @return $country_id
+   * @return $states
+   **/
+    public function states($country_id) {
+      $states = DB::table('states')
+                  ->where('active', true)
+                  ->where('country_id' , $country_id)
+                  ->get();
+      return $states;
+    }
 
    /**
    * All states.
-   *
-   * @return states
-   */
+   * @return void
+   * @return $states
+   **/
   public function allStates() {
     $states = State::all();
     return $states;
   }
 
   /**
-   * View for states.
-   *
+   * Show view to create a state.
    * @param  void
    * @return void
-   */
+   **/
   public function create() {
     return view('state.create');
   }
 
   /**
    * View for states.
-   *
-   * @param  void
-   * @return void
-   */
-  public function createByCountry($country_id) {
-    $country = Country::find($country_id);
-    return view('state.createByCountry', compact('country'));
-  }
+   * @param  $country_id
+   * @return $country
+   **/
+    public function createByCountry($country_id) {
+      $country = Country::find($country_id);
+      return view('state.createByCountry', compact('country'));
+    }
 
   /**
    * Save a state.
-   *
    * @param  Request  $request
    * @return void
-   */
-  public function store(StateRequest $request) {
-    $state = State::insertState($request->all());
-    if ($state) {
-      Session::flash('message', 'Estado registrado correctamente.');
-      Session::flash('class', 'success');
-    } else {
-      Session::flash('message', 'Error al registrar los datos.');
-      Session::flash('class', 'danger');
+   **/
+    public function store(StateRequest $request) {
+      $state = State::insertState($request->all());
+      if ($state) {
+        Session::flash('message', 'Estado registrado correctamente.');
+        Session::flash('class', 'success');
+      } else {
+        Session::flash('message', 'Error al registrar los datos.');
+        Session::flash('class', 'danger');
+      }
+      return redirect()->to('/states');
     }
-    return redirect()->to('/states');
-  }
 
   /**
    * Show a state.
-   *
-   * @param  state_id
-   * @return \Illuminate\Http\Response
-   */
+   * @param  $state_id
+   * @return $state, $country
+   **/
   public function show($state_id) {
-
     $state     = State::find($state_id);
     $country   = Country::find($state->country_id);
     return view('state.show', compact('state', 'country'));
@@ -111,42 +105,37 @@ class StateController extends Controller
 
   /**
    * View for edit state/province.
-   *
-   * @param  state_id
-   * @return state
-   */
-  public function edit($state_id) {
-
-    $state     = State::find($state_id);
-    $country   = Country::find($state->country_id);
-    return view('state.edit', compact('state', 'country'));
-  }
-
-  /**
-   * View for edit state/province.
-   *
-   * @param  state_id
-   * @return void
-   */
-  public function saveEdit(StateUpdateRequest $request, $state_id) {
-
-    $state = State::saveEdit($request->all(), $state_id);
-    if ($state) {
-      Session::flash('message', 'Estado actualizado correctamente.');
-      Session::flash('class', 'success');
-    } else {
-      Session::flash('message', 'Error al actualizar los datos.');
-      Session::flash('class', 'danger');
+   * @param  $state_id
+   * @return $state, $country
+   **/
+    public function edit($state_id) {
+      $state     = State::find($state_id);
+      $country   = Country::find($state->country_id);
+      return view('state.edit', compact('state', 'country'));
     }
-    return redirect()->to('/states');
-  }
 
   /**
    * View for edit state/province.
-   *
-   * @param  state_id
+   * @param  Request $request, $state_id
    * @return void
-   */
+   **/
+    public function saveEdit(StateUpdateRequest $request, $state_id) {
+      $state = State::saveEdit($request->all(), $state_id);
+      if ($state) {
+        Session::flash('message', 'Estado actualizado correctamente.');
+        Session::flash('class', 'success');
+      } else {
+        Session::flash('message', 'Error al actualizar los datos.');
+        Session::flash('class', 'danger');
+      }
+      return redirect()->to('/states');
+    }
+
+  /**
+   * Active/Deactive a state/province.
+   * @param  $state_id
+   * @return void
+   **/
   public function active_deactive($state_id) {
 
     $state = State::activeDeactive($state_id);

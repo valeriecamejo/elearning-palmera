@@ -14,33 +14,33 @@ use App\Role;
 class SaleController extends Controller {
   /**
    * Create a new controller instance.
-   *
    * @return void
-   */
+   **/
   public function __construct() {
     $this->middleware('auth');
   }
 
   /**
-   * Show the application List.
-   *
-   * @return \Illuminate\Http\Response
+   * Show the view to list all the sales.
+   * @param  void
+   * @return $sales, $permissions
    */
-  public function index() {
-    if(Auth::user()->role_id == 1) {
-      $sales = Sale::paginate(15);
-    } else {
-      $sales = Sale::where('user_id', Auth::user()->brand_id)
-                       ->get();
-      $permissions = Role::userPermissions('/sales', 7);
+    public function index() {
+      if(Auth::user()->role_id == 1) {
+        $sales = Sale::paginate(15);
+      } else {
+        $sales = Sale::where('user_id', Auth::user()->brand_id)
+                        ->get();
+        $permissions = Role::userPermissions('/sales', 7);
+      }
+        return view('sale.list', compact('sales', 'permissions'));
     }
-      return view('sale.list', compact('sales', 'permissions'));
-  }
+
   /**
-   * Show the application Create.
-   *
-   * @return \Illuminate\Http\Response
-   */
+   * Show view to create a sale.
+   * @param  void
+   * @return $products, $stores
+   **/
   public function create() {
     if(Auth::user()->role_id == 1) {
       $products = Product::all();
@@ -54,14 +54,13 @@ class SaleController extends Controller {
     }
     return view('sale.create', compact('products', 'stores'));
   }
-  /**
-   * Show the application Create.
-   *
-   * @param  Request  $request
-   * @return \Illuminate\Http\Response
-   */
-  public function store(Request $request) {
 
+  /**
+   * Save a new sale.
+   * @param  Request  $request
+   * @return void
+   **/
+  public function store(Request $request) {
     $sale = Sale::insertSale($request->all());
     if ($sale) {
       Session::flash('message', 'Venta cargada correctamente.');
@@ -74,11 +73,11 @@ class SaleController extends Controller {
 
   }
 
-      /**
-   * Show the application show.
-   *
-   * @return \Illuminate\Http\Response
-   */
+  /**
+   * Show a sale.
+   * @param  $id
+   * @return $sale, $product, $store
+   **/
   public function show($id) {
     $sale      = Sale::find($id);
     $product   = Product::find($sale->product_id);
@@ -88,9 +87,9 @@ class SaleController extends Controller {
 
   /**
    * Show the application Active Deactive.
-   *
-   * @return \Illuminate\Http\Response
-   */
+   * @param  $id, $value
+   * @return void
+   **/
   public function approveDisapprove($id, $value) {
     $sale = Sale::approveDisapprove($id, $value);
     if ($sale) {

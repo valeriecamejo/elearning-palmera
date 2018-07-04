@@ -22,13 +22,11 @@ class DownloadController extends Controller {
     }
 
   /**
-   * Show the application List.
-   *
+   * Show the view to list all the evaluations.
+   * @param  product_id
    * @return downloads
-   */
-  //TODO: consultar todos los archivos
+   **/
     public function index($product_id) {
-
       $downloads = Download::where('brand_id', Auth::user()->brand_id)
                            ->where('product_id', $product_id)
                            ->paginate(15);
@@ -36,20 +34,19 @@ class DownloadController extends Controller {
     }
 
   /**
-   * Upload new file.
-   *
-   * @return view
-   */
+   * Show view to create a new file.
+   * @param  $product_id
+   * @return $product_id
+   **/
     public function create($product_id) {
       return view('download.create', compact('product_id'));
     }
 
-    /**
-   * Show the application Create.
-   *
-   * @param  Request  $request
-   * @return \Illuminate\Http\Response
-   */
+  /**
+   * Save to a new file.
+   * @param  Request  $request, $product_id
+   * @return $product_id
+   **/
   public function store(DownloadRequest $request, $product_id) {
     $download = Download::insertDownload($request->all(), $product_id);
     if ($download) {
@@ -63,25 +60,21 @@ class DownloadController extends Controller {
   }
 
   /**
-   * Show a country.
-   *
-   * @param  country_id
-   * @return $country, $country_id
-   */
+   * Show a file.
+   * @param  $download_id
+   * @return $download
+   **/
     public function show($download_id) {
-
       $download = Download::find($download_id);
       return view('download.show', compact('download'));
     }
 
-    /**
+  /**
    * Delete a File.
-   *
-   * @param  download_id
-   * @return view
-   */
+   * @param  $product_id
+   * @return void
+   **/
   public function delete($download_id, $product_id) {
-
     $download = Download::deleteDownload($download_id);
     if ($download) {
       Session::flash('message', 'Actualizado correctamente.');
@@ -95,24 +88,20 @@ class DownloadController extends Controller {
 
    /**
    * Edit a file.
-   *
-   * @param  download_id
-   * @return $download
-   */
+   * @param  $download_id, $product_id
+   * @return $download, $product_id
+   **/
     public function edit($download_id, $product_id) {
-
       $download = Download::find($download_id);
         return view('download.edit', compact('download', 'product_id'));
     }
 
-    /**
-   * Save country edited.
-   *
-   * @param  Request $request, id
-   * @return $id
-   */
+  /**
+   * Save edited file
+   * @param  Request $request, $download_id, $product_id
+   * @return void
+   **/
     public function saveEdit(DownloadUpdateRequest $request, $download_id, $product_id) {
-
       $download = Download::saveEdit($request->all(), $download_id, $product_id);
       if ($download) {
         Session::flash('message', 'Archivo actualizado correctamente.');
@@ -124,14 +113,12 @@ class DownloadController extends Controller {
       return redirect()->to('downloads/edit/' . $download_id . '/' . $product_id);
     }
 
-    /**
-   * Save country edited.
-   *
-   * @param  id
-   * @return $id
-   */
+  /**
+   * All the files of a product.
+   * @param  $product_id
+   * @return $downloads
+   **/
     public function downloadByProduct($product_id) {
-
       $downloads   = Download::where('brand_id', Auth::user()->brand_id)
                            ->where('product_id', $product_id)
                            ->paginate(20);
